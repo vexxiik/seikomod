@@ -27,7 +27,7 @@ export async function submitOrder(formData: FormData, cartItems: { id: string; n
   const validationResult = checkoutSchema.safeParse(rawData);
 
   if (!validationResult.success) {
-    throw new Error(validationResult.error.errors[0].message);
+    throw new Error(validationResult.error.issues[0].message);
   }
 
   const { firstName, lastName, email, address, city, zip, includeWatchBox, discountCode } = validationResult.data;

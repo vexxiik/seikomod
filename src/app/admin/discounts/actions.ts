@@ -3,13 +3,13 @@
 import { prisma } from "@/lib/prisma";
 import { revalidatePath } from "next/cache";
 
-export async function createDiscountCode(formData: FormData) {
+export async function createDiscountCode(formData: FormData): Promise<void> {
   const code = formData.get("code") as string;
   const discount = parseFloat(formData.get("discount") as string);
   const type = formData.get("type") as string;
 
   if (!code || isNaN(discount) || !type) {
-    return { error: "Všechna pole jsou povinná." };
+    return;
   }
 
   try {
@@ -21,9 +21,8 @@ export async function createDiscountCode(formData: FormData) {
       }
     });
     revalidatePath("/admin/discounts");
-    return { success: true };
   } catch (error) {
-    return { error: "Nepodařilo se vytvořit kupón (možná již existuje stejný kód)." };
+    // Coupon already exists or other error
   }
 }
 

@@ -71,7 +71,7 @@ export function DashboardChart() {
 
   return (
     <div className="w-full h-full p-4">
-      <Bar data={data} options={options} />
+      <Bar data={data as any} options={options} />
     </div>
   );
 }
