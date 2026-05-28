@@ -85,6 +85,11 @@ export default function CartPage() {
     }
     try {
       const result = await submitOrder(formData, items, total);
+      if (result.error) {
+        alert(result.error);
+        setIsSubmitting(false);
+        return;
+      }
       if (result.success) {
         clearCart();
         router.push("/checkout/success");
