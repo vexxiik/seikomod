@@ -1,0 +1,79 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = "file:./dev.db"
+}
+
+model Product {
+  id          String      @id @default(cuid())
+  name        String
+  description String
+  price       Float
+  type        String      // Diver, Dress, GMT
+  movement    String
+  glass       String
+  bracelet    String
+  images      String      // JSON string of image URLs
+  stock       Int         @default(0)
+  createdAt   DateTime    @default(now())
+  updatedAt   DateTime    @updatedAt
+  orderItems  OrderItem[]
+}
+
+model Customer {
+  id        String   @id @default(cuid())
+  name      String
+  email     String   @unique
+  password  String?  // Hashed password for authenticated users
+  address   String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  orders    Order[]
+}
+
+model Order {
+  id          String      @id @default(cuid())
+  orderNumber Int?        @unique
+  customerId  String
+  total       Float
+  status      String      // PENDING, COMPLETED, CANCELLED
+  createdAt   DateTime    @default(now())
+  updatedAt   DateTime    @updatedAt
+  customer    Customer    @relation(fields: [customerId], references: [id], onDelete: Cascade)
+  items       OrderItem[]
+}
+
+model OrderItem {
+  id        String   @id @default(cuid())
+  orderId   String
+  productId   String?
+  productName String
+  quantity    Int
+  price       Float
+  order       Order    @relation(fields: [orderId], references: [id], onDelete: Cascade)
+  product     Product? @relation(fields: [productId], references: [id], onDelete: SetNull)
+}
+
+model Expense {
+  id          String   @id @default(cuid())
+  name        String
+  description String?
+  amount      Float
+  date        DateTime @default(now())
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model DiscountCode {
+  id        String   @id @default(cuid())
+  code      String   @unique
+  discount  Float
+  type      String   // 'PERCENTAGE' or 'FIXED'
+  isActive  Boolean  @default(true)
+  usedCount Int      @default(0)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
