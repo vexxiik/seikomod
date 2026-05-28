@@ -132,7 +132,7 @@ export default function CartPage() {
         {/* Main Content */}
         <div className="lg:col-span-2 space-y-8">
           {step === "cart" ? (
-            <Card className="border-border/50 shadow-sm bg-card/40 backdrop-blur-md rounded-2xl overflow-hidden">
+            <Card className="border-border/50 shadow-sm bg-card rounded-2xl overflow-hidden">
               <CardContent className="p-0">
                 {items.length === 0 ? (
                   <div className="p-16 text-center text-muted-foreground text-lg">
@@ -170,7 +170,7 @@ export default function CartPage() {
               </CardContent>
             </Card>
           ) : (
-            <Card className="border-border/50 shadow-sm bg-card/40 backdrop-blur-md rounded-2xl">
+            <Card className="border-border/50 shadow-sm bg-card rounded-2xl">
               <CardHeader className="p-6 md:p-8 pb-4">
                 <CardTitle className="font-heading text-2xl tracking-tight">Doručovací údaje</CardTitle>
               </CardHeader>
@@ -215,7 +215,7 @@ export default function CartPage() {
 
         {/* Sidebar Summary */}
         <div className="lg:col-span-1">
-          <Card className="border border-border/50 shadow-xl sticky top-28 bg-gradient-to-b from-card/80 to-card/40 backdrop-blur-xl rounded-2xl overflow-hidden">
+          <Card className="border border-border/50 shadow-xl sticky top-28 bg-gradient-to-b from-card/80 to-card/40 rounded-2xl overflow-hidden">
             <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-accent via-primary to-accent opacity-50" />
             <CardHeader className="p-6 md:p-8 pb-4">
               <CardTitle className="font-heading text-xl tracking-tight">Shrnutí objednávky</CardTitle>

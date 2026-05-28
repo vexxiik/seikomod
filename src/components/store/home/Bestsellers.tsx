@@ -74,7 +74,7 @@ export function Bestsellers() {
               viewport={{ once: true, margin: "-100px" }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
             >
-              <Card className="relative overflow-hidden group border border-border/50 shadow-sm hover:shadow-2xl hover:border-accent/30 transition-all duration-500 rounded-2xl bg-card/40 backdrop-blur-sm h-full flex flex-col">
+              <Card className="relative overflow-hidden group border border-border/50 shadow-sm hover:shadow-2xl hover:border-accent/30 transition-all duration-500 rounded-2xl bg-card h-full flex flex-col">
                 <Link href={product.link} className="absolute inset-0 z-10">
                   <span className="sr-only">Zobrazit detail {product.name}</span>
                 </Link>
@@ -87,13 +87,13 @@ export function Bestsellers() {
                     className="object-cover w-full h-full group-hover:scale-105 transition-transform duration-700 ease-out p-4"
                   />
                   <div className="absolute top-4 left-4 z-20">
-                    <span className="bg-background/90 backdrop-blur-md px-3 py-1.5 text-[11px] font-bold tracking-widest uppercase rounded-full border border-border text-foreground shadow-sm">
+                    <span className="bg-background px-3 py-1.5 text-[11px] font-bold tracking-widest uppercase rounded-full border border-border text-foreground shadow-sm">
                       {product.type}
                     </span>
                   </div>
                   
                   {/* Hover Overlay */}
-                  <div className="absolute inset-0 bg-primary/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center backdrop-blur-[2px]">
+                  <div className="absolute inset-0 bg-primary/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
                     <span className="bg-background text-foreground px-6 py-3 rounded-full text-sm font-semibold shadow-2xl translate-y-4 group-hover:translate-y-0 transition-all duration-300 pointer-events-none border border-white/10">
                       {product.id === "custom" ? "Otevřít konfigurátor" : "Zobrazit detail"}
                     </span>
