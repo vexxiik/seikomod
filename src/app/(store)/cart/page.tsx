@@ -132,7 +132,7 @@ export default function CartPage() {
         {/* Main Content */}
         <div className="lg:col-span-2 space-y-8">
           {step === "cart" ? (
-            <Card className="border-none shadow-sm bg-card/50">
+            <Card className="border-border/50 shadow-sm bg-card/40 backdrop-blur-md rounded-2xl overflow-hidden">
               <CardContent className="p-0">
                 {items.length === 0 ? (
                   <div className="p-16 text-center text-muted-foreground text-lg">
@@ -141,26 +141,26 @@ export default function CartPage() {
                 ) : (
                   <div className="divide-y divide-border/50">
                     {items.map((item) => (
-                      <div key={item.id} className="p-8 md:p-10 flex flex-col sm:flex-row items-start sm:items-center gap-8">
-                        <div className="h-32 w-32 rounded-xl overflow-hidden bg-muted flex-shrink-0">
+                      <div key={item.id} className="p-6 md:p-8 flex flex-col sm:flex-row items-start sm:items-center gap-6 md:gap-8 hover:bg-muted/20 transition-colors">
+                        <div className="h-32 w-32 rounded-xl overflow-hidden bg-gradient-to-b from-muted/50 to-muted/20 flex-shrink-0 border border-border/50 p-2 shadow-inner">
                           {/* eslint-disable-next-line @next/next/no-img-element */}
-                          <img src={item.image} alt={item.name} className="w-full h-full object-cover" />
+                          <img src={item.image} alt={item.name} className="w-full h-full object-cover rounded-lg" />
                         </div>
-                        <div className="flex-1 space-y-2">
-                          <h3 className="font-heading font-semibold text-2xl">{item.name}</h3>
-                          <p className="text-muted-foreground">Skladem</p>
+                        <div className="flex-1 space-y-1 md:space-y-2">
+                          <h3 className="font-heading font-semibold text-xl md:text-2xl tracking-tight">{item.name}</h3>
+                          <p className="text-muted-foreground text-sm font-medium">Skladem</p>
                         </div>
-                        <div className="flex items-center gap-8 mt-4 sm:mt-0">
-                          <div className="font-bold text-2xl whitespace-nowrap">
+                        <div className="flex items-center justify-between sm:justify-end w-full sm:w-auto gap-6 md:gap-8 mt-4 sm:mt-0">
+                          <div className="font-bold text-xl md:text-2xl whitespace-nowrap">
                             {item.price.toLocaleString("cs-CZ")} Kč
                           </div>
                           <Button 
                             variant="ghost" 
                             size="icon" 
-                            className="text-destructive hover:bg-destructive/10 hover:text-destructive h-12 w-12 rounded-full"
+                            className="text-destructive/70 hover:bg-destructive/10 hover:text-destructive h-10 w-10 md:h-12 md:w-12 rounded-full transition-colors"
                             onClick={() => removeItem(item.id)}
                           >
-                            <Trash2 className="h-6 w-6" />
+                            <Trash2 className="h-5 w-5 md:h-6 md:w-6" />
                           </Button>
                         </div>
                       </div>
@@ -170,41 +170,41 @@ export default function CartPage() {
               </CardContent>
             </Card>
           ) : (
-            <Card className="border-none shadow-sm bg-card/50">
-              <CardHeader className="p-8 md:p-10 pb-4">
-                <CardTitle className="font-heading text-2xl">Doručovací údaje</CardTitle>
+            <Card className="border-border/50 shadow-sm bg-card/40 backdrop-blur-md rounded-2xl">
+              <CardHeader className="p-6 md:p-8 pb-4">
+                <CardTitle className="font-heading text-2xl tracking-tight">Doručovací údaje</CardTitle>
               </CardHeader>
-              <CardContent className="space-y-8 p-8 md:p-10 pt-0">
+              <CardContent className="space-y-8 p-6 md:p-8 pt-0">
                 <form id="checkout-form" onSubmit={(e) => {
                   e.preventDefault();
                   handleCheckoutSubmit(new FormData(e.currentTarget));
                 }} className="space-y-8">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div className="space-y-3">
-                    <Label htmlFor="firstName" className="text-sm uppercase tracking-wider text-muted-foreground">Jméno</Label>
-                    <Input id="firstName" name="firstName" required placeholder="Jan" className="h-12 bg-background" />
+                    <Label htmlFor="firstName" className="text-[11px] font-bold uppercase tracking-widest text-muted-foreground">Jméno</Label>
+                    <Input id="firstName" name="firstName" required placeholder="Jan" className="h-12 bg-background/50 border-border/50 focus:bg-background transition-colors" />
                   </div>
                   <div className="space-y-3">
-                    <Label htmlFor="lastName" className="text-sm uppercase tracking-wider text-muted-foreground">Příjmení</Label>
-                    <Input id="lastName" name="lastName" required placeholder="Novák" className="h-12 bg-background" />
+                    <Label htmlFor="lastName" className="text-[11px] font-bold uppercase tracking-widest text-muted-foreground">Příjmení</Label>
+                    <Input id="lastName" name="lastName" required placeholder="Novák" className="h-12 bg-background/50 border-border/50 focus:bg-background transition-colors" />
                   </div>
                 </div>
                 <div className="space-y-3">
-                  <Label htmlFor="email" className="text-sm uppercase tracking-wider text-muted-foreground">E-mail</Label>
-                  <Input id="email" name="email" type="email" required placeholder="jan.novak@email.cz" className="h-12 bg-background" />
+                  <Label htmlFor="email" className="text-[11px] font-bold uppercase tracking-widest text-muted-foreground">E-mail</Label>
+                  <Input id="email" name="email" type="email" required placeholder="jan.novak@email.cz" className="h-12 bg-background/50 border-border/50 focus:bg-background transition-colors" />
                 </div>
                 <div className="space-y-3">
-                  <Label htmlFor="address" className="text-sm uppercase tracking-wider text-muted-foreground">Ulice a číslo popisné</Label>
-                  <Input id="address" name="address" required placeholder="Václavské náměstí 1" className="h-12 bg-background" />
+                  <Label htmlFor="address" className="text-[11px] font-bold uppercase tracking-widest text-muted-foreground">Ulice a číslo popisné</Label>
+                  <Input id="address" name="address" required placeholder="Václavské náměstí 1" className="h-12 bg-background/50 border-border/50 focus:bg-background transition-colors" />
                 </div>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div className="space-y-3">
-                    <Label htmlFor="city" className="text-sm uppercase tracking-wider text-muted-foreground">Město</Label>
-                    <Input id="city" name="city" required placeholder="Praha" className="h-12 bg-background" />
+                    <Label htmlFor="city" className="text-[11px] font-bold uppercase tracking-widest text-muted-foreground">Město</Label>
+                    <Input id="city" name="city" required placeholder="Praha" className="h-12 bg-background/50 border-border/50 focus:bg-background transition-colors" />
                   </div>
                   <div className="space-y-3">
-                    <Label htmlFor="zip" className="text-sm uppercase tracking-wider text-muted-foreground">PSČ</Label>
-                    <Input id="zip" name="zip" required placeholder="110 00" className="h-12 bg-background" />
+                    <Label htmlFor="zip" className="text-[11px] font-bold uppercase tracking-widest text-muted-foreground">PSČ</Label>
+                    <Input id="zip" name="zip" required placeholder="110 00" className="h-12 bg-background/50 border-border/50 focus:bg-background transition-colors" />
                   </div>
                 </div>
                 </form>
@@ -215,85 +215,86 @@ export default function CartPage() {
 
         {/* Sidebar Summary */}
         <div className="lg:col-span-1">
-          <Card className="border-none shadow-md sticky top-28 bg-primary/5">
-            <CardHeader>
-              <CardTitle>Shrnutí objednávky</CardTitle>
+          <Card className="border border-border/50 shadow-xl sticky top-28 bg-gradient-to-b from-card/80 to-card/40 backdrop-blur-xl rounded-2xl overflow-hidden">
+            <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-accent via-primary to-accent opacity-50" />
+            <CardHeader className="p-6 md:p-8 pb-4">
+              <CardTitle className="font-heading text-xl tracking-tight">Shrnutí objednávky</CardTitle>
             </CardHeader>
-            <CardContent className="space-y-4">
+            <CardContent className="space-y-6 p-6 md:p-8 pt-0">
               <div className="flex justify-between text-sm">
                 <span className="text-muted-foreground">Mezisoučet</span>
-                <span>{subtotal.toLocaleString("cs-CZ")} Kč</span>
+                <span className="font-medium">{subtotal.toLocaleString("cs-CZ")} Kč</span>
               </div>
               <div className="flex justify-between text-sm">
                 <span className="text-muted-foreground">Doprava</span>
                 <span className="text-green-600 font-medium">Zdarma</span>
               </div>
 
-              <div className="pt-4 border-t border-border">
-                <div className="flex items-start space-x-3 bg-background p-4 rounded-lg border border-border shadow-sm">
+              <div className="pt-6 border-t border-border/50">
+                <div className="flex items-start space-x-3 bg-background/40 p-4 rounded-xl border border-border/50 shadow-inner">
                   <Checkbox 
                     id="watchBox" 
                     checked={includeWatchBox} 
                     onCheckedChange={(c) => setIncludeWatchBox(c as boolean)} 
-                    className="mt-1"
+                    className="mt-1 border-primary/30 data-[state=checked]:bg-accent data-[state=checked]:border-accent"
                   />
                   <div className="flex flex-col flex-1">
-                    <Label htmlFor="watchBox" className="font-medium flex justify-between cursor-pointer">
+                    <Label htmlFor="watchBox" className="font-medium flex justify-between cursor-pointer text-sm">
                       <span>Prémiová krabička</span>
                       <span className={session ? "text-green-600 font-bold" : "font-semibold"}>
                         {session ? "Zdarma" : "499 Kč"}
                       </span>
                     </Label>
                     {!session && (
-                      <p className="text-xs text-muted-foreground mt-1">
-                        Pro přihlášené zákazníky je krabička zdarma. <Link href="/login" className="text-primary hover:underline">Přihlaste se</Link>.
+                      <p className="text-xs text-muted-foreground mt-2 leading-relaxed">
+                        Pro přihlášené zákazníky je krabička zdarma. <Link href="/login" className="text-accent hover:underline font-medium">Přihlaste se</Link>.
                       </p>
                     )}
                   </div>
                 </div>
               </div>
 
-              <div className="pt-4 border-t border-border space-y-3">
-                <Label className="font-medium flex items-center gap-2">
+              <div className="pt-6 border-t border-border/50 space-y-3">
+                <Label className="font-medium flex items-center gap-2 text-xs uppercase tracking-widest text-muted-foreground">
                   <Tag className="h-4 w-4" /> Slevový kód
                 </Label>
                 <div className="flex gap-2">
                   <Input 
-                    placeholder="Zadejte kód..." 
+                    placeholder="ZADEJTE KÓD..." 
                     value={discountCode}
                     onChange={(e) => setDiscountCode(e.target.value)}
                     disabled={!!appliedDiscount || isCheckingDiscount}
-                    className="bg-background uppercase"
+                    className="bg-background/50 border-border/50 uppercase tracking-widest text-sm h-11"
                   />
                   {appliedDiscount ? (
-                    <Button variant="outline" className="text-destructive border-destructive/20 hover:bg-destructive/10 hover:text-destructive" onClick={() => {
+                    <Button variant="outline" className="h-11 text-destructive border-destructive/20 hover:bg-destructive/10 hover:text-destructive" onClick={() => {
                       setAppliedDiscount(null);
                       setDiscountCode("");
                     }}>
                       Zrušit
                     </Button>
                   ) : (
-                    <Button variant="secondary" onClick={handleApplyDiscount} disabled={!discountCode || isCheckingDiscount}>
+                    <Button variant="secondary" className="h-11 px-6 font-semibold" onClick={handleApplyDiscount} disabled={!discountCode || isCheckingDiscount}>
                       {isCheckingDiscount ? "..." : "Použít"}
                     </Button>
                   )}
                 </div>
                 {discountError && <p className="text-destructive text-sm font-medium">{discountError}</p>}
                 {appliedDiscount && (
-                  <p className="text-green-600 text-sm font-medium flex justify-between">
-                    <span>Sleva aplikována ({appliedDiscount.code})</span>
+                  <p className="text-green-600 text-sm font-medium flex justify-between bg-green-500/10 p-3 rounded-lg border border-green-500/20">
+                    <span>Aplikována sleva ({appliedDiscount.code})</span>
                     <span>-{discountAmount.toLocaleString("cs-CZ")} Kč</span>
                   </p>
                 )}
               </div>
 
-              <Separator />
-              <div className="flex justify-between font-bold text-lg">
-                <span>Celkem k úhradě</span>
-                <span>{total.toLocaleString("cs-CZ")} Kč</span>
+              <Separator className="bg-border/50" />
+              <div className="flex justify-between font-bold text-xl md:text-2xl tracking-tight">
+                <span>Celkem</span>
+                <span className="text-accent">{total.toLocaleString("cs-CZ")} Kč</span>
               </div>
-              <div className="flex items-center gap-2 text-xs text-muted-foreground mt-4">
-                <ShieldCheck className="h-4 w-4 text-green-600" />
+              <div className="flex items-center gap-2 text-xs text-muted-foreground mt-6 bg-accent/5 p-3 rounded-lg border border-accent/10">
+                <ShieldCheck className="h-5 w-5 text-accent" />
                 <span>Bezpečný nákup se 14denní zárukou vrácení peněz</span>
               </div>
             </CardContent>
