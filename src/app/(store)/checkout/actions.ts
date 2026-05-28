@@ -12,17 +12,28 @@ import { checkoutSchema } from "@/lib/validations";
 // Initialize Resend with a dummy key if not present in env
 const resend = new Resend(process.env.RESEND_API_KEY || "re_dummy_key");
 
-export async function submitOrder(formData: FormData, cartItems: { id: string; name: string; quantity: number; price: number }[], total: number) {
+type CheckoutData = {
+  firstName: string;
+  lastName: string;
+  email: string;
+  address: string;
+  city: string;
+  zip: string;
+  includeWatchBox: boolean;
+  discountCode?: string;
+};
+
+export async function submitOrder(data: CheckoutData, cartItems: { id: string; name: string; quantity: number; price: number }[], total: number) {
   try {
     const rawData = {
-      firstName: formData.get("firstName") as string,
-      lastName: formData.get("lastName") as string,
-      email: formData.get("email") as string,
-      address: formData.get("address") as string,
-      city: formData.get("city") as string,
-      zip: formData.get("zip") as string,
-      includeWatchBox: formData.get("includeWatchBox") === "true",
-      discountCode: formData.get("discountCode") as string | undefined,
+      firstName: data.firstName,
+      lastName: data.lastName,
+      email: data.email,
+      address: data.address,
+      city: data.city,
+      zip: data.zip,
+      includeWatchBox: data.includeWatchBox,
+      discountCode: data.discountCode,
     };
 
     const validationResult = checkoutSchema.safeParse(rawData);

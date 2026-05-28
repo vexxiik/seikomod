@@ -79,12 +79,20 @@ export default function CartPage() {
 
   const handleCheckoutSubmit = async (formData: FormData) => {
     setIsSubmitting(true);
-    formData.append("includeWatchBox", includeWatchBox.toString());
-    if (appliedDiscount) {
-      formData.append("discountCode", appliedDiscount.code);
-    }
+    
+    const data = {
+      firstName: formData.get("firstName") as string || "",
+      lastName: formData.get("lastName") as string || "",
+      email: formData.get("email") as string || "",
+      address: formData.get("address") as string || "",
+      city: formData.get("city") as string || "",
+      zip: formData.get("zip") as string || "",
+      includeWatchBox,
+      discountCode: appliedDiscount?.code,
+    };
+
     try {
-      const result = await submitOrder(formData, items, total);
+      const result = await submitOrder(data, items, total);
       if (result.error) {
         alert(result.error);
         setIsSubmitting(false);
