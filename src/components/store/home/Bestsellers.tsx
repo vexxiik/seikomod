@@ -106,11 +106,13 @@ export function Bestsellers() {
                     {product.id === "custom" ? "Dle vašich představ" : "Seiko NH35 Automatic"}
                   </p>
                 </CardContent>
-                <CardFooter className="p-8 pt-0 flex justify-between items-center relative z-20">
+                <CardFooter className={`p-8 pt-0 flex items-center relative z-20 ${product.id === "custom" ? "justify-center w-full" : "justify-between"}`}>
                   {product.id === "custom" ? (
-                    <span className="font-bold text-sm uppercase tracking-widest text-accent border border-accent/20 bg-accent/5 px-4 py-2 rounded-full">
-                      {product.price}
-                    </span>
+                    <div className="w-full">
+                      <span className="block w-full text-center font-bold text-sm uppercase tracking-widest text-accent border border-accent/20 bg-accent/5 px-4 py-3 rounded-xl shadow-sm group-hover:bg-accent/10 group-hover:border-accent/30 transition-all">
+                        {product.price}
+                      </span>
+                    </div>
                   ) : (
                     <span className="font-bold text-xl">
                       {typeof product.price === "number" ? `${product.price.toLocaleString("cs-CZ")} Kč` : product.price}
