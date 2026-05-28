@@ -167,7 +167,10 @@ export default function CartPage() {
                 <CardTitle className="font-heading text-2xl">Doručovací údaje</CardTitle>
               </CardHeader>
               <CardContent className="space-y-8 p-8 md:p-10 pt-0">
-                <form id="checkout-form" action={handleCheckoutSubmit} className="space-y-8">
+                <form id="checkout-form" onSubmit={(e) => {
+                  e.preventDefault();
+                  handleCheckoutSubmit(new FormData(e.currentTarget));
+                }} className="space-y-8">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div className="space-y-3">
                     <Label htmlFor="firstName" className="text-sm uppercase tracking-wider text-muted-foreground">Jméno</Label>
