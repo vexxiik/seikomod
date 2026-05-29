@@ -58,7 +58,7 @@ export default function ConfiguratorPage() {
     }
   }, [currentStepIndex, selections, currentCategory.category]);
 
-  if (!mounted) return <div className="min-h-screen flex items-center justify-center">Načítám konfigurátor...</div>;
+  if (!mounted) return <div className="min-h-screen flex items-center justify-center">Načítám...</div>;
 
   // Create an array of selected images in a specific Z-index order for realistic rendering
   // Typical order (back to front): Bracelet -> Case -> Dial -> Hands

@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { LayoutDashboard, Package, Users, Settings, LogOut, Watch, DollarSign, Globe } from "lucide-react";
+import { LayoutDashboard, Package, Users, Settings, LogOut, Watch, DollarSign, Globe, ShoppingCart } from "lucide-react";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth";
 import { redirect } from "next/navigation";
@@ -37,6 +37,10 @@ export default async function AdminLayout({
           <Link href="/admin/products" className="flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-muted text-muted-foreground hover:text-foreground font-medium transition-colors">
             <Package className="h-5 w-5" />
             Produkty
+          </Link>
+          <Link href="/admin/orders" className="flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-muted text-muted-foreground hover:text-foreground font-medium transition-colors">
+            <ShoppingCart className="h-5 w-5" />
+            Objednávky
           </Link>
           <Link href="/admin/customers" className="flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-muted text-muted-foreground hover:text-foreground font-medium transition-colors">
             <Users className="h-5 w-5" />

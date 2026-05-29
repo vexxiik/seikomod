@@ -33,7 +33,7 @@ export function Footer() {
           <div>
             <h4 className="font-semibold mb-4">Sledujte nás</h4>
             <ul className="space-y-2 text-sm text-primary-foreground/80">
-              <li><a href="#" className="hover:text-accent transition-colors">Instagram</a></li>
+              <li><a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="hover:text-accent transition-colors">Instagram</a></li>
             </ul>
           </div>
         </div>

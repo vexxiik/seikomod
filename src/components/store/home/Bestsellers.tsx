@@ -37,7 +37,7 @@ const DUMMY_PRODUCTS = [
   {
     id: "custom",
     name: "Hodinky na míru",
-    price: "Konfigurátor",
+    price: "Individuální cena",
     type: "Zakázka",
     image: "/img/watchmaker.png",
     link: "/configurator"
@@ -95,7 +95,7 @@ export function Bestsellers() {
                   {/* Hover Overlay */}
                   <div className="absolute inset-0 bg-primary/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
                     <span className="bg-background text-foreground px-6 py-3 rounded-full text-sm font-semibold shadow-2xl translate-y-4 group-hover:translate-y-0 transition-all duration-300 pointer-events-none border border-white/10">
-                      {product.id === "custom" ? "Otevřít konfigurátor" : "Zobrazit detail"}
+                      {product.id === "custom" ? "Zjistit cenu" : "Zobrazit detail"}
                     </span>
                   </div>
                 </div>

@@ -1,10 +1,26 @@
+"use client";
+
+import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { Card, CardContent } from "@/components/ui/card";
+import { CheckCircle2 } from "lucide-react";
 
 export default function CustomWatchPage() {
+  const [isSubmitted, setIsSubmitted] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+    // Simulate network request
+    await new Promise((resolve) => setTimeout(resolve, 1000));
+    setIsSubmitting(false);
+    setIsSubmitted(true);
+  };
+
   return (
     <div className="container mx-auto px-4 py-16 md:py-24 max-w-5xl">
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
@@ -42,35 +58,55 @@ export default function CustomWatchPage() {
 
         <Card className="bg-card/50 border-none shadow-lg">
           <CardContent className="p-8 md:p-10">
-            <form className="space-y-6">
-              <div className="space-y-2">
-                <Label htmlFor="name">Jméno a příjmení</Label>
-                <Input id="name" placeholder="Jan Novák" className="h-12 bg-background" />
+            {isSubmitted ? (
+              <div className="flex flex-col items-center justify-center text-center space-y-4 h-full min-h-[300px]">
+                <div className="h-16 w-16 bg-green-100 text-green-600 rounded-full flex items-center justify-center mb-4 dark:bg-green-900/30 dark:text-green-400">
+                  <CheckCircle2 className="h-8 w-8" />
+                </div>
+                <h3 className="text-2xl font-bold">Poptávka odeslána!</h3>
+                <p className="text-muted-foreground">
+                  Děkujeme za váš zájem. Vaši vizi jsme přijali a co nejdříve se vám ozveme na zadaný e-mail s možnostmi realizace.
+                </p>
+                <Button 
+                  className="mt-6" 
+                  variant="outline" 
+                  onClick={() => setIsSubmitted(false)}
+                >
+                  Odeslat další poptávku
+                </Button>
               </div>
-              
-              <div className="space-y-2">
-                <Label htmlFor="email">E-mail</Label>
-                <Input id="email" type="email" placeholder="jan@email.cz" className="h-12 bg-background" />
-              </div>
-              
-              <div className="space-y-2">
-                <Label htmlFor="style">Preferovaný styl (volitelné)</Label>
-                <Input id="style" placeholder="Např. Potápěčské (Submariner styl), Společenské..." className="h-12 bg-background" />
-              </div>
-              
-              <div className="space-y-2">
-                <Label htmlFor="message">Vaše představa</Label>
-                <Textarea 
-                  id="message" 
-                  placeholder="Popište barvu ciferníku, typ ručiček, materiál lunety..." 
-                  className="min-h-[150px] bg-background resize-none"
-                />
-              </div>
+            ) : (
+              <form onSubmit={handleSubmit} className="space-y-6">
+                <div className="space-y-2">
+                  <Label htmlFor="name">Jméno a příjmení</Label>
+                  <Input id="name" required placeholder="Jan Novák" className="h-12 bg-background" />
+                </div>
+                
+                <div className="space-y-2">
+                  <Label htmlFor="email">E-mail</Label>
+                  <Input id="email" type="email" required placeholder="jan@email.cz" className="h-12 bg-background" />
+                </div>
+                
+                <div className="space-y-2">
+                  <Label htmlFor="style">Preferovaný styl (volitelné)</Label>
+                  <Input id="style" placeholder="Např. Potápěčské (Submariner styl), Společenské..." className="h-12 bg-background" />
+                </div>
+                
+                <div className="space-y-2">
+                  <Label htmlFor="message">Vaše představa</Label>
+                  <Textarea 
+                    id="message" 
+                    required
+                    placeholder="Popište barvu ciferníku, typ ručiček, materiál lunety..." 
+                    className="min-h-[150px] bg-background resize-none"
+                  />
+                </div>
 
-              <Button type="button" className="w-full h-14 text-lg bg-accent text-accent-foreground hover:bg-accent/90 rounded-xl shadow-md">
-                Odeslat nezávaznou poptávku
-              </Button>
-            </form>
+                <Button type="submit" disabled={isSubmitting} className="w-full h-14 text-lg bg-accent text-accent-foreground hover:bg-accent/90 rounded-xl shadow-md">
+                  {isSubmitting ? "Odesílám..." : "Odeslat nezávaznou poptávku"}
+                </Button>
+              </form>
+            )}
           </CardContent>
         </Card>
 

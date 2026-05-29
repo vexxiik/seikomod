@@ -16,15 +16,7 @@ export const authOptions: NextAuthOptions = {
         try {
           const { email, password } = loginSchema.parse(credentials);
 
-          // Hardcoded Admin Check
-          if (email === "admin@seikomod.com" && password === "DefN0tVexx") {
-            return {
-              id: "admin-id",
-              name: "Administrátor",
-              email: "admin@seikomod.com",
-              role: "ADMIN" as const,
-            };
-          }
+
 
         const user = await prisma.customer.findUnique({
           where: { email: email }
@@ -44,7 +36,7 @@ export const authOptions: NextAuthOptions = {
             id: user.id,
             name: user.name,
             email: user.email,
-            role: "USER" as const,
+            role: user.role as "USER" | "ADMIN",
           };
         } catch (error) {
           if (error instanceof Error) {
