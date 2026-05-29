@@ -51,14 +51,6 @@ export const configuratorData: ConfiguratorData[] = [
     title: "Pouzdra",
     options: [
       {
-        id: "case-dj",
-        name: "Datejust 41mm (Smooth)",
-        price: 0,
-        image: "/configurator/silver-dj-case.jpg",
-        thumbnail: "/configurator/silver-dj-case.jpg",
-        style: { scale: 0.83, x: 0.0, y: 0.0 }
-      },
-      {
         id: "case-dj-39",
         name: "Datejust 39mm (Fluted)",
         price: 500,
@@ -143,20 +135,12 @@ export const configuratorData: ConfiguratorData[] = [
     title: "Ručičky",
     options: [
       {
-        id: "hands-silver",
-        name: "Classic Silver",
-        price: 0,
-        image: "/configurator/silver-hands.jpg",
-        thumbnail: "/configurator/silver-hands.jpg",
-        style: { scale: 0.31, x: 2.5, y: -16.0 }
-      },
-      {
         id: "hands-black",
         name: "Sport Black",
-        price: 200,
+        price: 0,
         image: "/configurator/black-hands.jpg",
         thumbnail: "/configurator/black-hands.jpg",
-        style: { scale: 0.31, x: 2.5, y: -16.0 }
+        style: { scale: 0.22, x: 0.5, y: -12.5 }
       }
     ]
   }
