@@ -9,7 +9,9 @@ export default async function AdminDashboard() {
     customersCount,
     productsCount,
     revenueAgg,
-    latestOrders
+    latestOrders,
+    allOrders,
+    allExpenses
   ] = await Promise.all([
     prisma.order.count(),
     prisma.customer.count(),
@@ -22,10 +24,35 @@ export default async function AdminDashboard() {
       take: 5,
       orderBy: { createdAt: 'desc' },
       include: { customer: true }
+    }),
+    prisma.order.findMany({
+      where: { status: { not: "CANCELLED" } },
+      select: { total: true, createdAt: true }
+    }),
+    prisma.expense.findMany({
+      select: { amount: true, date: true }
     })
   ]);
 
   const totalRevenue = revenueAgg._sum.total || 0;
+
+  // Aggregate by month (0-11)
+  const revenuesByMonth = new Array(12).fill(0);
+  const expensesByMonth = new Array(12).fill(0);
+
+  const currentYear = new Date().getFullYear();
+
+  allOrders.forEach(order => {
+    if (order.createdAt.getFullYear() === currentYear) {
+      revenuesByMonth[order.createdAt.getMonth()] += order.total;
+    }
+  });
+
+  allExpenses.forEach(expense => {
+    if (expense.date.getFullYear() === currentYear) {
+      expensesByMonth[expense.date.getMonth()] += expense.amount;
+    }
+  });
 
   return (
     <div className="space-y-8">
@@ -79,7 +106,7 @@ export default async function AdminDashboard() {
             <CardTitle>Přehled prodejů a výdajů</CardTitle>
           </CardHeader>
           <CardContent className="h-[400px]">
-            <DashboardChart />
+            <DashboardChart revenues={revenuesByMonth} expenses={expensesByMonth} />
           </CardContent>
         </Card>
         <Card className="col-span-1">

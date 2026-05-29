@@ -24,11 +24,15 @@ ChartJS.register(
   Legend
 );
 
-const months = ['Leden', 'Únor', 'Březen', 'Duben', 'Květen', 'Červen', 'Červenec'];
-const revenues = [0, 0, 0, 0, 0, 0, 0];
-const expenses = [0, 0, 0, 0, 0, 0, 0];
+const months = ['Leden', 'Únor', 'Březen', 'Duben', 'Květen', 'Červen', 'Červenec', 'Srpen', 'Září', 'Říjen', 'Listopad', 'Prosinec'];
 
-export function DashboardChart() {
+export function DashboardChart({
+  revenues = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+  expenses = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+}: {
+  revenues?: number[];
+  expenses?: number[];
+}) {
   const data = {
     labels: months,
     datasets: [
