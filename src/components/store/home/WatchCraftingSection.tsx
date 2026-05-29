@@ -69,24 +69,6 @@ export function WatchCraftingSection() {
               />
             </div>
             
-            {/* Floating element */}
-            <motion.div 
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.6, duration: 0.5 }}
-              className="absolute -bottom-8 -left-8 md:-bottom-12 md:-left-12 bg-background p-6 md:p-8 rounded-2xl shadow-xl border border-border max-w-xs"
-            >
-              <div className="flex gap-4 items-center mb-4">
-                <div className="h-12 w-12 rounded-full bg-accent/20 flex items-center justify-center text-accent">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-                </div>
-                <div>
-                  <div className="font-bold text-xl">10+ Hodin</div>
-                  <div className="text-sm text-muted-foreground">ruční práce na kus</div>
-                </div>
-              </div>
-            </motion.div>
           </motion.div>
 
         </div>
