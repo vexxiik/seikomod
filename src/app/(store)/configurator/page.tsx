@@ -107,9 +107,9 @@ export default function ConfiguratorPage() {
         <div className="flex flex-col lg:flex-row gap-8 lg:gap-12 items-start">
           
           {/* LEFT COLUMN: LIVE PREVIEW */}
-          <div className="w-full lg:w-1/2 sticky top-24 z-10 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-white to-slate-100 rounded-2xl p-4 lg:p-8 flex items-center justify-center border shadow-sm">
-            {/* Added scale-90 to shrink the entire assembly by 10% so it fits in the box without changing relative offsets */}
-            <div className="relative w-full max-w-[400px] aspect-square drop-shadow-[0_20px_25px_rgba(0,0,0,0.15)] scale-90">
+          <div className="w-full lg:w-1/2 sticky top-20 z-30 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-white to-slate-100 rounded-2xl p-2 md:p-8 flex items-center justify-center border shadow-sm h-[280px] sm:h-[350px] lg:h-auto lg:aspect-square transition-all">
+            {/* Přidán scale-90 md:scale-100 pro lepší zobrazení na malých displejích */}
+            <div className="relative w-full h-full max-w-[250px] sm:max-w-[300px] lg:max-w-[400px] aspect-square drop-shadow-[0_20px_25px_rgba(0,0,0,0.15)] scale-90 lg:scale-100">
               {/* Render layers */}
               {renderOrder.map((category) => {
                 const selectedPart = selections[category];
@@ -162,22 +162,22 @@ export default function ConfiguratorPage() {
           <div className="w-full lg:w-1/2 space-y-8">
             
             {/* STEPPER HEADER */}
-            <div className="flex items-center justify-between bg-card p-4 rounded-xl border shadow-sm">
+            <div className="flex items-center justify-between bg-card p-3 md:p-4 rounded-xl border shadow-sm sticky top-[380px] sm:top-[450px] lg:static z-20 transition-all">
               <Button 
                 variant="ghost" 
                 size="icon" 
                 onClick={prevStep} 
                 disabled={currentStepIndex === 0}
-                className="hover:bg-accent/10"
+                className="hover:bg-accent/10 h-10 w-10 md:h-12 md:w-12 shrink-0"
               >
-                <ChevronLeft className="h-6 w-6" />
+                <ChevronLeft className="h-5 w-5 md:h-6 md:w-6" />
               </Button>
               
               <div className="text-center flex-1">
-                <p className="text-sm text-muted-foreground uppercase tracking-widest font-semibold mb-1">
+                <p className="text-xs md:text-sm text-muted-foreground uppercase tracking-widest font-semibold mb-0.5 md:mb-1">
                   Krok {currentStepIndex + 1} / {configuratorData.length}
                 </p>
-                <h2 className="text-2xl font-heading font-bold text-primary">
+                <h2 className="text-xl md:text-2xl font-heading font-bold text-primary truncate px-2">
                   {currentCategory.title}
                 </h2>
               </div>
@@ -187,9 +187,9 @@ export default function ConfiguratorPage() {
                 size="icon" 
                 onClick={nextStep} 
                 disabled={currentStepIndex === configuratorData.length - 1}
-                className="hover:bg-accent/10"
+                className="hover:bg-accent/10 h-10 w-10 md:h-12 md:w-12 shrink-0"
               >
-                <ChevronRight className="h-6 w-6" />
+                <ChevronRight className="h-5 w-5 md:h-6 md:w-6" />
               </Button>
             </div>
 
@@ -231,24 +231,25 @@ export default function ConfiguratorPage() {
             </div>
 
             {/* CHECKOUT ACTION */}
-            <div className="mt-12 bg-card p-6 md:p-8 rounded-2xl border-2 border-primary/10 shadow-xl sticky bottom-4">
-              <div className="flex flex-col md:flex-row items-center justify-between gap-6">
-                <div>
-                  <p className="text-sm text-muted-foreground uppercase tracking-widest font-semibold mb-1">
+            <div className="mt-12 bg-card p-4 md:p-8 rounded-2xl border-2 border-primary/10 shadow-[0_-10px_40px_-15px_rgba(0,0,0,0.1)] md:shadow-xl fixed md:sticky bottom-0 md:bottom-4 left-0 right-0 z-50 md:z-10 w-full rounded-b-none md:rounded-b-2xl">
+              <div className="flex flex-row items-center justify-between gap-4 max-w-7xl mx-auto px-4 md:px-0">
+                <div className="hidden sm:block">
+                  <p className="text-xs md:text-sm text-muted-foreground uppercase tracking-widest font-semibold mb-1">
                     Celková cena
                   </p>
-                  <p className="text-3xl font-heading font-bold text-primary">
+                  <p className="text-xl md:text-3xl font-heading font-bold text-primary">
                     {getTotalPrice().toLocaleString("cs-CZ")} Kč
                   </p>
                 </div>
                 
                 <Button 
                   size="lg" 
-                  className="w-full md:w-auto h-14 px-10 bg-accent text-primary hover:bg-accent/90 text-lg font-black shadow-xl shadow-accent/20 transition-all hover:scale-105"
+                  className="w-full sm:w-auto h-12 md:h-14 px-6 md:px-10 bg-accent text-primary hover:bg-accent/90 text-base md:text-lg font-black shadow-xl shadow-accent/20 transition-all hover:scale-105"
                   onClick={handleAddToCart}
                 >
-                  <ShoppingCart className="mr-2 h-6 w-6" strokeWidth={2.5} />
-                  Přidat do košíku
+                  <ShoppingCart className="mr-2 h-5 w-5 md:h-6 md:w-6" strokeWidth={2.5} />
+                  <span className="sm:hidden mr-2">{getTotalPrice().toLocaleString("cs-CZ")} Kč • </span>
+                  Do košíku
                 </Button>
               </div>
             </div>

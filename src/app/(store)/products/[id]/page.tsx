@@ -35,8 +35,8 @@ export default async function ProductDetailPage({ params }: { params: Promise<{ 
   };
 
   return (
-    <div className="container mx-auto px-4 py-12 md:py-20">
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-12 lg:gap-20">
+    <div className="container mx-auto px-4 py-8 md:py-20">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 lg:gap-20">
         
         {/* Left Column: Image Gallery */}
         <div className="space-y-4">

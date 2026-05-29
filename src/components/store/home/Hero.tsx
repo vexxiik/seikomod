@@ -7,7 +7,7 @@ import { ArrowRight } from "lucide-react";
 
 export function Hero() {
   return (
-    <section className="relative h-[90vh] min-h-[600px] flex items-center justify-center overflow-hidden">
+    <section className="relative h-[85vh] min-h-[500px] md:h-[90vh] md:min-h-[600px] flex items-center justify-center overflow-hidden">
       {/* Background Image */}
       <div 
         className="absolute inset-0 z-0 bg-cover bg-center bg-no-repeat"
@@ -32,7 +32,7 @@ export function Hero() {
           </motion.div>
           
           <motion.h1 
-            className="font-heading text-5xl md:text-7xl font-bold text-foreground leading-tight mb-6"
+            className="font-heading text-4xl sm:text-5xl md:text-7xl font-bold text-foreground leading-tight mb-4 md:mb-6"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
@@ -44,7 +44,7 @@ export function Hero() {
           </motion.h1>
 
           <motion.p 
-            className="text-lg md:text-xl text-foreground/80 mb-10 max-w-xl font-light leading-relaxed"
+            className="text-base sm:text-lg md:text-xl text-foreground/80 mb-8 md:mb-10 max-w-xl font-light leading-relaxed"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.4, ease: "easeOut" }}
