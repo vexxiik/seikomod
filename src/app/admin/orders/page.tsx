@@ -28,7 +28,7 @@ export default async function AdminOrders() {
         <Table className="min-w-[800px]">
           <TableHeader>
             <TableRow>
-              <TableHead>ID</TableHead>
+              <TableHead>Číslo</TableHead>
               <TableHead>Zákazník</TableHead>
               <TableHead>Datum</TableHead>
               <TableHead>Položky</TableHead>
@@ -40,10 +40,13 @@ export default async function AdminOrders() {
           <TableBody>
             {orders.map((order) => (
               <TableRow key={order.id}>
-                <TableCell className="font-mono text-xs">{order.id.slice(-6).toUpperCase()}</TableCell>
+                <TableCell className="font-mono text-sm font-semibold text-accent">#{order.orderNumber || order.id.slice(-6).toUpperCase()}</TableCell>
                 <TableCell>
                   <div className="font-medium">{order.customer.name}</div>
                   <div className="text-xs text-muted-foreground">{order.customer.email}</div>
+                  {order.packetaBranchName && (
+                    <div className="text-xs text-green-600 font-medium mt-1">Zásilkovna: {order.packetaBranchName}</div>
+                  )}
                 </TableCell>
                 <TableCell>{order.createdAt.toLocaleDateString("cs-CZ")}</TableCell>
                 <TableCell>

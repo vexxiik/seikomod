@@ -7,24 +7,14 @@ import { prisma } from "@/lib/prisma";
 export default async function OrderDetail({ params }: { params: Promise<{ id: string }> }) {
   const { id } = await params;
   
-  // V reálné aplikaci bychom zde stáhli z DB podle ID.
-  // const order = await prisma.order.findUnique({ where: { id }, include: { items: true, customer: true } });
-  
-  // Zástupná data
-  const order = {
-    id: id,
-    status: "COMPLETED",
-    createdAt: new Date(),
-    total: 8990,
-    customer: {
-      name: "Jan Novák",
-      email: "jan.novak@email.cz",
-      address: "Václavské náměstí 1, Praha"
-    },
-    items: [
-      { id: "1", name: "Submariner Stealth Black", price: 8990, quantity: 1 }
-    ]
-  };
+  const order = await prisma.order.findUnique({
+    where: { id },
+    include: { items: true, customer: true }
+  });
+
+  if (!order) {
+    return <div>Objednávka nenalezena.</div>;
+  }
 
   return (
     <div className="space-y-6">
@@ -34,7 +24,7 @@ export default async function OrderDetail({ params }: { params: Promise<{ id: st
             <ArrowLeft className="h-4 w-4" />
           </Button>
         </Link>
-        <h1 className="text-3xl font-bold tracking-tight">Detail objednávky {order.id.slice(0, 8)}</h1>
+        <h1 className="text-3xl font-bold tracking-tight">Detail objednávky #{order.orderNumber || order.id.slice(-6).toUpperCase()}</h1>
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -51,7 +41,7 @@ export default async function OrderDetail({ params }: { params: Promise<{ id: st
                       <Package className="h-5 w-5 text-muted-foreground" />
                     </div>
                     <div>
-                      <div className="font-medium">{item.name}</div>
+                      <div className="font-medium">{item.productName}</div>
                       <div className="text-sm text-muted-foreground">{item.quantity} ks</div>
                     </div>
                   </div>
@@ -76,6 +66,12 @@ export default async function OrderDetail({ params }: { params: Promise<{ id: st
                 <div className="font-medium">{order.customer.name}</div>
                 <div className="text-sm text-muted-foreground">{order.customer.email}</div>
                 <div className="text-sm">{order.customer.address}</div>
+                {order.packetaBranchName && (
+                  <div className="mt-4 pt-4 border-t">
+                    <div className="text-xs font-semibold uppercase text-muted-foreground mb-1">Způsob doručení</div>
+                    <div className="text-sm text-green-600 font-medium">Zásilkovna: {order.packetaBranchName}</div>
+                  </div>
+                )}
               </div>
             </CardContent>
           </Card>
@@ -85,9 +81,13 @@ export default async function OrderDetail({ params }: { params: Promise<{ id: st
               <CardTitle>Stav objednávky</CardTitle>
             </CardHeader>
             <CardContent>
-              <div className="flex items-center gap-2 text-green-600 font-medium">
+              <div className={`flex items-center gap-2 font-medium ${
+                order.status === 'COMPLETED' ? 'text-green-600' :
+                order.status === 'CANCELLED' ? 'text-red-600' :
+                'text-blue-600'
+              }`}>
                 <CheckCircle className="h-5 w-5" />
-                Vyřízeno
+                {order.status === 'COMPLETED' ? 'Vyřízeno' : order.status === 'CANCELLED' ? 'Zrušeno' : 'Čeká na vyřízení'}
               </div>
             </CardContent>
           </Card>
