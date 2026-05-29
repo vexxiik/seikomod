@@ -130,7 +130,7 @@ export default async function ProductDetailPage({ params }: { params: Promise<{ 
             </div>
             <div className="flex flex-col items-center p-4 bg-muted/50 rounded-xl">
               <Truck className="h-6 w-6 mb-2 text-primary" />
-              <span className="text-xs font-medium">Doprava zdarma</span>
+              <span className="text-xs font-medium">Doručení na Zásilkovnu</span>
             </div>
             <div className="flex flex-col items-center p-4 bg-muted/50 rounded-xl">
               <RotateCcw className="h-6 w-6 mb-2 text-primary" />

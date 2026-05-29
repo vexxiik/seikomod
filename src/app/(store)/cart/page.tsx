@@ -41,7 +41,7 @@ export default function CartPage() {
   }, []);
 
   const subtotal = items.reduce((acc, item) => acc + item.price * item.quantity, 0);
-  const shipping = 0; // Free shipping
+  const shipping = 89; // Zásilkovna
   const watchBoxPrice = includeWatchBox ? (session ? 0 : 499) : 0;
   
   // Calculate discount
@@ -288,8 +288,8 @@ export default function CartPage() {
                 <span className="font-medium">{subtotal.toLocaleString("cs-CZ")} Kč</span>
               </div>
               <div className="flex justify-between text-sm">
-                <span className="text-muted-foreground">Doprava</span>
-                <span className="text-green-600 font-medium">Zdarma</span>
+                <span className="text-muted-foreground">Doprava (Zásilkovna)</span>
+                <span className="font-medium">{shipping} Kč</span>
               </div>
 
               <div className="pt-6 border-t border-border/50">
