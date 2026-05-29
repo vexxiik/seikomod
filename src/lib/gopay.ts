@@ -44,6 +44,17 @@ export async function createGoPayPayment(
   returnUrl: string,
   notifyUrl: string
 ) {
+  // MOCK: Pokud uživatel nemá vlastní klíče, simulujeme GoPay
+  if (GOPAY_CLIENT_ID === "1489066496") {
+    console.log("Používám MOCK GoPay platbu, protože nejsou k dispozici reálné klíče.");
+    const mockPaymentId = `3000${Math.floor(Math.random() * 1000000)}`;
+    const baseUrl = process.env.NEXTAUTH_URL || "http://localhost:3000";
+    return {
+      id: mockPaymentId,
+      gw_url: `${baseUrl}/api/gopay/mock-pay?id=${mockPaymentId}&returnUrl=${encodeURIComponent(returnUrl)}&notifyUrl=${encodeURIComponent(notifyUrl)}`
+    };
+  }
+
   const token = await getGoPayToken();
 
   const payload = {
@@ -101,6 +112,11 @@ export async function createGoPayPayment(
  * Získá stav platby u GoPay.
  */
 export async function getGoPayPaymentStatus(paymentId: string) {
+  // MOCK: Simulace stavu platby
+  if (paymentId.startsWith("3000")) {
+    return { state: "PAID" };
+  }
+
   const token = await getGoPayToken();
 
   const response = await fetch(`${GOPAY_URL}/payments/payment/${paymentId}`, {

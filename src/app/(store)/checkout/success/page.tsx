@@ -18,10 +18,14 @@ export default async function CheckoutSuccessPage({ searchParams }: { searchPara
           const status = await getGoPayPaymentStatus(id);
           if (status.state === "PAID") {
             orderStatus = "PAID";
-            await prisma.order.update({ where: { id: order.id }, data: { status: "PAID" } });
+            // Záměrně zde neaktualizujeme DB, abychom nevyrušili Webhook, který odesílá e-maily.
+            // Místo toho můžeme webhook bezpečně popohnat.
+            const baseUrl = process.env.NEXTAUTH_URL || "http://localhost:3000";
+            await fetch(`${baseUrl}/api/gopay/notify?id=${id}`).catch(() => {});
           } else if (status.state === "CANCELED" || status.state === "TIMEOUT") {
             orderStatus = "CANCELLED";
-            await prisma.order.update({ where: { id: order.id }, data: { status: "CANCELLED" } });
+            const baseUrl = process.env.NEXTAUTH_URL || "http://localhost:3000";
+            await fetch(`${baseUrl}/api/gopay/notify?id=${id}`).catch(() => {});
           }
         } catch (e) {
           console.error(e);
