@@ -40,7 +40,9 @@ model Order {
   orderNumber Int?        @unique
   customerId  String
   total       Float
-  status      String      // PENDING, COMPLETED, CANCELLED
+  status      String      // PENDING_PAYMENT, PAID, PENDING, COMPLETED, CANCELLED
+  gopayPaymentId String?  // ID platby v GoPay
+  gopayPaymentUrl String? // Odkaz na platební bránu
   packetaBranchId String?
   packetaBranchName String?
   createdAt   DateTime    @default(now())

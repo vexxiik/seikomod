@@ -104,7 +104,10 @@ export default function CartPage() {
         setIsSubmitting(false);
         return;
       }
-      if (result.success) {
+      if (result.success && result.gw_url) {
+        clearCart();
+        window.location.href = result.gw_url;
+      } else if (result.success) {
         clearCart();
         router.push("/checkout/success");
       }

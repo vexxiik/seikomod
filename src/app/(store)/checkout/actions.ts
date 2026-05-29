@@ -8,6 +8,7 @@ import { redirect } from "next/navigation";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth";
 import { checkoutSchema } from "@/lib/validations";
+import { createGoPayPayment } from "@/lib/gopay";
 
 // Initialize Resend with a dummy key if not present in env
 const resend = new Resend(process.env.RESEND_API_KEY || "re_dummy_key");
@@ -128,7 +129,7 @@ export async function submitOrder(data: CheckoutData, cartItems: { id: string; n
         orderNumber: nextOrderNumber,
         customerId: customer.id,
         total: calculatedTotal,
-        status: "PENDING",
+        status: "PENDING_PAYMENT", // Změna na čekání na platbu
         packetaBranchId,
         packetaBranchName,
         items: {
@@ -150,58 +151,45 @@ export async function submitOrder(data: CheckoutData, cartItems: { id: string; n
       }
     });
 
-    // 3. Send Emails via Resend
-    try {
-      // Send to Customer (Forced to your email for testing)
-      const testEmail = "jakub.sokol2007@gmail.com";
-      
-      const { data: customerData, error: customerError } = await resend.emails.send({
-        from: "Seiko Mod Atelier <onboarding@resend.dev>", // Using resend dev domain for testing
-        to: testEmail, // Originally `email`, forced to test email because of Resend Sandbox limits
-        subject: "Potvrzení objednávky - Seiko Mod Atelier",
-        react: CustomerOrderReceipt({
-          orderId: String(order.orderNumber || order.id),
-          customerName: fullName,
-          items: finalItems,
-          total: calculatedTotal,
-          packetaBranchName: packetaBranchName,
-        }),
-      });
+    // 3. Vytvořit platbu u GoPay
+    // V Next.js na Vercelu musíme předat absolutní URL. Zkusíme použít NEXTAUTH_URL nebo hardcodovanou pro dev.
+    const baseUrl = process.env.NEXTAUTH_URL || "http://localhost:3000";
+    const returnUrl = `${baseUrl}/checkout/success`;
+    const notifyUrl = `${baseUrl}/api/gopay/notify`;
 
-      if (customerError) {
-        console.error("Resend Customer Email Error:", customerError);
+    const paymentResponse = await createGoPayPayment(
+      String(order.orderNumber),
+      calculatedTotal,
+      {
+        firstName: customer.name.split(" ")[0] || "",
+        lastName: customer.name.split(" ").slice(1).join(" ") || "",
+        email: email,
+        city: city,
+        street: address,
+        postalCode: zip,
+      },
+      finalItems.map(item => ({
+        name: item.name,
+        amount: item.price,
+        count: item.quantity,
+      })),
+      returnUrl,
+      notifyUrl
+    );
+
+    // 4. Uložit GoPay ID k objednávce
+    await prisma.order.update({
+      where: { id: order.id },
+      data: { 
+        gopayPaymentId: String(paymentResponse.id),
+        gopayPaymentUrl: paymentResponse.gw_url
       }
+    });
 
-      // Send to Admin
-      const { data: adminData, error: adminError } = await resend.emails.send({
-        from: "E-shop Systém <onboarding@resend.dev>", // Using resend dev domain for testing
-        to: testEmail, // Admin email
-        subject: `Nová objednávka! - ${fullName}`,
-        react: AdminOrderNotification({
-          orderId: String(order.orderNumber || order.id),
-          customerName: fullName,
-          customerEmail: email,
-          address: fullAddress,
-          items: finalItems,
-          total: calculatedTotal,
-          packetaBranchName: packetaBranchName,
-        }),
-      });
+    // POZNÁMKA: E-maily se nyní neposílají tady, ale až ve webhooku (api/gopay/notify/route.ts), 
+    // jakmile GoPay potvrdí zaplacení (PAID).
 
-      if (adminError) {
-        console.error("Resend Admin Email Error:", adminError);
-      }
-
-      if (!customerError && !adminError) {
-        console.log("Emails sent successfully.");
-      }
-    } catch (error) {
-      console.error("Failed to send emails:", error);
-      // We don't throw here to ensure the user still gets redirected to success page
-      // if only the email fails due to missing API keys.
-    }
-
-    return { success: true, orderId: String(order.orderNumber || order.id) };
+    return { success: true, gw_url: paymentResponse.gw_url };
   } catch (e: any) {
     console.error("Order submit failed:", e);
     return { error: e.message || "Při vytváření objednávky došlo k neznámé chybě." };

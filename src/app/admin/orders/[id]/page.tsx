@@ -83,12 +83,29 @@ export default async function OrderDetail({ params }: { params: Promise<{ id: st
             <CardContent>
               <div className={`flex items-center gap-2 font-medium ${
                 order.status === 'COMPLETED' ? 'text-green-600' :
+                order.status === 'PAID' ? 'text-emerald-600' :
                 order.status === 'CANCELLED' ? 'text-red-600' :
+                order.status === 'PENDING_PAYMENT' ? 'text-yellow-600' :
                 'text-blue-600'
               }`}>
                 <CheckCircle className="h-5 w-5" />
-                {order.status === 'COMPLETED' ? 'Vyřízeno' : order.status === 'CANCELLED' ? 'Zrušeno' : 'Čeká na vyřízení'}
+                {order.status === 'COMPLETED' ? 'Vyřízeno' : 
+                 order.status === 'PAID' ? 'Zaplaceno (Přijato)' : 
+                 order.status === 'CANCELLED' ? 'Zrušeno' : 
+                 order.status === 'PENDING_PAYMENT' ? 'Čeká na platbu' : 'Přijato'}
               </div>
+              
+              {order.gopayPaymentId && (
+                <div className="mt-4 pt-4 border-t text-sm">
+                  <div className="text-xs font-semibold uppercase text-muted-foreground mb-1">Platba GoPay</div>
+                  <div>ID Platby: <span className="font-mono">{order.gopayPaymentId}</span></div>
+                  {order.gopayPaymentUrl && order.status === 'PENDING_PAYMENT' && (
+                    <a href={order.gopayPaymentUrl} target="_blank" rel="noreferrer" className="text-accent hover:underline mt-1 inline-block">
+                      Odkaz na platební bránu
+                    </a>
+                  )}
+                </div>
+              )}
             </CardContent>
           </Card>
         </div>
