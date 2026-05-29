@@ -10,8 +10,10 @@ import {
   Title,
   Tooltip,
   Legend,
+  BarController,
+  LineController,
 } from 'chart.js';
-import { Bar, Line } from 'react-chartjs-2';
+import { Chart } from 'react-chartjs-2';
 
 ChartJS.register(
   CategoryScale,
@@ -21,7 +23,9 @@ ChartJS.register(
   PointElement,
   Title,
   Tooltip,
-  Legend
+  Legend,
+  BarController,
+  LineController
 );
 
 import { useEffect, useState } from "react";
@@ -87,7 +91,7 @@ export function DashboardChart({
 
   return (
     <div className="w-full h-full p-4">
-      <Bar data={data as any} options={options} />
+      <Chart type='bar' data={data as any} options={options} />
     </div>
   );
 }
