@@ -64,3 +64,67 @@ export async function deleteProduct(id: string) {
   revalidatePath("/admin/products");
   revalidatePath("/admin");
 }
+
+export async function createProduct(formData: FormData) {
+  const name = formData.get("name") as string;
+  const description = formData.get("description") as string;
+  const price = Number(formData.get("price"));
+  const type = formData.get("type") as string;
+  const movement = formData.get("movement") as string;
+  const glass = formData.get("glass") as string;
+  const bracelet = formData.get("bracelet") as string;
+  const images = formData.get("images") as string;
+  const stock = Number(formData.get("stock"));
+
+  if (!name || !description || isNaN(price) || !type) return;
+
+  await prisma.product.create({
+    data: {
+      name,
+      description,
+      price,
+      type,
+      movement: movement || "",
+      glass: glass || "",
+      bracelet: bracelet || "",
+      images: images || "[]",
+      stock: isNaN(stock) ? 0 : stock,
+    }
+  });
+
+  revalidatePath("/admin/products");
+  revalidatePath("/admin");
+}
+
+export async function updateProduct(id: string, formData: FormData) {
+  const name = formData.get("name") as string;
+  const description = formData.get("description") as string;
+  const price = Number(formData.get("price"));
+  const type = formData.get("type") as string;
+  const movement = formData.get("movement") as string;
+  const glass = formData.get("glass") as string;
+  const bracelet = formData.get("bracelet") as string;
+  const images = formData.get("images") as string;
+  const stock = Number(formData.get("stock"));
+
+  if (!name || !description || isNaN(price) || !type) return;
+
+  await prisma.product.update({
+    where: { id },
+    data: {
+      name,
+      description,
+      price,
+      type,
+      movement: movement || "",
+      glass: glass || "",
+      bracelet: bracelet || "",
+      images: images || "[]",
+      stock: isNaN(stock) ? 0 : stock,
+    }
+  });
+
+  revalidatePath(`/admin/products/${id}`);
+  revalidatePath("/admin/products");
+  revalidatePath("/admin");
+}

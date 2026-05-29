@@ -8,7 +8,9 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { ProductActions } from "@/components/admin/ProductActions";
-
+import Link from "next/link";
+import { Button } from "@/components/ui/button";
+import { Plus } from "lucide-react";
 export default async function AdminProducts() {
   const products = await prisma.product.findMany({
     orderBy: { createdAt: 'desc' }
@@ -18,6 +20,12 @@ export default async function AdminProducts() {
     <div className="space-y-6">
       <div className="flex items-center justify-between">
         <h1 className="text-3xl font-bold tracking-tight">Správa produktů</h1>
+        <Link href="/admin/products/new">
+          <Button className="gap-2">
+            <Plus className="h-4 w-4" />
+            Přidat produkt
+          </Button>
+        </Link>
       </div>
 
       <div className="rounded-md border bg-card overflow-x-auto w-full">

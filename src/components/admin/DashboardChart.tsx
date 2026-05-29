@@ -25,8 +25,8 @@ ChartJS.register(
 );
 
 const months = ['Leden', 'Únor', 'Březen', 'Duben', 'Květen', 'Červen', 'Červenec'];
-const revenues = [45000, 52000, 38000, 65000, 82000, 71000, 95000];
-const expenses = [21000, 28000, 19000, 32000, 41000, 35000, 48000];
+const revenues = [0, 0, 0, 0, 0, 0, 0];
+const expenses = [0, 0, 0, 0, 0, 0, 0];
 
 export function DashboardChart() {
   const data = {
