@@ -24,6 +24,8 @@ ChartJS.register(
   Legend
 );
 
+import { useEffect, useState } from "react";
+
 const months = ['Leden', 'Únor', 'Březen', 'Duben', 'Květen', 'Červen', 'Červenec', 'Srpen', 'Září', 'Říjen', 'Listopad', 'Prosinec'];
 
 export function DashboardChart({
@@ -33,6 +35,16 @@ export function DashboardChart({
   revenues?: number[];
   expenses?: number[];
 }) {
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  if (!mounted) {
+    return <div className="w-full h-full flex items-center justify-center text-muted-foreground">Načítám graf...</div>;
+  }
+
   const data = {
     labels: months,
     datasets: [
