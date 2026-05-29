@@ -1,7 +1,12 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { CreditCard, DollarSign, Package, Users } from "lucide-react";
-import { DashboardChart } from "@/components/admin/DashboardChart";
+import dynamic from "next/dynamic";
 import { prisma } from "@/lib/prisma";
+
+const DashboardChart = dynamic(
+  () => import("@/components/admin/DashboardChart").then(mod => mod.DashboardChart),
+  { ssr: false, loading: () => <div className="w-full h-full flex items-center justify-center text-muted-foreground">Načítám graf...</div> }
+);
 
 export default async function AdminDashboard() {
   const [

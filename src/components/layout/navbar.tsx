@@ -66,7 +66,7 @@ export function Navbar() {
             Katalog
           </Link>
           <Link href="/configurator" className="text-accent font-bold hover:text-accent/80 transition-colors flex items-center gap-1">
-            Individuální cena
+            Konfigurátor
           </Link>
           <Link href="/about" className="text-foreground hover:text-accent transition-colors">
             O preciznosti
@@ -150,7 +150,7 @@ export function Navbar() {
                 Katalog
               </Link>
               <Link href="/configurator" className="px-4 py-3 text-accent hover:bg-accent/10 rounded-lg transition-colors" onClick={() => setIsMobileMenuOpen(false)}>
-                Individuální cena
+                Konfigurátor
               </Link>
               <Link href="/about" className="px-4 py-3 hover:bg-muted rounded-lg transition-colors" onClick={() => setIsMobileMenuOpen(false)}>
                 O preciznosti

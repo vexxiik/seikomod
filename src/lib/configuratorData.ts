@@ -102,7 +102,7 @@ export const configuratorData: ConfiguratorData[] = [
         price: 0,
         image: "/configurator/seiko-blue-dial.jpg",
         thumbnail: "/configurator/seiko-blue-dial.jpg",
-        style: { scale: 0.72, x: 0.0, y: -2.0 }
+        style: { scale: 0.44, x: -2.0, y: -0.5 }
       },
       {
         id: "dial-green",
@@ -110,7 +110,7 @@ export const configuratorData: ConfiguratorData[] = [
         price: 0,
         image: "/configurator/seiko-green-dial.jpg",
         thumbnail: "/configurator/seiko-green-dial.jpg",
-        style: { scale: 0.72, x: 0.0, y: -2.0 }
+        style: { scale: 0.44, x: -2.0, y: -0.5 }
       },
       {
         id: "dial-grey",
@@ -118,7 +118,7 @@ export const configuratorData: ConfiguratorData[] = [
         price: 1500,
         image: "/configurator/seiko-grey-dial.jpg",
         thumbnail: "/configurator/seiko-grey-dial.jpg",
-        style: { scale: 0.72, x: 0.0, y: -2.0 }
+        style: { scale: 0.44, x: -2.0, y: -0.5 }
       },
       {
         id: "dial-who-cares",
@@ -126,7 +126,7 @@ export const configuratorData: ConfiguratorData[] = [
         price: 1000,
         image: "/configurator/seiko-who-cares-dial.jpg",
         thumbnail: "/configurator/seiko-who-cares-dial.jpg",
-        style: { scale: 0.72, x: 0.0, y: -2.0 }
+        style: { scale: 0.44, x: -2.0, y: -0.5 }
       },
       {
         id: "dial-open",
@@ -134,7 +134,7 @@ export const configuratorData: ConfiguratorData[] = [
         price: 2500,
         image: "/configurator/seiko-open-dial.jpg",
         thumbnail: "/configurator/seiko-open-dial.jpg",
-        style: { scale: 0.72, x: 0.0, y: -2.0 }
+        style: { scale: 0.44, x: -2.0, y: -0.5 }
       }
     ]
   },
