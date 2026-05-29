@@ -21,6 +21,8 @@ type CheckoutData = {
   zip: string;
   includeWatchBox: boolean;
   discountCode?: string;
+  packetaBranchId: string;
+  packetaBranchName: string;
 };
 
 export async function submitOrder(data: CheckoutData, cartItems: { id: string; name: string; quantity: number; price: number }[], total: number) {
@@ -34,6 +36,8 @@ export async function submitOrder(data: CheckoutData, cartItems: { id: string; n
       zip: data.zip,
       includeWatchBox: data.includeWatchBox,
       discountCode: data.discountCode,
+      packetaBranchId: data.packetaBranchId,
+      packetaBranchName: data.packetaBranchName,
     };
 
     const validationResult = checkoutSchema.safeParse(rawData);
@@ -42,7 +46,7 @@ export async function submitOrder(data: CheckoutData, cartItems: { id: string; n
       return { error: validationResult.error.issues[0].message };
     }
 
-    const { firstName, lastName, email, address, city, zip, includeWatchBox, discountCode } = validationResult.data;
+    const { firstName, lastName, email, address, city, zip, includeWatchBox, discountCode, packetaBranchId, packetaBranchName } = validationResult.data;
 
     const session = await getServerSession(authOptions);
 
@@ -125,6 +129,8 @@ export async function submitOrder(data: CheckoutData, cartItems: { id: string; n
         customerId: customer.id,
         total: calculatedTotal,
         status: "PENDING",
+        packetaBranchId,
+        packetaBranchName,
         items: {
           create: finalItems.map(item => {
             const isValid = validProductIds.has(item.id);
@@ -158,6 +164,7 @@ export async function submitOrder(data: CheckoutData, cartItems: { id: string; n
           customerName: fullName,
           items: finalItems,
           total: calculatedTotal,
+          packetaBranchName: packetaBranchName,
         }),
       });
 
@@ -177,6 +184,7 @@ export async function submitOrder(data: CheckoutData, cartItems: { id: string; n
           address: fullAddress,
           items: finalItems,
           total: calculatedTotal,
+          packetaBranchName: packetaBranchName,
         }),
       });
 

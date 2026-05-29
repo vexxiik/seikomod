@@ -18,6 +18,7 @@ interface CustomerOrderReceiptProps {
   customerName: string;
   items: { name: string; quantity: number; price: number }[];
   total: number;
+  packetaBranchName?: string;
 }
 
 export const CustomerOrderReceipt = ({
@@ -25,6 +26,7 @@ export const CustomerOrderReceipt = ({
   customerName = "Zákazník",
   items = [],
   total = 0,
+  packetaBranchName = "",
 }: CustomerOrderReceiptProps) => (
   <Html>
     <Head />
@@ -71,6 +73,20 @@ export const CustomerOrderReceipt = ({
                 <Text style={totalAmount}>{total.toLocaleString("cs-CZ")} Kč</Text>
               </Column>
             </Row>
+            
+            {packetaBranchName && (
+              <>
+                <Hr style={hrDark} />
+                <Row>
+                  <Column align="left">
+                    <Text style={itemText}>Způsob doručení</Text>
+                  </Column>
+                  <Column align="right">
+                    <Text style={packetaText}>Zásilkovna: {packetaBranchName}</Text>
+                  </Column>
+                </Row>
+              </>
+            )}
           </Section>
 
           <Text style={textSmall}>
@@ -211,6 +227,14 @@ const totalAmount = {
   color: "#d4af37",
   fontSize: "20px",
   fontWeight: "700",
+  margin: "0",
+  textAlign: "right" as const,
+};
+
+const packetaText = {
+  color: "#10b981", // emerald-500
+  fontSize: "14px",
+  fontWeight: "500",
   margin: "0",
   textAlign: "right" as const,
 };

@@ -13,13 +13,17 @@ import { submitOrder, validateDiscountCode } from "@/app/(store)/checkout/action
 import { useRouter } from "next/navigation";
 import { useSession } from "next-auth/react";
 import { Checkbox } from "@/components/ui/checkbox";
-import { Tag } from "lucide-react";
+import { Tag, MapPin, Truck } from "lucide-react";
+import Script from "next/script";
 
 export default function CartPage() {
   const [step, setStep] = useState<"cart" | "checkout">("cart");
   const [mounted, setMounted] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [includeWatchBox, setIncludeWatchBox] = useState(false);
+
+  // Packeta state
+  const [packetaBranch, setPacketaBranch] = useState<{ id: string; name: string } | null>(null);
   
   // Discount state
   const [discountCode, setDiscountCode] = useState("");
@@ -89,6 +93,8 @@ export default function CartPage() {
       zip: formData.get("zip") as string || "",
       includeWatchBox,
       discountCode: appliedDiscount?.code,
+      packetaBranchId: packetaBranch?.id || "",
+      packetaBranchName: packetaBranch?.name || "",
     };
 
     try {
@@ -123,6 +129,9 @@ export default function CartPage() {
 
   return (
     <div className="container mx-auto px-4 py-12 md:py-20 min-h-screen">
+      {/* Packeta Widget Script */}
+      <Script src="https://widget.packeta.com/v6/www/js/library.js" strategy="lazyOnload" />
+
       <h1 className="font-heading text-3xl md:text-4xl font-bold mb-8">
         {step === "cart" ? "Váš košík" : "Dokončení objednávky"}
       </h1>
@@ -177,8 +186,58 @@ export default function CartPage() {
               <CardContent className="space-y-8 p-6 md:p-8 pt-0">
                 <form id="checkout-form" onSubmit={(e) => {
                   e.preventDefault();
+                  if (!packetaBranch) {
+                    alert("Vyberte prosím výdejní místo Zásilkovny.");
+                    return;
+                  }
                   handleCheckoutSubmit(new FormData(e.currentTarget));
                 }} className="space-y-8">
+                
+                {/* Zásilkovna Selection */}
+                <div className="bg-muted/30 p-6 rounded-xl border border-border/50 space-y-4">
+                  <div className="flex items-center gap-3">
+                    <Truck className="h-6 w-6 text-accent" />
+                    <h3 className="font-heading text-xl font-bold">Způsob doručení</h3>
+                  </div>
+                  
+                  <div className="flex flex-col sm:flex-row gap-4 items-start sm:items-center justify-between bg-background p-4 rounded-lg border border-border shadow-sm">
+                    <div className="space-y-1">
+                      <div className="font-bold flex items-center gap-2">
+                        Zásilkovna - Výdejní místo
+                      </div>
+                      <div className="text-sm text-muted-foreground flex items-center gap-1">
+                        {packetaBranch ? (
+                          <>
+                            <MapPin className="h-4 w-4 text-green-500" />
+                            <span className="text-foreground font-medium">{packetaBranch.name}</span>
+                          </>
+                        ) : (
+                          "Zatím nebylo vybráno výdejní místo"
+                        )}
+                      </div>
+                    </div>
+                    <Button
+                      type="button"
+                      variant={packetaBranch ? "outline" : "default"}
+                      className={!packetaBranch ? "bg-accent text-accent-foreground hover:bg-accent/90" : ""}
+                      onClick={() => {
+                        if (typeof window !== "undefined" && (window as any).Packeta) {
+                          (window as any).Packeta.Widget.pick("YOUR_API_KEY_HERE", (point: any) => {
+                            if (point) {
+                              setPacketaBranch({ id: point.id, name: point.name });
+                            }
+                          }, { country: "cz", language: "cs" });
+                        } else {
+                          alert("Widget Zásilkovny se nepodařilo načíst. Zkuste to prosím znovu.");
+                        }
+                      }}
+                    >
+                      {packetaBranch ? "Změnit pobočku" : "Vybrat pobočku"}
+                    </Button>
+                  </div>
+                  {!packetaBranch && <p className="text-sm text-destructive font-medium mt-2">Doručení přes Zásilkovnu je povinné.</p>}
+                </div>
+                
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div className="space-y-3">
                     <Label htmlFor="firstName" className="text-[11px] font-bold uppercase tracking-widest text-muted-foreground">Jméno</Label>

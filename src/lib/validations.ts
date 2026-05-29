@@ -23,4 +23,6 @@ export const checkoutSchema = z.object({
   zip: z.string().regex(/^\d{3}\s?\d{2}$/, "PSČ musí být ve formátu 123 45 nebo 12345"),
   includeWatchBox: z.boolean().optional().default(false),
   discountCode: z.string().optional(),
+  packetaBranchId: z.string().min(1, "Prosím vyberte výdejní místo Zásilkovny"),
+  packetaBranchName: z.string().min(1, "Prosím vyberte výdejní místo Zásilkovny"),
 });

@@ -20,6 +20,7 @@ interface AdminOrderNotificationProps {
   address: string;
   items: { name: string; quantity: number }[];
   total: number;
+  packetaBranchName?: string;
 }
 
 export const AdminOrderNotification = ({
@@ -29,6 +30,7 @@ export const AdminOrderNotification = ({
   address = "Adresa",
   items = [],
   total = 0,
+  packetaBranchName = "",
 }: AdminOrderNotificationProps) => (
   <Html>
     <Head />
@@ -52,6 +54,9 @@ export const AdminOrderNotification = ({
             <Text style={addressText}>{customerName}</Text>
             <Text style={addressText}>{address}</Text>
             <Text style={addressText}>{customerEmail}</Text>
+            {packetaBranchName && (
+              <Text style={packetaText}>Výdejní místo: {packetaBranchName}</Text>
+            )}
           </Section>
 
           <Section style={orderBox}>
@@ -164,6 +169,14 @@ const addressText = {
   fontSize: "15px",
   margin: "4px 0",
   lineHeight: "22px",
+};
+
+const packetaText = {
+  color: "#10b981", // emerald-500
+  fontSize: "15px",
+  margin: "8px 0 4px",
+  lineHeight: "22px",
+  fontWeight: "600",
 };
 
 const orderBox = {
