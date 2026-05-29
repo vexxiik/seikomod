@@ -107,13 +107,15 @@ export default function ConfiguratorPage() {
         <div className="flex flex-col lg:flex-row gap-8 lg:gap-12 items-start">
           
           {/* LEFT COLUMN: LIVE PREVIEW */}
-          <div className="w-full lg:w-1/2 sticky top-20 z-10 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-white to-slate-100 rounded-2xl flex items-center justify-center border shadow-sm h-[300px] sm:h-[350px] lg:h-auto lg:aspect-square transition-all overflow-hidden">
-            {/* Výraznější zmenšení pro malé mobily (scale-75) a overflow-hidden u rodiče zamezí přetékání do menu */}
+          <div className="w-full lg:w-1/2 sticky top-20 z-30 bg-card/80 backdrop-blur-xl rounded-2xl flex items-center justify-center border shadow-sm h-[280px] sm:h-[350px] lg:h-auto lg:aspect-square transition-all overflow-hidden">
             <div className="relative w-full h-full max-w-[250px] sm:max-w-[300px] lg:max-w-[400px] aspect-square drop-shadow-[0_20px_25px_rgba(0,0,0,0.15)] scale-75 sm:scale-90 lg:scale-100 flex items-center justify-center">
               {/* Render layers */}
-              {renderOrder.map((category) => {
+              {renderOrder.map((category, index) => {
                 const selectedPart = selections[category];
                 if (!selectedPart) return null;
+
+                // Postupné skládání - vykreslíme jen díly aktuálního nebo předchozích kroků
+                if (index > currentStepIndex) return null;
 
                 // If this is the currently active category in the stepper and devMode is on, apply the live calibration
                 const isCalibratingThis = devMode && category === currentCategory.category;
@@ -162,7 +164,7 @@ export default function ConfiguratorPage() {
           <div className="w-full lg:w-1/2 space-y-8">
             
             {/* STEPPER HEADER */}
-            <div className="flex items-center justify-between bg-card p-3 md:p-4 rounded-xl border shadow-sm sticky top-[380px] sm:top-[450px] lg:static z-20 transition-all">
+            <div className="flex items-center justify-between bg-card p-3 md:p-4 rounded-xl border shadow-sm z-20">
               <Button 
                 variant="ghost" 
                 size="icon" 
