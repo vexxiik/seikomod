@@ -10,7 +10,7 @@ import { ShoppingCart, Filter } from "lucide-react";
 // Získáme produkty jako props ze serverové komponenty
 export default function ProductsClient({ initialProducts = [] }: { initialProducts: any[] }) {
 
-const CATEGORIES = ["Vše", "Diver", "Dress", "GMT"];
+const CATEGORIES = ["Vše", "Dress", "GMT"];
 
   const [activeCategory, setActiveCategory] = useState("Vše");
 
