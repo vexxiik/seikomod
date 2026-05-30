@@ -46,7 +46,13 @@ export async function GET(req: NextRequest) {
       // Odeslat e-maily
       try {
         const fullName = order.customer.name;
-        const testEmail = "jakub.sokol2007@gmail.com";
+        // Pokud nemáš ověřenou doménu u Resend, z onboarding@resend.dev lze posílat jen na tvůj testovací email.
+        // Až doménu ověříš, změň "from" na "objednavky@tvujeshop.cz" a "to" na order.customer.email.
+        // Prozatím v produkci zkusíme poslat na zákazníka (pokud máš doménu).
+        const customerEmail = order.customer.email;
+        const adminEmail = process.env.ADMIN_EMAIL || "jakub.sokol2007@gmail.com";
+        const fromEmail = process.env.RESEND_FROM_EMAIL || "Seiko Mod Atelier <onboarding@resend.dev>";
+
         const finalItems = order.items.map(i => ({
           name: i.productName,
           quantity: i.quantity,
@@ -54,8 +60,8 @@ export async function GET(req: NextRequest) {
         }));
 
         await resend.emails.send({
-          from: "Seiko Mod Atelier <onboarding@resend.dev>",
-          to: testEmail,
+          from: fromEmail,
+          to: customerEmail,
           subject: "Potvrzení objednávky - Zaplaceno - Seiko Mod Atelier",
           react: CustomerOrderReceipt({
             orderId: String(order.orderNumber || order.id),
@@ -67,8 +73,8 @@ export async function GET(req: NextRequest) {
         });
 
         await resend.emails.send({
-          from: "E-shop Systém <onboarding@resend.dev>",
-          to: testEmail,
+          from: fromEmail,
+          to: adminEmail,
           subject: `Nová zaplacená objednávka! - ${fullName}`,
           react: AdminOrderNotification({
             orderId: String(order.orderNumber || order.id),

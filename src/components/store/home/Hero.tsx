@@ -3,18 +3,22 @@
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
+import Image from "next/image";
 import { ArrowRight } from "lucide-react";
 
 export function Hero() {
   return (
     <section className="relative h-[85vh] min-h-[500px] md:h-[90vh] md:min-h-[600px] flex items-center justify-center overflow-hidden">
-      {/* Background Image */}
-      <div 
-        className="absolute inset-0 z-0 bg-cover bg-center bg-no-repeat"
-        style={{ 
-          backgroundImage: "url('https://images.unsplash.com/photo-1523170335258-f5ed11844a49?auto=format&fit=crop&w=2000&q=80')",
-        }}
-      >
+      {/* Background Image optimized with next/image */}
+      <div className="absolute inset-0 z-0">
+        <Image 
+          src="https://images.unsplash.com/photo-1523170335258-f5ed11844a49?auto=format&fit=crop&w=2000&q=80"
+          alt="Prémiové hodinky Seiko Mod"
+          fill
+          priority
+          sizes="100vw"
+          className="object-cover object-center"
+        />
         {/* Overlay */}
         <div className="absolute inset-0 bg-gradient-to-r from-background/90 via-background/70 to-transparent dark:from-background/95 dark:via-background/80" />
       </div>

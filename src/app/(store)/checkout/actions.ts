@@ -9,6 +9,7 @@ import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth";
 import { checkoutSchema } from "@/lib/validations";
 import { createGoPayPayment } from "@/lib/gopay";
+import { configuratorData, BASE_WATCH_PRICE } from "@/lib/configuratorData";
 
 // Initialize Resend with a dummy key if not present in env
 const resend = new Resend(process.env.RESEND_API_KEY || "re_dummy_key");
@@ -93,7 +94,39 @@ export async function submitOrder(data: CheckoutData, cartItems: { id: string; n
     }
 
     // Calculate Subtotal from cart items securely
-    let calculatedTotal = finalItems.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+    let calculatedTotal = 0;
+    
+    // Create a flat map of configurator parts for quick lookup
+    const allConfigParts = new Map();
+    configuratorData.forEach(cat => cat.options.forEach(opt => allConfigParts.set(opt.id, opt.price)));
+
+    for (const item of finalItems) {
+      let securePrice = 0;
+      
+      if (item.id === "premium-box") {
+        securePrice = session ? 0 : 499;
+      } else if (item.id.startsWith("custom-watch|")) {
+        // Recalculate custom watch price securely based on encoded part IDs
+        securePrice = BASE_WATCH_PRICE;
+        const parts = item.id.split("|").slice(1);
+        for (const partId of parts) {
+          if (allConfigParts.has(partId)) {
+            securePrice += allConfigParts.get(partId);
+          }
+        }
+      } else {
+        // Standard product from DB
+        const dbProduct = dbProducts.find(p => p.id === item.id);
+        if (!dbProduct) {
+          return { error: `Produkt ${item.name} nebyl nalezen.` };
+        }
+        securePrice = dbProduct.price;
+      }
+      
+      // Override the item's price with the secure price for database storage
+      item.price = securePrice;
+      calculatedTotal += (securePrice * item.quantity);
+    }
 
     // Validate and apply discount
     let finalDiscountCode = null;

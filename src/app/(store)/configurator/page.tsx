@@ -85,12 +85,18 @@ export default function ConfiguratorPage() {
       .filter(Boolean)
       .join(", ");
 
+    // Encode part IDs so backend can verify price securely
+    const partIds = renderOrder
+      .map(cat => selections[cat]?.id)
+      .filter(Boolean)
+      .join("|");
+
     // Add as a custom product to the cart
     addItem({
-      id: `custom-watch-${Date.now()}`,
+      id: `custom-watch|${partIds}`,
       name: `Custom Seiko: ${partsDescription}`,
       price: getTotalPrice(),
-      image: selections.case?.image || "/img/placeholder.png", // Use the case image as a fallback thumbnail
+      image: selections.case?.image || "/img/placeholder.png",
       quantity: 1,
     });
 
