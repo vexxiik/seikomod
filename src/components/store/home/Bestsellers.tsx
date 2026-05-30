@@ -8,45 +8,44 @@ import Link from "next/link";
 import { ShoppingCart } from "lucide-react";
 import { useCart } from "@/store/useCart";
 import { useRouter } from "next/navigation";
+import { Product } from "@prisma/client";
 
-const DUMMY_PRODUCTS = [
-  {
-    id: "2",
-    name: "Daydate Blue Textured",
-    price: 5499,
-    type: "Dress",
-    image: "/img/daydate_blue_tex.png",
-    link: "/products/2"
-  },
-  {
-    id: "3",
-    name: "Daydate Green",
-    price: 5499,
-    type: "Dress",
-    image: "/img/daydate_green.png",
-    link: "/products/3"
-  },
-  {
-    id: "4",
-    name: "GMT Coke",
-    price: 5499,
-    type: "GMT",
-    image: "/img/gmt_coke.png",
-    link: "/products/4"
-  },
-  {
-    id: "custom",
-    name: "Hodinky na míru",
-    price: "Individuální cena",
-    type: "Zakázka",
-    image: "/img/watchmaker.png",
-    link: "/configurator"
-  }
-];
+interface BestsellersProps {
+  initialProducts: Product[];
+}
 
-export function Bestsellers() {
+export function Bestsellers({ initialProducts = [] }: BestsellersProps) {
   const { addItem } = useCart();
   const router = useRouter();
+
+  const displayProducts = [
+    ...initialProducts.map(p => {
+      let imageStr = "/img/placeholder.png";
+      try {
+        const parsed = JSON.parse(p.images);
+        if (Array.isArray(parsed) && parsed.length > 0) imageStr = parsed[0];
+      } catch (e) {}
+
+      return {
+        id: p.id,
+        name: p.name,
+        price: p.price,
+        type: p.type,
+        movement: p.movement,
+        image: imageStr,
+        link: `/products/${p.id}`
+      };
+    }),
+    {
+      id: "custom",
+      name: "Hodinky na míru",
+      price: "Individuální cena",
+      type: "Zakázka",
+      movement: "Dle vašich představ",
+      image: "/img/watchmaker.png",
+      link: "/configurator"
+    }
+  ];
 
   return (
     <section className="py-24 bg-background">
@@ -66,7 +65,7 @@ export function Bestsellers() {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-          {DUMMY_PRODUCTS.map((product, index) => (
+          {displayProducts.map((product, index) => (
             <motion.div
               key={product.id}
               initial={{ opacity: 0, y: 20 }}
@@ -103,7 +102,7 @@ export function Bestsellers() {
                 <CardContent className="p-8 pb-4 flex-grow">
                   <h3 className="font-heading font-bold text-2xl mb-2 group-hover:text-accent transition-colors">{product.name}</h3>
                   <p className="text-muted-foreground text-sm mb-4">
-                    {product.id === "custom" ? "Dle vašich představ" : "Seiko NH35 Automatic"}
+                    {product.movement}
                   </p>
                 </CardContent>
                 <CardFooter className={`p-8 pt-0 flex items-center relative z-20 ${product.id === "custom" ? "justify-center w-full" : "justify-between"}`}>
