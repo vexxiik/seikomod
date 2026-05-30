@@ -5,7 +5,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const baseUrl = process.env.NEXT_PUBLIC_APP_URL || 'https://www.seikomodatelier.cz';
 
   // Načtení dynamických produktů z databáze
-  let products = [];
+  let products: any[] = [];
   try {
     products = await prisma.product.findMany();
   } catch (e) {
