@@ -41,7 +41,7 @@ export function AdminLayoutWrapper({
         <div className="h-20 flex items-center px-6 border-b">
           <Link href="/admin" className="flex items-center gap-2 text-primary font-heading font-bold text-xl">
             <Watch className="h-6 w-6" />
-            <span>Seiko Admin</span>
+            <span>SeikoMod Atelier</span>
           </Link>
         </div>
         
@@ -103,7 +103,7 @@ export function AdminLayoutWrapper({
               <div className="h-20 flex items-center justify-between px-6 border-b">
                 <Link href="/admin" className="flex items-center gap-2 text-primary font-heading font-bold text-xl">
                   <Watch className="h-6 w-6" />
-                  <span>Seiko Admin</span>
+                  <span>SeikoMod Atelier</span>
                 </Link>
                 <button onClick={() => setIsMobileMenuOpen(false)} className="p-2 -mr-2 text-muted-foreground hover:text-foreground">
                   <X className="h-6 w-6" />
