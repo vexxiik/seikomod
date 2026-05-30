@@ -22,25 +22,32 @@ export function WatchCraftingSection() {
               Watch Crafting
             </div>
             <h2 className="font-heading text-4xl md:text-5xl lg:text-6xl font-bold leading-tight">
-              Zakázková <br />
-              <span className="text-accent italic">stavba.</span>
+              Proč zvolit <br />
+              <span className="text-accent italic">Seiko Mod Atelier?</span>
             </h2>
-            <p className="text-lg text-muted-foreground leading-relaxed max-w-lg">
-              Hodinky neskládáme z hotových modelů. Místo toho pečlivě vybíráme a kupujeme samostatné prémiové Seiko díly, ze kterých s chirurgickou přesností sestavujeme unikátní kousky na míru – přesně podle vašich představ.
-            </p>
-            <ul className="space-y-4">
-              {[
-                "Ruční montáž každého kusu",
-                "Individuální regulace strojku pro maximální přesnost",
-                "Tlaková zkouška vodotěsnosti",
-                "Finální leštění a kontrola detailů"
-              ].map((item, i) => (
-                <li key={i} className="flex items-center gap-4">
-                  <div className="h-2 w-2 rounded-full bg-accent" />
-                  <span className="font-medium text-foreground/80">{item}</span>
-                </li>
-              ))}
-            </ul>
+            
+            <div className="space-y-6">
+              <div>
+                <h3 className="font-bold text-xl text-foreground mb-2">Srdce, které nikdy nevynechá úder</h3>
+                <p className="text-muted-foreground leading-relaxed max-w-lg">
+                  Základem každého našeho <strong>Seiko modu</strong> je nekompromisní spolehlivost. Využíváme výhradně <strong>originální strojek Seiko NH35</strong> a jeho varianty. Tento legendární japonský kalibr zaručuje, že vaše <strong>vlastní hodinky Seiko</strong> nejen perfektně vypadají, ale stanou se přesným společníkem na dlouhá desetiletí.
+                </p>
+              </div>
+
+              <div>
+                <h3 className="font-bold text-xl text-foreground mb-2">Materiály nejvyšší třídy</h3>
+                <p className="text-muted-foreground leading-relaxed max-w-lg">
+                  Pro naše <strong>Seiko diver mody</strong> i elegantní modely využíváme výhradně <strong>prémiové díly na hodinky</strong>. Extrémně tvrdá safírová sklíčka, nevyblednutelné keramické lunety a masivní tahy z chirurgické oceli 904L povyšují každý <strong>Seiko Datejust mod</strong> nebo sportovní <strong>Seiko Nautilus mod</strong> na úroveň skutečného luxusu.
+                </p>
+              </div>
+
+              <div>
+                <h3 className="font-bold text-xl text-foreground mb-2">Ruční montáž a absolutní unikátnost</h3>
+                <p className="text-muted-foreground leading-relaxed max-w-lg">
+                  Jsme přední specialisté na <strong>Seiko modding CZ</strong>. Pomocí našeho intuitivního <strong>konfigurátoru hodinek</strong> si sami zvolíte každý detail. Následně probíhá pečlivá ruční montáž. Výsledkem jsou dokonalé <strong>hodinky na míru</strong>, u kterých máte jistotu, že stejný kus nikdo jiný nemá.
+                </p>
+              </div>
+            </div>
             <div className="pt-4">
               <Link href="/about">
                 <Button className="h-14 px-8 text-base rounded-full shadow-lg hover:shadow-xl transition-all">

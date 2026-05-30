@@ -37,9 +37,9 @@ export function Hero() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
           >
-            Unikátní hodinky, <br />
+            Prémiové hodinky na míru. <br />
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-primary/70">
-              váš osobní styl.
+              Váš osobní Seiko Mod.
             </span>
           </motion.h1>
 
@@ -49,7 +49,7 @@ export function Hero() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.4, ease: "easeOut" }}
           >
-            Objevte zakázkovou stavbu hodinek na míru z prémiových Seiko dílů. Od potápěčských ikon po elegantní modely sestavené s maximální precizností přímo pro vás.
+            Nesmiřte se se sériovou výrobou. Ručně stavěné hodinky, které spojují legendární spolehlivost strojků Seiko s luxusními materiály. Každý kus je jedinečný originál, navržený vámi a sestavený s hodinářskou přesností v ČR.
           </motion.p>
 
           <motion.div
