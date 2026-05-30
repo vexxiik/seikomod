@@ -39,9 +39,14 @@ export function AdminLayoutWrapper({
       {/* Desktop Sidebar */}
       <aside className="hidden md:flex w-64 bg-card border-r flex-col z-20">
         <div className="h-20 flex items-center px-6 border-b">
-          <Link href="/admin" className="flex items-center gap-2 text-primary font-heading font-bold text-xl">
-            <Watch className="h-6 w-6" />
-            <span>SeikoMod Atelier</span>
+          <Link href="/admin" className="flex items-center gap-3 text-primary z-50">
+            <Watch className="h-7 w-7 text-primary" />
+            <div className="flex flex-col">
+              <span className="font-heading font-bold text-xl tracking-tight leading-none">SEIKO MOD</span>
+              <span className="font-sans text-[10px] font-normal tracking-widest text-muted-foreground uppercase mt-0.5 leading-none">
+                Atelier
+              </span>
+            </div>
           </Link>
         </div>
         
@@ -101,9 +106,14 @@ export function AdminLayoutWrapper({
               className="fixed inset-y-0 left-0 w-3/4 max-w-sm bg-card border-r flex flex-col z-50 md:hidden shadow-2xl"
             >
               <div className="h-20 flex items-center justify-between px-6 border-b">
-                <Link href="/admin" className="flex items-center gap-2 text-primary font-heading font-bold text-xl">
-                  <Watch className="h-6 w-6" />
-                  <span>SeikoMod Atelier</span>
+                <Link href="/admin" className="flex items-center gap-3 text-primary z-50">
+                  <Watch className="h-7 w-7 text-primary" />
+                  <div className="flex flex-col">
+                    <span className="font-heading font-bold text-xl tracking-tight leading-none">SEIKO MOD</span>
+                    <span className="font-sans text-[10px] font-normal tracking-widest text-muted-foreground uppercase mt-0.5 leading-none">
+                      Atelier
+                    </span>
+                  </div>
                 </Link>
                 <button onClick={() => setIsMobileMenuOpen(false)} className="p-2 -mr-2 text-muted-foreground hover:text-foreground">
                   <X className="h-6 w-6" />
