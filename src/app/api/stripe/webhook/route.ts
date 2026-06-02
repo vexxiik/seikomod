@@ -5,9 +5,8 @@ import { Resend } from "resend";
 import { CustomerOrderReceipt } from "@/emails/CustomerOrderReceipt";
 import { AdminOrderNotification } from "@/emails/AdminOrderNotification";
 
-const resend = new Resend(process.env.RESEND_API_KEY || "re_dummy_key");
-
 export async function POST(req: NextRequest) {
+  const resend = new Resend(process.env.RESEND_API_KEY || "re_dummy_key");
   const body = await req.text();
   const sig = req.headers.get("stripe-signature");
 
