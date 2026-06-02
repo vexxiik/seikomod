@@ -17,16 +17,16 @@ import StructuredData from "@/components/seo/StructuredData";
 
 export const metadata: Metadata = {
   title: {
-    template: '%s | Seiko Mod Atelier',
-    default: 'Seiko Mod Atelier | Prémiové hodinky na míru & Seiko Modding CZ',
+    template: '%s | Vexx Watch Atelier',
+    default: 'Vexx Watch Atelier | Prémiové hodinky na míru & Seiko Modding CZ',
   },
   description: 'Specializujeme se na stavbu prémiových hodinek na míru. Nabízíme unikátní Seiko mody osazené originálními strojky Seiko a špičkovými aftermarket díly. Vytvořte si svůj originál.',
   keywords: ['Seiko mod', 'Seiko modding CZ', 'hodinky na míru', 'vlastní hodinky Seiko', 'prémiové díly na hodinky'],
   openGraph: {
-    title: 'Seiko Mod Atelier | Prémiové hodinky na míru',
+    title: 'Vexx Watch Atelier | Prémiové hodinky na míru',
     description: 'Váš osobní hodinář. Stavíme unikátní Seiko mody s důrazem na detail a kvalitu materiálů z chirurgické oceli a safíru.',
-    url: 'https://www.seikomodatelier.cz',
-    siteName: 'Seiko Mod Atelier',
+    url: 'https://www.vexxwatchatelier.cz',
+    siteName: 'Vexx Watch Atelier',
     images: [
       {
         url: '/og-image.jpg',
@@ -40,11 +40,11 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Seiko Mod Atelier | Prémiové hodinky na míru',
+    title: 'Vexx Watch Atelier | Prémiové hodinky na míru',
     description: 'Specializujeme se na stavbu prémiových hodinek na míru. Vytvořte si svůj originál v našem konfigurátoru.',
   },
   alternates: {
-    canonical: 'https://www.seikomodatelier.cz',
+    canonical: 'https://www.vexxwatchatelier.cz',
   },
 };
 

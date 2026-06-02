@@ -38,7 +38,7 @@ export const AdminOrderNotification = ({
     <Body style={main}>
       <Container style={container}>
         <Section style={headerSection}>
-          <Text style={logoText}>SEIKO MOD</Text>
+          <Text style={logoText}>VEXX WATCH</Text>
           <Text style={logoSubtext}>SYSTEM</Text>
         </Section>
         

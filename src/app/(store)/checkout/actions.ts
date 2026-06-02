@@ -1,18 +1,12 @@
 "use server";
 
 import { prisma } from "@/lib/prisma";
-import { Resend } from "resend";
-import { CustomerOrderReceipt } from "@/emails/CustomerOrderReceipt";
-import { AdminOrderNotification } from "@/emails/AdminOrderNotification";
 import { redirect } from "next/navigation";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth";
 import { checkoutSchema } from "@/lib/validations";
-import { createGoPayPayment } from "@/lib/gopay";
+import { stripe } from "@/lib/stripe";
 import { configuratorData, BASE_WATCH_PRICE } from "@/lib/configuratorData";
-
-// Initialize Resend with a dummy key if not present in env
-const resend = new Resend(process.env.RESEND_API_KEY || "re_dummy_key");
 
 type CheckoutData = {
   firstName: string;
@@ -69,7 +63,6 @@ export async function submitOrder(data: CheckoutData, cartItems: { id: string; n
         }
       });
     } else {
-      // Update address if missing or different
       await prisma.customer.update({
         where: { email },
         data: { name: fullName, address: fullAddress }
@@ -86,7 +79,7 @@ export async function submitOrder(data: CheckoutData, cartItems: { id: string; n
     if (includeWatchBox) {
       const boxPrice = session ? 0 : 499;
       finalItems.push({
-        id: "premium-box", // Dummy ID
+        id: "premium-box",
         name: "Prémiová krabička na hodinky",
         quantity: 1,
         price: boxPrice,
@@ -96,7 +89,6 @@ export async function submitOrder(data: CheckoutData, cartItems: { id: string; n
     // Calculate Subtotal from cart items securely
     let calculatedTotal = 0;
     
-    // Create a flat map of configurator parts for quick lookup
     const allConfigParts = new Map();
     configuratorData.forEach(cat => cat.options.forEach(opt => allConfigParts.set(opt.id, opt.price)));
 
@@ -106,7 +98,6 @@ export async function submitOrder(data: CheckoutData, cartItems: { id: string; n
       if (item.id === "premium-box") {
         securePrice = session ? 0 : 499;
       } else if (item.id.startsWith("custom-watch|")) {
-        // Recalculate custom watch price securely based on encoded part IDs
         securePrice = BASE_WATCH_PRICE;
         const parts = item.id.split("|").slice(1);
         for (const partId of parts) {
@@ -115,7 +106,6 @@ export async function submitOrder(data: CheckoutData, cartItems: { id: string; n
           }
         }
       } else {
-        // Standard product from DB
         const dbProduct = dbProducts.find(p => p.id === item.id);
         if (!dbProduct) {
           return { error: `Produkt ${item.name} nebyl nalezen.` };
@@ -123,7 +113,6 @@ export async function submitOrder(data: CheckoutData, cartItems: { id: string; n
         securePrice = dbProduct.price;
       }
       
-      // Override the item's price with the secure price for database storage
       item.price = securePrice;
       calculatedTotal += (securePrice * item.quantity);
     }
@@ -142,13 +131,16 @@ export async function submitOrder(data: CheckoutData, cartItems: { id: string; n
           calculatedTotal = Math.max(0, calculatedTotal - validDiscount.discount);
         }
         
-        // Increment usage count
         await prisma.discountCode.update({
           where: { id: validDiscount.id },
           data: { usedCount: { increment: 1 } }
         });
       }
     }
+
+    // Add shipping
+    const shippingCost = 89;
+    calculatedTotal += shippingCost;
 
     // Generate orderNumber safely
     const lastOrder = await prisma.order.findFirst({
@@ -162,15 +154,12 @@ export async function submitOrder(data: CheckoutData, cartItems: { id: string; n
         orderNumber: nextOrderNumber,
         customerId: customer.id,
         total: calculatedTotal,
-        status: "PENDING_PAYMENT", // Změna na čekání na platbu
+        status: "PENDING_PAYMENT",
         packetaBranchId,
         packetaBranchName,
         items: {
           create: finalItems.map(item => {
             const isValid = validProductIds.has(item.id);
-            // To satisfy the old Prisma Client which still thinks productId is required and cannot be null,
-            // we MUST provide a valid CUID from the database if the user added a dummy product (like "custom").
-            // The admin panel will use `productName` anyway.
             const finalProductId = isValid ? item.id : fallbackProductId;
             
             return {
@@ -184,45 +173,52 @@ export async function submitOrder(data: CheckoutData, cartItems: { id: string; n
       }
     });
 
-    // 3. Vytvořit platbu u GoPay
-    // V Next.js na Vercelu musíme předat absolutní URL. Zkusíme použít NEXTAUTH_URL nebo hardcodovanou pro dev.
+    // 3. Vytvořit Stripe Checkout Session
     const baseUrl = process.env.NEXTAUTH_URL || "http://localhost:3000";
-    const returnUrl = `${baseUrl}/checkout/success`;
-    const notifyUrl = `${baseUrl}/api/gopay/notify`;
 
-    const paymentResponse = await createGoPayPayment(
-      String(order.orderNumber),
-      calculatedTotal,
-      {
-        firstName: customer.name.split(" ")[0] || "",
-        lastName: customer.name.split(" ").slice(1).join(" ") || "",
-        email: email,
-        city: city,
-        street: address,
-        postalCode: zip,
+    const stripeSession = await stripe.checkout.sessions.create({
+      // Omit payment_method_types to allow Apple Pay, Google Pay, etc. based on Dashboard settings
+      mode: "payment",
+      customer_email: email,
+      line_items: finalItems
+        .filter(item => item.price > 0)
+        .map(item => ({
+          price_data: {
+            currency: "czk",
+            product_data: {
+              name: item.name,
+            },
+            unit_amount: Math.round(item.price * 100), // Stripe chce v haléřích
+          },
+          quantity: item.quantity,
+        }))
+        .concat([
+          {
+            price_data: {
+              currency: "czk",
+              product_data: { name: "Doprava (Zásilkovna)" },
+              unit_amount: shippingCost * 100,
+            },
+            quantity: 1,
+          },
+        ]),
+      metadata: {
+        orderId: order.id,
+        orderNumber: String(order.orderNumber),
       },
-      finalItems.map(item => ({
-        name: item.name,
-        amount: item.price,
-        count: item.quantity,
-      })),
-      returnUrl,
-      notifyUrl
-    );
+      success_url: `${baseUrl}/checkout/success?session_id={CHECKOUT_SESSION_ID}`,
+      cancel_url: `${baseUrl}/cart`,
+    });
 
-    // 4. Uložit GoPay ID k objednávce
+    // 4. Uložit Stripe session ID k objednávce
     await prisma.order.update({
       where: { id: order.id },
       data: { 
-        gopayPaymentId: String(paymentResponse.id),
-        gopayPaymentUrl: paymentResponse.gw_url
+        stripeSessionId: stripeSession.id,
       }
     });
 
-    // POZNÁMKA: E-maily se nyní neposílají tady, ale až ve webhooku (api/gopay/notify/route.ts), 
-    // jakmile GoPay potvrdí zaplacení (PAID).
-
-    return { success: true, gw_url: paymentResponse.gw_url };
+    return { success: true, url: stripeSession.url };
   } catch (e: any) {
     console.error("Order submit failed:", e);
     return { error: e.message || "Při vytváření objednávky došlo k neznámé chybě." };

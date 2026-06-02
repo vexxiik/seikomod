@@ -95,15 +95,10 @@ export default async function OrderDetail({ params }: { params: Promise<{ id: st
                  order.status === 'PENDING_PAYMENT' ? 'Čeká na platbu' : 'Přijato'}
               </div>
               
-              {order.gopayPaymentId && (
+              {order.stripeSessionId && (
                 <div className="mt-4 pt-4 border-t text-sm">
-                  <div className="text-xs font-semibold uppercase text-muted-foreground mb-1">Platba GoPay</div>
-                  <div>ID Platby: <span className="font-mono">{order.gopayPaymentId}</span></div>
-                  {order.gopayPaymentUrl && order.status === 'PENDING_PAYMENT' && (
-                    <a href={order.gopayPaymentUrl} target="_blank" rel="noreferrer" className="text-accent hover:underline mt-1 inline-block">
-                      Odkaz na platební bránu
-                    </a>
-                  )}
+                  <div className="text-xs font-semibold uppercase text-muted-foreground mb-1">Platba Stripe</div>
+                  <div>Session ID: <span className="font-mono text-xs">{order.stripeSessionId}</span></div>
                 </div>
               )}
             </CardContent>

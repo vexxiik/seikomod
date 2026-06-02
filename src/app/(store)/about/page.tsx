@@ -23,7 +23,7 @@ export default function AboutPage() {
             Umění <span className="text-accent italic">stavby.</span>
           </h1>
           <p className="text-xl md:text-2xl text-muted-foreground leading-relaxed font-light">
-            V Seiko Mod Atelier nevěříme na kompromisy. Neskládáme z hotových modelů – každé hodinky stavíme zcela od nuly z těch nejlepších dostupných prémiových dílů.
+            V Vexx Watch Atelier nevěříme na kompromisy. Neskládáme z hotových modelů – každé hodinky stavíme zcela od nuly z těch nejlepších dostupných prémiových dílů.
           </p>
         </div>
       </section>

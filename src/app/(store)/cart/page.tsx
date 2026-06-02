@@ -104,9 +104,9 @@ export default function CartPage() {
         setIsSubmitting(false);
         return;
       }
-      if (result.success && result.gw_url) {
+      if (result.success && result.url) {
         clearCart();
-        window.location.href = result.gw_url;
+        window.location.href = result.url;
       } else if (result.success) {
         clearCart();
         router.push("/checkout/success");
@@ -225,7 +225,7 @@ export default function CartPage() {
                       className={!packetaBranch ? "bg-accent text-accent-foreground hover:bg-accent/90" : ""}
                       onClick={() => {
                         if (typeof window !== "undefined" && (window as any).Packeta) {
-                          (window as any).Packeta.Widget.pick("YOUR_API_KEY_HERE", (point: any) => {
+                          (window as any).Packeta.Widget.pick(process.env.NEXT_PUBLIC_PACKETA_API_KEY || "87654321", (point: any) => {
                             if (point) {
                               setPacketaBranch({ id: point.id, name: point.name });
                             }

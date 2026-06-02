@@ -23,7 +23,7 @@ export function WatchCraftingSection() {
             </div>
             <h2 className="font-heading text-4xl md:text-5xl lg:text-6xl font-bold leading-tight">
               Proč zvolit <br />
-              <span className="text-accent italic">Seiko Mod Atelier?</span>
+              <span className="text-accent italic">Vexx Watch Atelier?</span>
             </h2>
             
             <div className="space-y-6">

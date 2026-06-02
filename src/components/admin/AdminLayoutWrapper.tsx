@@ -42,7 +42,7 @@ export function AdminLayoutWrapper({
           <Link href="/admin" className="flex items-center gap-3 text-primary z-50">
             <Watch className="h-7 w-7 text-primary" />
             <div className="flex flex-col">
-              <span className="font-heading font-bold text-xl tracking-tight leading-none">SEIKO MOD</span>
+              <span className="font-heading font-bold text-xl tracking-tight leading-none">VEXX WATCH</span>
               <span className="font-sans text-[10px] font-normal tracking-widest text-muted-foreground uppercase mt-0.5 leading-none">
                 Atelier
               </span>
@@ -109,7 +109,7 @@ export function AdminLayoutWrapper({
                 <Link href="/admin" className="flex items-center gap-3 text-primary z-50">
                   <Watch className="h-7 w-7 text-primary" />
                   <div className="flex flex-col">
-                    <span className="font-heading font-bold text-xl tracking-tight leading-none">SEIKO MOD</span>
+                    <span className="font-heading font-bold text-xl tracking-tight leading-none">VEXX WATCH</span>
                     <span className="font-sans text-[10px] font-normal tracking-widest text-muted-foreground uppercase mt-0.5 leading-none">
                       Atelier
                     </span>

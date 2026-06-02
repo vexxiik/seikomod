@@ -6,7 +6,7 @@ export function Footer() {
       <div className="container mx-auto px-4 py-12 md:py-16">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           <div className="space-y-4">
-            <h3 className="font-heading font-bold text-xl">SEIKO MOD Atelier</h3>
+            <h3 className="font-heading font-bold text-xl">Vexx Watch Atelier</h3>
             <p className="text-primary-foreground/80 text-sm leading-relaxed">
               Zakázková stavba hodinek z prémiových Seiko dílů na míru. Každý kus je unikátní mistrovské dílo s důrazem na absolutní preciznost a detail.
             </p>
@@ -39,7 +39,7 @@ export function Footer() {
         </div>
         
         <div className="mt-12 pt-8 border-t border-primary-foreground/20 flex flex-col sm:flex-row justify-center items-center text-sm text-primary-foreground/60 gap-4">
-          <p>&copy; {new Date().getFullYear()} Seiko Mod Atelier. Všechna práva vyhrazena.</p>
+          <p>&copy; {new Date().getFullYear()} Vexx Watch Atelier. Všechna práva vyhrazena.</p>
         </div>
       </div>
     </footer>

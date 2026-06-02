@@ -51,7 +51,7 @@ export function Navbar() {
             {isMobileMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
           </Button>
           <Link href="/" className="font-heading font-bold text-xl md:text-2xl tracking-tight text-primary z-50" onClick={() => setIsMobileMenuOpen(false)}>
-            SEIKO MOD
+            VEXX WATCH
             <span className="font-sans text-xs md:text-sm font-normal block tracking-widest text-muted-foreground uppercase md:-mt-1">
               Atelier
             </span>

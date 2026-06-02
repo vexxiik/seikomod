@@ -8,7 +8,7 @@ export default function LegalPage() {
         <section>
           <h2 className="text-2xl font-bold font-heading mb-4 border-b pb-2">Nezávislost značky</h2>
           <p className="text-muted-foreground">
-            Seiko Mod Atelier nemá žádné obchodní, organizační ani právní spojení se značkou Seiko® ani žádnými jinými zmíněnými značkami. Nejsme autorizovaným prodejcem, partnerem ani držitelem licence. Veškeré názvy značek uvedené na tomto webu slouží výhradně k objektivnímu popisu stylu, kompatibility nebo technických vlastností.
+            Vexx Watch Atelier nemá žádné obchodní, organizační ani právní spojení se značkou Seiko® ani žádnými jinými zmíněnými značkami. Nejsme autorizovaným prodejcem, partnerem ani držitelem licence. Veškeré názvy značek uvedené na tomto webu slouží výhradně k objektivnímu popisu stylu, kompatibility nebo technických vlastností.
           </p>
         </section>
 

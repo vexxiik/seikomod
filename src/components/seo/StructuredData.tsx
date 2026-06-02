@@ -6,10 +6,10 @@ export default function StructuredData() {
     "@graph": [
       {
         "@type": "LocalBusiness",
-        "name": "Seiko Mod Atelier",
-        "image": "https://www.seikomodatelier.cz/logo.png",
+        "name": "Vexx Watch Atelier",
+        "image": "https://www.vexxwatchatelier.cz/logo.png",
         "description": "Specializujeme se na prémiový Seiko modding, výrobu hodinek na míru a konfigurace s využitím originálních strojků Seiko a safírových sklíček.",
-        "url": "https://www.seikomodatelier.cz",
+        "url": "https://www.vexxwatchatelier.cz",
         "telephone": "+420123456789", 
         "address": {
           "@type": "PostalAddress",
@@ -27,15 +27,15 @@ export default function StructuredData() {
       {
         "@type": "Product",
         "name": "Prémiové Seiko Mody (Custom Build)",
-        "image": "https://www.seikomodatelier.cz/images/seiko-nautilus-mod.jpg",
+        "image": "https://www.vexxwatchatelier.cz/images/seiko-nautilus-mod.jpg",
         "description": "Ručně sestavené hodinky na míru s originálním strojkem Seiko NH35, safírovým sklíčkem a keramickou lunetou.",
         "brand": {
           "@type": "Brand",
-          "name": "Seiko Mod Atelier"
+          "name": "Vexx Watch Atelier"
         },
         "offers": {
           "@type": "Offer",
-          "url": "https://www.seikomodatelier.cz/konfigurator",
+          "url": "https://www.vexxwatchatelier.cz/konfigurator",
           "priceCurrency": "CZK",
           "price": "9500",
           "availability": "https://schema.org/InStock",

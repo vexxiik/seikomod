@@ -51,7 +51,7 @@ export default function LoginPage() {
           <div>
             <CardTitle className="font-heading text-2xl font-bold">Přihlášení</CardTitle>
             <CardDescription className="text-muted-foreground mt-2">
-              Vítejte zpět v Seiko Mod Atelier
+              Vítejte zpět v Vexx Watch Atelier
             </CardDescription>
           </div>
         </CardHeader>

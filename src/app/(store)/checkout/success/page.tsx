@@ -2,39 +2,36 @@ import { Button } from "@/components/ui/button";
 import { CheckCircle, Clock, XCircle } from "lucide-react";
 import Link from "next/link";
 import { prisma } from "@/lib/prisma";
-import { getGoPayPaymentStatus } from "@/lib/gopay";
+import { stripe } from "@/lib/stripe";
 
-export default async function CheckoutSuccessPage({ searchParams }: { searchParams: Promise<{ id?: string }> }) {
-  const { id } = await searchParams;
+export default async function CheckoutSuccessPage({ searchParams }: { searchParams: Promise<{ session_id?: string }> }) {
+  const { session_id } = await searchParams;
   let orderStatus = "UNKNOWN";
 
-  if (id) {
-    const order = await prisma.order.findFirst({ where: { gopayPaymentId: id } });
+  if (session_id) {
+    // Najít objednávku podle Stripe session ID
+    const order = await prisma.order.findFirst({ where: { stripeSessionId: session_id } });
     if (order) {
       orderStatus = order.status;
-      // Pokud se webhook ještě nespustil, zkusíme to ověřit přímo
+      // Pokud se webhook ještě nespustil, zkusíme ověřit stav přímo u Stripe
       if (orderStatus === "PENDING_PAYMENT") {
         try {
-          const status = await getGoPayPaymentStatus(id);
-          if (status.state === "PAID") {
+          const session = await stripe.checkout.sessions.retrieve(session_id);
+          if (session.payment_status === "paid") {
+            // Aktualizujeme objednávku na PAID (webhook to pak případně přeskočí)
+            await prisma.order.update({
+              where: { id: order.id },
+              data: { status: "PAID" },
+            });
             orderStatus = "PAID";
-            // Záměrně zde neaktualizujeme DB, abychom nevyrušili Webhook, který odesílá e-maily.
-            // Místo toho můžeme webhook bezpečně popohnat.
-            const baseUrl = process.env.NEXTAUTH_URL || "http://localhost:3000";
-            await fetch(`${baseUrl}/api/gopay/notify?id=${id}`).catch(() => {});
-          } else if (status.state === "CANCELED" || status.state === "TIMEOUT") {
-            orderStatus = "CANCELLED";
-            const baseUrl = process.env.NEXTAUTH_URL || "http://localhost:3000";
-            await fetch(`${baseUrl}/api/gopay/notify?id=${id}`).catch(() => {});
           }
         } catch (e) {
-          console.error(e);
+          console.error("Error checking Stripe session:", e);
         }
       }
     }
   } else {
-    // Pro starší objednávky nebo testy, kdy nejdeme přes GoPay (ale my už ho máme vynucený)
-    orderStatus = "PAID"; // fall-back for display if no ID provided
+    orderStatus = "PAID";
   }
 
   const isSuccess = orderStatus === "PAID" || orderStatus === "COMPLETED";

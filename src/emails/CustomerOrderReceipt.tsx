@@ -30,11 +30,11 @@ export const CustomerOrderReceipt = ({
 }: CustomerOrderReceiptProps) => (
   <Html>
     <Head />
-    <Preview>Potvrzení objednávky - Seiko Mod Atelier</Preview>
+    <Preview>Potvrzení objednávky - Vexx Watch Atelier</Preview>
     <Body style={main}>
       <Container style={container}>
         <Section style={headerSection}>
-          <Text style={logoText}>SEIKO MOD</Text>
+          <Text style={logoText}>VEXX WATCH</Text>
           <Text style={logoSubtext}>ATELIER</Text>
         </Section>
         
@@ -96,10 +96,10 @@ export const CustomerOrderReceipt = ({
         
         <Section style={footerSection}>
           <Text style={footerText}>
-            © {new Date().getFullYear()} Seiko Mod Atelier. Všechna práva vyhrazena.
+            © {new Date().getFullYear()} Vexx Watch Atelier. Všechna práva vyhrazena.
           </Text>
           <Text style={footerDisclaimer}>
-            Seiko Mod Atelier je nezávislý úpravce a není nijak spojen se značkou Seiko®.
+            Vexx Watch Atelier je nezávislý úpravce a není nijak spojen se značkou Seiko®.
           </Text>
         </Section>
       </Container>
