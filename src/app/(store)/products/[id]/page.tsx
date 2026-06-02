@@ -4,34 +4,46 @@ import Image from "next/image";
 import Link from "next/link";
 import { AddToCartButton } from "@/components/store/product/AddToCartButton";
 
+import { prisma } from "@/lib/prisma";
+import { notFound } from "next/navigation";
+
 export default async function ProductDetailPage({ params }: { params: Promise<{ id: string }> }) {
   // Await the params object before accessing its properties in Next.js 15
   const { id } = await params;
   
-  const productData: Record<string, any> = {
-    "1": { name: "Daydate Blue", type: "Dress", image: "/img/daydate_blue.png", movement: "Seiko NH35 Automatic" },
-    "2": { name: "Daydate Blue Textured", type: "Dress", image: "/img/daydate_blue_tex.png", movement: "Seiko NH35 Automatic" },
-    "3": { name: "Daydate Green", type: "Dress", image: "/img/daydate_green.png", movement: "Seiko NH35 Automatic" },
-    "4": { name: "GMT Coke", type: "GMT", image: "/img/gmt_coke.png", movement: "Seiko NH34 GMT" }
-  };
-  
-  const baseProduct = productData[id] || productData["1"];
+  const dbProduct = await prisma.product.findUnique({
+    where: { id }
+  });
+
+  if (!dbProduct) {
+    notFound();
+  }
+
+  let imageUrl = "/img/watchmaker.png"; // Fallback image
+  try {
+    const parsedImages = JSON.parse(dbProduct.images as string);
+    if (Array.isArray(parsedImages) && parsedImages.length > 0) {
+      imageUrl = parsedImages[0];
+    }
+  } catch (e) {
+    // Keep fallback
+  }
 
   const product = {
-    id,
-    name: baseProduct.name,
-    price: 5499,
-    type: baseProduct.type,
-    description: "Tento exkluzivní kousek kombinuje prvotřídní design s neuvěřitelnou spolehlivostí japonských strojků. Ideální volbou pro ty, kteří preferují luxus a osobitý styl. Každý detail je pečlivě sladěn pro dokonalý vizuální zážitek.",
+    id: dbProduct.id,
+    name: dbProduct.name,
+    price: dbProduct.price,
+    type: dbProduct.type || "Kategorie nezadána",
+    description: dbProduct.description,
     specs: {
-      movement: baseProduct.movement,
-      glass: "Safírové s vnitřním AR",
-      bracelet: "Oyster / President, nerezová ocel 316L",
-      waterResistance: "10 ATM / 100m",
-      caseSize: "40mm"
+      movement: dbProduct.movement || "Neuvedeno",
+      glass: dbProduct.glass || "Neuvedeno",
+      bracelet: dbProduct.bracelet || "Neuvedeno",
+      waterResistance: "Neuvedeno", // Not in DB schema currently
+      caseSize: "Neuvedeno" // Not in DB schema currently
     },
-    image: baseProduct.image,
-    inStock: true
+    image: imageUrl,
+    inStock: dbProduct.stock > 0
   };
 
   return (
