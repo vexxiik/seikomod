@@ -276,5 +276,12 @@
     "warranty": "Záruka 2 roky",
     "shipping": "Doručení na Zásilkovnu",
     "returns": "14 dní na vrácení"
+  },
+  "SEO": {
+    "defaultTitle": "Vexx Watch Atelier | Prémiové hodinky na míru & Seiko Modding CZ",
+    "defaultDescription": "Specializujeme se na stavbu prémiových hodinek na míru. Nabízíme unikátní Seiko mody osazené originálními strojky Seiko a špičkovými aftermarket díly. Vytvořte si svůj originál.",
+    "keywords": "Seiko mod, Seiko modding CZ, hodinky na míru, vlastní hodinky Seiko, prémiové díly na hodinky",
+    "openGraphTitle": "Vexx Watch Atelier | Prémiové hodinky na míru",
+    "openGraphDescription": "Váš osobní hodinář. Stavíme unikátní Seiko mody s důrazem na detail a kvalitu materiálů z chirurgické oceli a safíru."
   }
 }

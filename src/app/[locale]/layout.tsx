@@ -19,38 +19,53 @@ const playfair = Playfair_Display({
 
 import StructuredData from "@/components/seo/StructuredData";
 
-export const metadata: Metadata = {
-  title: {
-    template: '%s | Vexx Watch Atelier',
-    default: 'Vexx Watch Atelier | Prémiové hodinky na míru & Seiko Modding CZ',
-  },
-  description: 'Specializujeme se na stavbu prémiových hodinek na míru. Nabízíme unikátní Seiko mody osazené originálními strojky Seiko a špičkovými aftermarket díly. Vytvořte si svůj originál.',
-  keywords: ['Seiko mod', 'Seiko modding CZ', 'hodinky na míru', 'vlastní hodinky Seiko', 'prémiové díly na hodinky'],
-  openGraph: {
-    title: 'Vexx Watch Atelier | Prémiové hodinky na míru',
-    description: 'Váš osobní hodinář. Stavíme unikátní Seiko mody s důrazem na detail a kvalitu materiálů z chirurgické oceli a safíru.',
-    url: 'https://www.vexxwatchatelier.cz',
-    siteName: 'Vexx Watch Atelier',
-    images: [
-      {
-        url: '/og-image.jpg',
-        width: 1200,
-        height: 630,
-        alt: 'Ukázka prémiových Seiko mod hodinek',
-      },
-    ],
-    locale: 'cs_CZ',
-    type: 'website',
-  },
-  twitter: {
-    card: 'summary_large_image',
-    title: 'Vexx Watch Atelier | Prémiové hodinky na míru',
-    description: 'Specializujeme se na stavbu prémiových hodinek na míru. Vytvořte si svůj originál v našem konfigurátoru.',
-  },
-  alternates: {
-    canonical: 'https://www.vexxwatchatelier.cz',
-  },
+type Props = {
+  params: Promise<{ locale: string }>;
 };
+
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const { locale } = await params;
+  const t = await getMessages({ locale });
+  const seo = (t as any).SEO;
+
+  return {
+    metadataBase: new URL('https://www.vexxwatch.cz'),
+    title: {
+      template: '%s | Vexx Watch Atelier',
+      default: seo.defaultTitle,
+    },
+    description: seo.defaultDescription,
+    keywords: seo.keywords.split(', '),
+    openGraph: {
+      title: seo.openGraphTitle,
+      description: seo.openGraphDescription,
+      url: 'https://www.vexxwatch.cz',
+      siteName: 'Vexx Watch Atelier',
+      images: [
+        {
+          url: '/og-image.jpg',
+          width: 1200,
+          height: 630,
+          alt: 'Vexx Watch Atelier',
+        },
+      ],
+      locale: locale === 'cs' ? 'cs_CZ' : 'en_US',
+      type: 'website',
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: seo.openGraphTitle,
+      description: seo.openGraphDescription,
+    },
+    alternates: {
+      canonical: 'https://www.vexxwatch.cz',
+      languages: {
+        'cs': '/cs',
+        'en': '/en',
+      },
+    },
+  };
+}
 
 export default async function RootLayout({
   children,

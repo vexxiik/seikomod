@@ -276,5 +276,12 @@
     "warranty": "2-year warranty",
     "shipping": "Packeta delivery",
     "returns": "14-day returns"
+  },
+  "SEO": {
+    "defaultTitle": "Vexx Watch Atelier | Premium Custom Watches & Seiko Modding",
+    "defaultDescription": "We specialize in building premium custom watches. Offering unique Seiko mods equipped with original Seiko movements and top-tier aftermarket parts. Create your original piece.",
+    "keywords": "Seiko mod, custom watches, Seiko modding, bespoke watches, premium watch parts",
+    "openGraphTitle": "Vexx Watch Atelier | Premium Custom Watches",
+    "openGraphDescription": "Your personal watchmaker. We build unique Seiko mods with a focus on detail and high-quality materials like surgical steel and sapphire."
   }
 }
