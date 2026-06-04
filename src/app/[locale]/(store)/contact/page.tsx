@@ -17,7 +17,7 @@ export default function ContactPage() {
             <Mail className="w-6 h-6" />
           </div>
           <h3 className="font-bold text-lg mb-2">{t('email')}</h3>
-          <p className="text-muted-foreground">info@seikomodatelier.cz</p>
+          <p className="text-muted-foreground">info@vexxwatch.cz</p>
         </div>
         
         <div className="flex flex-col items-center text-center p-8 bg-card/30 rounded-2xl border">
@@ -25,7 +25,7 @@ export default function ContactPage() {
             <Phone className="w-6 h-6" />
           </div>
           <h3 className="font-bold text-lg mb-2">{t('phone')}</h3>
-          <p className="text-muted-foreground">+420 123 456 789</p>
+          <p className="text-muted-foreground">+420 604 256 988</p>
         </div>
         
         <div className="flex flex-col items-center text-center p-8 bg-card/30 rounded-2xl border">

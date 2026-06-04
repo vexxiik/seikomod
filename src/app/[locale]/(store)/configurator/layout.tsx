@@ -5,7 +5,7 @@ export const metadata: Metadata = {
   description: 'Sestavte si vlastní hodinky Seiko přesně podle svých představ. V našem konfigurátoru si vyberete prémiové díly a spolehnete se na nezničitelný originální strojek Seiko NH35.',
   keywords: ['konfigurátor hodinek', 'vlastní hodinky Seiko', 'Seiko Datejust mod', 'Seiko Nautilus mod', 'Seiko diver mod', 'Originální strojek Seiko NH35'],
   alternates: {
-    canonical: 'https://www.seikomodatelier.cz/konfigurator',
+    canonical: 'https://www.vexxwatch.cz/configurator',
   },
 };
 
