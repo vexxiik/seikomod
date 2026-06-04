@@ -3,25 +3,28 @@
 import { motion } from "framer-motion";
 import { Shield, Clock, Wrench } from "lucide-react";
 
+import { useTranslations } from "next-intl";
+
 const features = [
   {
     icon: Wrench,
-    title: "Ruční sestavení",
-    description: "Každé hodinky jsou pečlivě složeny našimi hodináři s dlouholetou zkušeností. Důraz na absolutní čistotu a přesnost."
+    titleKey: "f1Title",
+    descKey: "f1Desc"
   },
   {
     icon: Clock,
-    title: "Prémiové strojky",
-    description: "Používáme výhradně osvědčené kalibry Seiko (NH35/NH34) s vynikající spolehlivostí a rezervou chodu."
+    titleKey: "f2Title",
+    descKey: "f2Desc"
   },
   {
     icon: Shield,
-    title: "Safírová sklíčka",
-    description: "Základem našich staveb na míru je vysoce odolné safírové sklíčko s antireflexní úpravou pro dokonalou čitelnost."
+    titleKey: "f3Title",
+    descKey: "f3Desc"
   }
 ];
 
 export function PrecisionSection() {
+  const t = useTranslations('Precision');
   return (
     <section className="py-24 bg-primary text-primary-foreground">
       <div className="container mx-auto px-4">
@@ -33,7 +36,7 @@ export function PrecisionSection() {
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
           >
-            Preciznost v každém detailu
+            {t('title')}
           </motion.h2>
           <motion.p 
             className="text-primary-foreground/80 text-lg leading-relaxed"
@@ -42,7 +45,7 @@ export function PrecisionSection() {
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.2 }}
           >
-            Zakázková stavba hodinek není jen o vzhledu. Jde o dokonalou synergii kvalitních prémiových dílů, ověřených strojků a precizní lidské práce.
+            {t('subtitle')}
           </motion.p>
         </div>
 
@@ -59,9 +62,9 @@ export function PrecisionSection() {
               <div className="h-20 w-20 rounded-2xl bg-primary-foreground/5 border border-primary-foreground/10 flex items-center justify-center mb-6 group-hover:bg-accent group-hover:text-accent-foreground transition-all duration-500 group-hover:scale-110 group-hover:-rotate-3 shadow-lg">
                 <feature.icon className="h-10 w-10" />
               </div>
-              <h3 className="text-xl font-semibold mb-3 font-heading">{feature.title}</h3>
+              <h3 className="text-xl font-semibold mb-3 font-heading">{t(feature.titleKey as any)}</h3>
               <p className="text-primary-foreground/70 leading-relaxed text-sm">
-                {feature.description}
+                {t(feature.descKey as any)}
               </p>
             </motion.div>
           ))}

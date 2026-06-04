@@ -3,9 +3,11 @@
 import { motion } from "framer-motion";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
-import Link from "next/link";
+import { Link } from "@/i18n/routing";
+import { useTranslations } from "next-intl";
 
 export function WatchCraftingSection() {
+  const t = useTranslations('WatchCrafting');
   return (
     <section className="py-24 md:py-32 bg-muted/30 overflow-hidden">
       <div className="container mx-auto px-4">
@@ -19,39 +21,33 @@ export function WatchCraftingSection() {
             className="space-y-8"
           >
             <div className="inline-block px-4 py-1.5 bg-primary/5 text-primary text-sm font-semibold tracking-wider uppercase rounded-full border border-primary/10">
-              Watch Crafting
+              {t('badge')}
             </div>
             <h2 className="font-heading text-4xl md:text-5xl lg:text-6xl font-bold leading-tight">
-              Proč zvolit <br />
-              <span className="text-accent italic">Vexx Watch Atelier?</span>
+              {t('title1')} <br />
+              <span className="text-accent italic">{t('title2')}</span>
             </h2>
             
             <div className="space-y-6">
               <div>
-                <h3 className="font-bold text-xl text-foreground mb-2">Srdce, které nikdy nevynechá úder</h3>
-                <p className="text-muted-foreground leading-relaxed max-w-lg">
-                  Základem každého našeho <strong>Seiko modu</strong> je nekompromisní spolehlivost. Využíváme výhradně <strong>originální strojek Seiko NH35</strong> a jeho varianty. Tento legendární japonský kalibr zaručuje, že vaše <strong>vlastní hodinky Seiko</strong> nejen perfektně vypadají, ale stanou se přesným společníkem na dlouhá desetiletí.
-                </p>
+                <h3 className="font-bold text-xl text-foreground mb-2">{t('t1')}</h3>
+                <p className="text-muted-foreground leading-relaxed max-w-lg" dangerouslySetInnerHTML={{ __html: t.raw('d1') }} />
               </div>
 
               <div>
-                <h3 className="font-bold text-xl text-foreground mb-2">Materiály nejvyšší třídy</h3>
-                <p className="text-muted-foreground leading-relaxed max-w-lg">
-                  Pro naše <strong>Seiko diver mody</strong> i elegantní modely využíváme výhradně <strong>prémiové díly na hodinky</strong>. Extrémně tvrdá safírová sklíčka, nevyblednutelné keramické lunety a masivní tahy z chirurgické oceli 904L povyšují každý <strong>Seiko Datejust mod</strong> nebo sportovní <strong>Seiko Nautilus mod</strong> na úroveň skutečného luxusu.
-                </p>
+                <h3 className="font-bold text-xl text-foreground mb-2">{t('t2')}</h3>
+                <p className="text-muted-foreground leading-relaxed max-w-lg" dangerouslySetInnerHTML={{ __html: t.raw('d2') }} />
               </div>
 
               <div>
-                <h3 className="font-bold text-xl text-foreground mb-2">Ruční montáž a absolutní unikátnost</h3>
-                <p className="text-muted-foreground leading-relaxed max-w-lg">
-                  Jsme přední specialisté na <strong>Seiko modding CZ</strong>. Pomocí našeho intuitivního <strong>konfigurátoru hodinek</strong> si sami zvolíte každý detail. Následně probíhá pečlivá ruční montáž. Výsledkem jsou dokonalé <strong>hodinky na míru</strong>, u kterých máte jistotu, že stejný kus nikdo jiný nemá.
-                </p>
+                <h3 className="font-bold text-xl text-foreground mb-2">{t('t3')}</h3>
+                <p className="text-muted-foreground leading-relaxed max-w-lg" dangerouslySetInnerHTML={{ __html: t.raw('d3') }} />
               </div>
             </div>
             <div className="pt-4">
               <Link href="/about">
                 <Button className="h-14 px-8 text-base rounded-full shadow-lg hover:shadow-xl transition-all">
-                  Objevte náš proces
+                  {t('explore')}
                 </Button>
               </Link>
             </div>

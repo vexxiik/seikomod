@@ -3,7 +3,8 @@
 import { Button } from "@/components/ui/button";
 import { ShoppingCart } from "lucide-react";
 import { useCart } from "@/store/useCart";
-import { useRouter } from "next/navigation";
+import { useRouter } from "@/i18n/routing";
+import { useTranslations } from "next-intl";
 
 interface AddToCartButtonProps {
   product: {
@@ -17,6 +18,7 @@ interface AddToCartButtonProps {
 export function AddToCartButton({ product }: AddToCartButtonProps) {
   const { addItem } = useCart();
   const router = useRouter();
+  const t = useTranslations('Common');
 
   const handleAddToCart = () => {
     addItem({
@@ -37,7 +39,7 @@ export function AddToCartButton({ product }: AddToCartButtonProps) {
       className="w-full h-14 text-lg bg-accent text-accent-foreground hover:bg-accent/90 rounded-xl shadow-lg shadow-accent/20 transition-transform hover:-translate-y-1"
     >
       <ShoppingCart className="mr-2 h-5 w-5" />
-      Přidat do košíku
+      {t('addToCart')}
     </Button>
   );
 }

@@ -2,6 +2,7 @@
 
 import { prisma } from "@/lib/prisma";
 import { revalidatePath } from "next/cache";
+import { redirect } from "next/navigation";
 
 export async function deleteExpense(id: string) {
   await prisma.expense.delete({ where: { id } });
@@ -94,6 +95,7 @@ export async function createProduct(formData: FormData) {
 
   revalidatePath("/admin/products");
   revalidatePath("/admin");
+  redirect("/admin/products");
 }
 
 export async function updateProduct(id: string, formData: FormData) {
@@ -127,4 +129,5 @@ export async function updateProduct(id: string, formData: FormData) {
   revalidatePath(`/admin/products/${id}`);
   revalidatePath("/admin/products");
   revalidatePath("/admin");
+  redirect("/admin/products");
 }

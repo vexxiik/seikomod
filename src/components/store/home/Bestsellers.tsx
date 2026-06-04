@@ -4,11 +4,12 @@ import { motion } from "framer-motion";
 import { Card, CardContent, CardFooter } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
-import Link from "next/link";
+import { Link } from "@/i18n/routing";
 import { ShoppingCart } from "lucide-react";
 import { useCart } from "@/store/useCart";
-import { useRouter } from "next/navigation";
+import { useRouter } from "@/i18n/routing";
 import { Product } from "@prisma/client";
+import { useTranslations, useLocale } from "next-intl";
 
 interface BestsellersProps {
   initialProducts: Product[];
@@ -17,6 +18,8 @@ interface BestsellersProps {
 export function Bestsellers({ initialProducts = [] }: BestsellersProps) {
   const { addItem } = useCart();
   const router = useRouter();
+  const t = useTranslations('Bestsellers');
+  const locale = useLocale();
 
   const displayProducts = [
     ...initialProducts.map(p => {
@@ -28,7 +31,7 @@ export function Bestsellers({ initialProducts = [] }: BestsellersProps) {
 
       return {
         id: p.id,
-        name: p.name,
+        name: locale === 'en' && p.nameEn ? p.nameEn : p.name,
         price: p.price,
         type: p.type,
         movement: p.movement,
@@ -38,10 +41,10 @@ export function Bestsellers({ initialProducts = [] }: BestsellersProps) {
     }),
     {
       id: "custom",
-      name: "Hodinky na míru",
-      price: "Individuální cena",
-      type: "Zakázka",
-      movement: "Dle vašich představ",
+      name: t('customName'),
+      price: t('customPrice'),
+      type: t('customType'),
+      movement: t('customMovement'),
       image: "/img/watchmaker.png",
       link: "/configurator"
     }
@@ -52,14 +55,14 @@ export function Bestsellers({ initialProducts = [] }: BestsellersProps) {
       <div className="container mx-auto px-4">
         <div className="flex flex-col md:flex-row justify-between items-end mb-12 gap-6">
           <div className="max-w-2xl">
-            <h2 className="font-heading text-4xl font-bold mb-4 text-foreground">Nejžádanější modely</h2>
+            <h2 className="font-heading text-4xl font-bold mb-4 text-foreground">{t('title')}</h2>
             <p className="text-muted-foreground text-lg">
-              Výběr toho nejlepšího z naší dílny. Hodinky, které si naši zákazníci oblíbili nejvíce.
+              {t('description')}
             </p>
           </div>
           <Link href="/products">
             <Button variant="outline" className="rounded-full px-6 border-primary/20 hover:border-accent hover:text-accent">
-              Zobrazit vše
+              {t('viewAll')}
             </Button>
           </Link>
         </div>
@@ -94,7 +97,7 @@ export function Bestsellers({ initialProducts = [] }: BestsellersProps) {
                   {/* Hover Overlay */}
                   <div className="absolute inset-0 bg-primary/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
                     <span className="bg-background text-foreground px-6 py-3 rounded-full text-sm font-semibold shadow-2xl translate-y-4 group-hover:translate-y-0 transition-all duration-300 pointer-events-none border border-white/10">
-                      {product.id === "custom" ? "Zjistit cenu" : "Zobrazit detail"}
+                      {product.id === "custom" ? t('getPrice') : t('viewDetail')}
                     </span>
                   </div>
                 </div>

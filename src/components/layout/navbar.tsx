@@ -1,6 +1,7 @@
 "use client";
 
-import Link from "next/link";
+import { Link } from "@/i18n/routing";
+import NextLink from "next/link";
 import { ShoppingCart, Menu, User, LogOut, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useCart } from "@/store/useCart";
@@ -16,8 +17,13 @@ import {
   DropdownMenuGroup,
 } from "@/components/ui/dropdown-menu";
 import { AnimatePresence, motion } from "framer-motion";
+import { LanguageSwitcher } from "./LanguageSwitcher";
+
+import { useTranslations } from "next-intl";
 
 export function Navbar() {
+  const t = useTranslations('Navigation');
+  const tAuth = useTranslations('Auth');
   const { items } = useCart();
   const { data: session } = useSession();
   const [mounted, setMounted] = useState(false);
@@ -60,20 +66,22 @@ export function Navbar() {
 
         <nav className="hidden md:flex items-center gap-8 font-medium">
           <Link href="/" className="text-foreground hover:text-accent transition-colors">
-            Domů
+            {t('home')}
           </Link>
           <Link href="/products" className="text-foreground hover:text-accent transition-colors">
-            Katalog
+            {t('products')}
           </Link>
           <Link href="/configurator" className="text-accent font-bold hover:text-accent/80 transition-colors flex items-center gap-1">
-            Konfigurátor
+            {t('configurator')}
           </Link>
           <Link href="/about" className="text-foreground hover:text-accent transition-colors">
-            O preciznosti
+            {t('about')}
           </Link>
         </nav>
 
         <div className="flex items-center gap-2 md:gap-4 z-50">
+          <LanguageSwitcher />
+          
           <Link href="/cart">
             <Button variant="outline" size="icon" className="relative group h-10 w-10 md:h-12 md:w-12 rounded-full border-primary/20 hover:border-accent hover:bg-accent/5">
               <ShoppingCart className="h-5 w-5 md:h-6 md:w-6 group-hover:text-accent transition-colors" />
@@ -92,7 +100,7 @@ export function Navbar() {
               </DropdownMenuTrigger>
               <DropdownMenuContent align="end" className="w-64 p-2 shadow-2xl border-primary/10 rounded-xl bg-background/95 backdrop-blur-xl">
                 <DropdownMenuGroup>
-                  <DropdownMenuLabel>Můj účet</DropdownMenuLabel>
+                  <DropdownMenuLabel>{tAuth('myAccount')}</DropdownMenuLabel>
                 </DropdownMenuGroup>
                 <DropdownMenuSeparator />
                 <DropdownMenuItem disabled>
@@ -103,15 +111,15 @@ export function Navbar() {
                 </DropdownMenuItem>
                 <DropdownMenuSeparator />
                 {session.user?.role === "ADMIN" && (
-                  <Link href="/admin">
+                  <NextLink href="/admin">
                     <DropdownMenuItem className="text-primary font-medium cursor-pointer rounded-lg py-2 focus:bg-primary/10 focus:text-primary transition-colors">
-                      Admin panel
+                      {tAuth('adminPanel')}
                     </DropdownMenuItem>
-                  </Link>
+                  </NextLink>
                 )}
                 <DropdownMenuItem onClick={() => signOut()} className="text-destructive cursor-pointer rounded-lg py-2 focus:bg-destructive/10 focus:text-destructive transition-colors">
                   <LogOut className="mr-2 h-4 w-4" />
-                  <span>Odhlásit se</span>
+                  <span>{tAuth('logout')}</span>
                 </DropdownMenuItem>
               </DropdownMenuContent>
             </DropdownMenu>
@@ -119,12 +127,12 @@ export function Navbar() {
             <div className="hidden md:flex items-center gap-3 ml-2">
               <Link href="/login">
                 <Button variant="ghost" className="font-medium hover:text-accent hover:bg-accent/5 transition-colors rounded-full h-12 px-6">
-                  Přihlásit
+                  {tAuth('login')}
                 </Button>
               </Link>
               <Link href="/register">
                 <Button className="font-medium rounded-full h-12 px-8 shadow-md hover:shadow-xl transition-all hover:-translate-y-0.5 bg-primary text-primary-foreground border border-primary/20">
-                  Registrovat
+                  {tAuth('register')}
                 </Button>
               </Link>
             </div>
@@ -144,28 +152,28 @@ export function Navbar() {
           >
             <nav className="flex flex-col gap-4 font-medium text-lg">
               <Link href="/" className="px-4 py-3 hover:bg-muted rounded-lg transition-colors" onClick={() => setIsMobileMenuOpen(false)}>
-                Domů
+                {t('home')}
               </Link>
               <Link href="/products" className="px-4 py-3 hover:bg-muted rounded-lg transition-colors" onClick={() => setIsMobileMenuOpen(false)}>
-                Katalog
+                {t('products')}
               </Link>
               <Link href="/configurator" className="px-4 py-3 text-accent hover:bg-accent/10 rounded-lg transition-colors" onClick={() => setIsMobileMenuOpen(false)}>
-                Konfigurátor
+                {t('configurator')}
               </Link>
               <Link href="/about" className="px-4 py-3 hover:bg-muted rounded-lg transition-colors" onClick={() => setIsMobileMenuOpen(false)}>
-                O preciznosti
+                {t('about')}
               </Link>
               
               {!session && (
                 <div className="flex flex-col gap-3 mt-4 border-t pt-6">
                   <Link href="/login" onClick={() => setIsMobileMenuOpen(false)}>
                     <Button variant="outline" className="w-full h-12 rounded-full">
-                      Přihlásit
+                      {tAuth('login')}
                     </Button>
                   </Link>
                   <Link href="/register" onClick={() => setIsMobileMenuOpen(false)}>
                     <Button className="w-full h-12 rounded-full bg-primary text-primary-foreground">
-                      Registrovat
+                      {tAuth('register')}
                     </Button>
                   </Link>
                 </div>

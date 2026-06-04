@@ -2,13 +2,15 @@
 
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
-import Link from "next/link";
+import { Link } from "@/i18n/routing";
 import Image from "next/image";
 import { ArrowRight } from "lucide-react";
+import { useTranslations } from "next-intl";
 
 export function Hero() {
+  const t = useTranslations('Hero');
   return (
-    <section className="relative h-[85vh] min-h-[500px] md:h-[90vh] md:min-h-[600px] flex items-center justify-center overflow-hidden">
+    <section className="relative h-[85vh] min-h-[500px] md:h-[90vh] md:minh-[600px] flex items-center justify-center overflow-hidden">
       {/* Background Image optimized with next/image */}
       <div className="absolute inset-0 z-0">
         <Image 
@@ -31,7 +33,7 @@ export function Hero() {
             transition={{ duration: 0.8, ease: "easeOut" }}
           >
             <span className="inline-block py-1 px-3 rounded-full bg-primary/10 text-primary text-sm font-semibold tracking-wider mb-6 backdrop-blur-sm border border-primary/20">
-              MISTROVSKÉ DÍLO NA ZÁPĚSTÍ
+              {t('badge')}
             </span>
           </motion.div>
           
@@ -41,9 +43,9 @@ export function Hero() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
           >
-            Prémiové hodinky na míru. <br />
+            {t('title1')} <br />
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-primary/70">
-              Váš osobní Seiko Mod.
+              {t('title2')}
             </span>
           </motion.h1>
 
@@ -53,7 +55,7 @@ export function Hero() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.4, ease: "easeOut" }}
           >
-            Nesmiřte se se sériovou výrobou. Ručně stavěné hodinky, které spojují legendární spolehlivost strojků Seiko s luxusními materiály. Každý kus je jedinečný originál, navržený vámi a sestavený s hodinářskou přesností v ČR.
+            {t('description')}
           </motion.p>
 
           <motion.div
@@ -64,13 +66,13 @@ export function Hero() {
           >
             <Link href="/products">
               <Button size="lg" className="h-14 px-8 bg-accent text-accent-foreground hover:bg-accent/90 text-lg w-full sm:w-auto shadow-lg shadow-accent/20 rounded-xl transition-all duration-300 hover:-translate-y-1 group">
-                Prozkoumat kolekci
+                {t('explore')}
                 <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
               </Button>
             </Link>
             <Link href="/custom">
               <Button size="lg" variant="outline" className="h-14 px-8 text-lg w-full sm:w-auto border-primary text-primary hover:bg-primary hover:text-primary-foreground rounded-xl transition-all duration-300">
-                Návrh na míru
+                {t('custom')}
               </Button>
             </Link>
           </motion.div>

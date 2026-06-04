@@ -25,4 +25,5 @@ export const checkoutSchema = z.object({
   discountCode: z.string().optional(),
   packetaBranchId: z.string().min(1, "Prosím vyberte výdejní místo Zásilkovny"),
   packetaBranchName: z.string().min(1, "Prosím vyberte výdejní místo Zásilkovny"),
+  paymentMethod: z.enum(["card", "cod"]),
 });
