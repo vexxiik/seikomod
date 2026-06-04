@@ -23,12 +23,12 @@ export const PasswordResetEmail = ({
     <Preview>Obnovení vašeho hesla - Vexx Watch Atelier</Preview>
     <Body style={main}>
       <Container style={container}>
-        <Heading style={h1}>Vexx Watch Atelier</Heading>
+        <Heading style={h1}>Obnova hesla</Heading>
         <Text style={text}>
-          Dobrý den,
+          Ahoj,
         </Text>
         <Text style={text}>
-          Obdrželi jsme žádost o obnovení hesla k vašemu účtu. Kliknutím na níže uvedené tlačítko si můžete nastavit nové heslo:
+          dostal jsem žádost o obnovení hesla k tvému účtu na Vexx Watch. Kliknutím na níže uvedené tlačítko si můžeš nastavit nové heslo:
         </Text>
         <Section style={buttonContainer}>
           <Link href={resetUrl} style={button}>
@@ -39,8 +39,8 @@ export const PasswordResetEmail = ({
           Tento odkaz je platný 1 hodinu. Pokud jste o změnu hesla nežádali, můžete tento e-mail bez obav ignorovat.
         </Text>
         <Text style={footer}>
-          S pozdravem,<br />
-          Tým Vexx Watch Atelier
+          Díky,<br />
+          Jakub - Vexx Watch Atelier
         </Text>
       </Container>
     </Body>

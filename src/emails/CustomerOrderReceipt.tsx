@@ -39,10 +39,10 @@ export const CustomerOrderReceipt = ({
         </Section>
         
         <Section style={contentSection}>
-          <Heading style={h1}>Děkujeme za vaši objednávku</Heading>
-          <Text style={text}>Vážený/á {customerName},</Text>
+          <Heading style={h1}>Děkujeme za objednávku</Heading>
+          <Text style={text}>Ahoj {customerName},</Text>
           <Text style={text}>
-            Vaši objednávku č. <span style={accentText}>{orderId.slice(-6).toUpperCase()}</span> jsme úspěšně přijali. Naši hodináři se brzy pustí do pečlivé kompletace vašeho unikátního kousku.
+            moc děkujeme za důvěru! Vaši objednávku č. <span style={accentText}>{orderId.slice(-6).toUpperCase()}</span> jsem v pořádku přijal. Hned jak to bude možné, pustím se do pečlivé kompletace.
           </Text>
           
           <Section style={orderBox}>

@@ -61,7 +61,7 @@ export async function POST(req: NextRequest) {
       const fullName = order.customer.name;
       const customerEmail = order.customer.email;
       const adminEmail = process.env.ADMIN_EMAIL || "jakub.sokol2007@gmail.com";
-      const fromEmail = process.env.RESEND_FROM_EMAIL || "Vexx Watch Atelier <onboarding@resend.dev>";
+      const fromEmail = process.env.RESEND_FROM_EMAIL || "Jakub z Vexx Watch <objednavky@vexxwatch.cz>";
 
       const finalItems = order.items.map((i) => ({
         name: i.productName,
@@ -72,7 +72,7 @@ export async function POST(req: NextRequest) {
       await resend.emails.send({
         from: fromEmail,
         to: customerEmail,
-        subject: "Potvrzení objednávky - Zaplaceno - Vexx Watch Atelier",
+        subject: "Potvrzení vaší objednávky",
         react: CustomerOrderReceipt({
           orderId: String(order.orderNumber || order.id),
           customerName: fullName,
