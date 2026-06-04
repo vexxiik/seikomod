@@ -11,6 +11,15 @@ import { useTranslations } from "next-intl";
 // Získáme produkty jako props ze serverové komponenty
 export default function ProductsClient({ initialProducts = [] }: { initialProducts: any[] }) {
   const t = useTranslations('Products');
+  const locale = useLocale();
+
+  const translateSpec = (text: string | null) => {
+    if (!text || locale !== 'en') return text;
+    return text
+      .replace('Ocel', 'Steel')
+      .replace('Safírové s kyklopem', 'Sapphire with Cyclops')
+      .replace('Safírové', 'Sapphire');
+  };
 
 const CATEGORIES = [t('all'), "Daydate", "GMT", "Nautilus"];
 
@@ -23,7 +32,12 @@ const CATEGORIES = [t('all'), "Daydate", "GMT", "Nautilus"];
       const parsed = JSON.parse(p.images);
       if (Array.isArray(parsed) && parsed.length > 0) imageStr = parsed[0];
     } catch (e) {}
-    return { ...p, image: imageStr };
+    return { 
+      ...p, 
+      name: locale === 'en' && p.nameEn ? p.nameEn : p.name,
+      movement: translateSpec(p.movement),
+      image: imageStr 
+    };
   });
 
   const filteredProducts = activeCategory === t('all')

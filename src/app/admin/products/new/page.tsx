@@ -20,14 +20,26 @@ export default function NewProductPage() {
 
       <form action={createProduct} className="space-y-6 bg-card p-6 rounded-lg border">
         <div className="space-y-4">
-          <div className="grid gap-2">
-            <Label htmlFor="name">Název</Label>
-            <Input id="name" name="name" required />
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div className="grid gap-2">
+              <Label htmlFor="name">Název</Label>
+              <Input id="name" name="name" required />
+            </div>
+            <div className="grid gap-2">
+              <Label htmlFor="nameEn">Název (EN)</Label>
+              <Input id="nameEn" name="nameEn" />
+            </div>
           </div>
 
-          <div className="grid gap-2">
-            <Label htmlFor="description">Popis</Label>
-            <Textarea id="description" name="description" required rows={4} />
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div className="grid gap-2">
+              <Label htmlFor="description">Popis</Label>
+              <Textarea id="description" name="description" required rows={4} />
+            </div>
+            <div className="grid gap-2">
+              <Label htmlFor="descriptionEn">Popis (EN)</Label>
+              <Textarea id="descriptionEn" name="descriptionEn" rows={4} />
+            </div>
           </div>
 
           <div className="grid grid-cols-2 gap-4">

@@ -68,7 +68,9 @@ export async function deleteProduct(id: string) {
 
 export async function createProduct(formData: FormData) {
   const name = formData.get("name") as string;
+  const nameEn = formData.get("nameEn") as string;
   const description = formData.get("description") as string;
+  const descriptionEn = formData.get("descriptionEn") as string;
   const price = Number(formData.get("price"));
   const type = formData.get("type") as string;
   const movement = formData.get("movement") as string;
@@ -82,7 +84,9 @@ export async function createProduct(formData: FormData) {
   await prisma.product.create({
     data: {
       name,
+      nameEn: nameEn || null,
       description,
+      descriptionEn: descriptionEn || null,
       price,
       type,
       movement: movement || "",
@@ -100,7 +104,9 @@ export async function createProduct(formData: FormData) {
 
 export async function updateProduct(id: string, formData: FormData) {
   const name = formData.get("name") as string;
+  const nameEn = formData.get("nameEn") as string;
   const description = formData.get("description") as string;
+  const descriptionEn = formData.get("descriptionEn") as string;
   const price = Number(formData.get("price"));
   const type = formData.get("type") as string;
   const movement = formData.get("movement") as string;
@@ -115,7 +121,9 @@ export async function updateProduct(id: string, formData: FormData) {
     where: { id },
     data: {
       name,
+      nameEn: nameEn || null,
       description,
+      descriptionEn: descriptionEn || null,
       price,
       type,
       movement: movement || "",

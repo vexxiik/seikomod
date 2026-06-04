@@ -21,6 +21,14 @@ export function Bestsellers({ initialProducts = [] }: BestsellersProps) {
   const t = useTranslations('Bestsellers');
   const locale = useLocale();
 
+  const translateSpec = (text: string | null) => {
+    if (!text || locale !== 'en') return text;
+    return text
+      .replace('Ocel', 'Steel')
+      .replace('Safírové s kyklopem', 'Sapphire with Cyclops')
+      .replace('Safírové', 'Sapphire');
+  };
+
   const displayProducts = [
     ...initialProducts.map(p => {
       let imageStr = "/img/placeholder.png";
@@ -34,7 +42,7 @@ export function Bestsellers({ initialProducts = [] }: BestsellersProps) {
         name: locale === 'en' && p.nameEn ? p.nameEn : p.name,
         price: p.price,
         type: p.type,
-        movement: p.movement,
+        movement: translateSpec(p.movement),
         image: imageStr,
         link: `/products/${p.id}`
       };

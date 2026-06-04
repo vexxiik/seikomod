@@ -1,0 +1,1 @@
+const { PrismaClient } = require('@prisma/client'); const prisma = new PrismaClient(); prisma.product.findMany().then(p => { console.log(JSON.stringify(p.map(x => ({name: x.name, nameEn: x.nameEn, descEn: x.descriptionEn})), null, 2)); prisma.$disconnect(); });

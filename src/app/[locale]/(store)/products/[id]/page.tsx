@@ -8,10 +8,10 @@ import { prisma } from "@/lib/prisma";
 import { notFound } from "next/navigation";
 import { getTranslations } from "next-intl/server";
 
-export default async function ProductDetailPage({ params }: { params: Promise<{ id: string }> }) {
+export default async function ProductDetailPage({ params }: { params: Promise<{ id: string, locale: string }> }) {
   const t = await getTranslations('ProductDetail');
   // Await the params object before accessing its properties in Next.js 15
-  const { id } = await params;
+  const { id, locale } = await params;
   
   const dbProduct = await prisma.product.findUnique({
     where: { id }
@@ -36,16 +36,24 @@ export default async function ProductDetailPage({ params }: { params: Promise<{ 
     // Keep fallback
   }
 
+  const translateSpec = (text: string | null) => {
+    if (!text || locale !== 'en') return text;
+    return text
+      .replace('Ocel', 'Steel')
+      .replace('Safírové s kyklopem', 'Sapphire with Cyclops')
+      .replace('Safírové', 'Sapphire');
+  };
+
   const product = {
     id: dbProduct.id,
-    name: dbProduct.name,
+    name: locale === 'en' && dbProduct.nameEn ? dbProduct.nameEn : dbProduct.name,
     price: dbProduct.price,
     type: dbProduct.type || t('noCategory'),
-    description: dbProduct.description,
+    description: locale === 'en' && dbProduct.descriptionEn ? dbProduct.descriptionEn : dbProduct.description,
     specs: {
-      movement: dbProduct.movement || t('notSpecified'),
-      glass: dbProduct.glass || t('notSpecified'),
-      bracelet: dbProduct.bracelet || t('notSpecified'),
+      movement: translateSpec(dbProduct.movement) || t('notSpecified'),
+      glass: translateSpec(dbProduct.glass) || t('notSpecified'),
+      bracelet: translateSpec(dbProduct.bracelet) || t('notSpecified'),
       waterResistance: t('notSpecified'), // Not in DB schema currently
       caseSize: t('notSpecified') // Not in DB schema currently
     },
