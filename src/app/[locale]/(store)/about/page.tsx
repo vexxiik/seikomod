@@ -83,10 +83,10 @@ export default function AboutPage() {
       {/* 2. Naše filozofie (Storytelling Split Section) */}
       <section className="py-24 md:py-32 relative z-20">
         <div className="container mx-auto px-4">
-          <div className="flex flex-col lg:flex-row gap-16 items-center max-w-7xl mx-auto">
+          <div className="flex flex-col lg:flex-row-reverse gap-16 items-center max-w-7xl mx-auto">
             <motion.div 
               className="lg:w-1/2 relative"
-              initial={{ opacity: 0, x: -50 }}
+              initial={{ opacity: 0, x: 50 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true, margin: "-100px" }}
               transition={{ duration: 0.8 }}
@@ -105,7 +105,7 @@ export default function AboutPage() {
 
             <motion.div 
               className="lg:w-1/2 space-y-8"
-              initial={{ opacity: 0, x: 50 }}
+              initial={{ opacity: 0, x: -50 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true, margin: "-100px" }}
               transition={{ duration: 0.8 }}
