@@ -52,7 +52,7 @@ export default function AboutPage() {
                 {t('heroTitleAccent')}
               </span>
             </h1>
-            <p className="text-lg md:text-2xl text-muted-foreground leading-relaxed font-light max-w-2xl mx-auto mb-12">
+            <p className="text-lg md:text-2xl text-foreground leading-relaxed font-medium max-w-2xl mx-auto mb-12 bg-background/50 backdrop-blur-md px-6 py-4 rounded-2xl shadow-lg border border-foreground/10">
               {t('heroSubtitle')}
             </p>
           </motion.div>
