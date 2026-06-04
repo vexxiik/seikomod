@@ -30,7 +30,7 @@ export default function AboutPage() {
           className="absolute inset-0 z-0 bg-cover bg-center bg-no-repeat"
         >
           <div 
-            className="absolute inset-0 bg-cover bg-center blur-md scale-105" 
+            className="absolute inset-0 bg-cover bg-center blur-sm scale-105" 
             style={{ backgroundImage: "url('https://images.unsplash.com/photo-1523170335258-f5ed11844a49?auto=format&fit=crop&w=2000&q=80')" }}
           />
           {/* Gradient overlay pro lepší čitelnost textu */}
