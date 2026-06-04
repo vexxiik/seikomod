@@ -14,6 +14,7 @@ export default function StructuredData() {
         "description": t('defaultDescription'),
         "url": "https://www.vexxwatch.cz",
         "telephone": "+420 604 256 988", 
+        "email": "info@vexxwatch.cz",
         "address": {
           "@type": "PostalAddress",
           "addressLocality": "Pardubice",
