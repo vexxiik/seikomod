@@ -31,11 +31,11 @@ export default function AboutPage() {
             {/* Image (Left) */}
             <motion.div 
               style={{ y, opacity }}
-              className="w-full lg:w-1/2 aspect-square max-h-[600px] rounded-[3rem] overflow-hidden shadow-2xl relative order-2 lg:order-1"
+              className="w-full lg:w-1/2 aspect-square max-h-[600px] rounded-[3rem] overflow-hidden relative order-2 lg:order-1"
             >
               <div 
                 className="absolute inset-0 bg-cover bg-center" 
-                style={{ backgroundImage: "url('https://images.unsplash.com/photo-1523170335258-f5ed11844a49?auto=format&fit=crop&w=2000&q=80')" }}
+                style={{ backgroundImage: "url('/img/nase.webp')" }}
               />
               <div className="absolute inset-0 bg-gradient-to-tr from-background/20 to-transparent" />
             </motion.div>
