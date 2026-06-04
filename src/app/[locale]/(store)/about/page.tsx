@@ -24,38 +24,44 @@ export default function AboutPage() {
     <div className="min-h-screen bg-background overflow-hidden">
       
       {/* 1. Hero Sekce s Parallaxem */}
-      <section ref={heroRef} className="relative h-screen flex items-center justify-center overflow-hidden">
-        <motion.div 
-          style={{ y, opacity }}
-          className="absolute inset-0 z-0 bg-cover bg-center bg-no-repeat"
-        >
-          <div 
-            className="absolute inset-0 bg-cover bg-center blur-sm scale-105" 
-            style={{ backgroundImage: "url('https://images.unsplash.com/photo-1523170335258-f5ed11844a49?auto=format&fit=crop&w=2000&q=80')" }}
-          />
-          {/* Gradient overlay pro lepší čitelnost textu */}
-          <div className="absolute inset-0 bg-gradient-to-b from-background/90 via-background/60 to-background" />
-        </motion.div>
-        
-        <div className="container mx-auto px-4 relative z-10 text-center max-w-5xl mt-20">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, ease: "easeOut" }}
-          >
-            <span className="inline-block py-1 px-4 rounded-full bg-accent/10 text-accent text-xs md:text-sm font-bold tracking-widest mb-6 border border-accent/20 uppercase shadow-lg shadow-accent/5 backdrop-blur-md">
-              {t('heroBadge')}
-            </span>
-            <h1 className="font-heading text-6xl md:text-8xl font-black mb-6 leading-tight tracking-tighter">
-              {t('heroTitle')} <br className="md:hidden" />
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-accent to-yellow-600 italic pr-2">
-                {t('heroTitleAccent')}
+      <section ref={heroRef} className="relative min-h-[90vh] flex items-center overflow-hidden pt-20 pb-12">
+        <div className="container mx-auto px-4 relative z-10">
+          <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-20">
+            
+            {/* Image (Left) */}
+            <motion.div 
+              style={{ y, opacity }}
+              className="w-full lg:w-1/2 aspect-square max-h-[600px] rounded-[3rem] overflow-hidden shadow-2xl relative order-2 lg:order-1"
+            >
+              <div 
+                className="absolute inset-0 bg-cover bg-center" 
+                style={{ backgroundImage: "url('https://images.unsplash.com/photo-1523170335258-f5ed11844a49?auto=format&fit=crop&w=2000&q=80')" }}
+              />
+              <div className="absolute inset-0 bg-gradient-to-tr from-background/20 to-transparent" />
+            </motion.div>
+            
+            {/* Text (Right) */}
+            <motion.div
+              className="w-full lg:w-1/2 text-left order-1 lg:order-2"
+              initial={{ opacity: 0, x: 50 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.8, ease: "easeOut" }}
+            >
+              <span className="inline-block py-1 px-4 rounded-full bg-accent/10 text-accent text-xs md:text-sm font-bold tracking-widest mb-6 border border-accent/20 uppercase shadow-sm">
+                {t('heroBadge')}
               </span>
-            </h1>
-            <p className="text-lg md:text-2xl text-muted-foreground leading-relaxed font-light max-w-2xl mx-auto mb-12">
-              {t('heroSubtitle')}
-            </p>
-          </motion.div>
+              <h1 className="font-heading text-5xl lg:text-7xl xl:text-8xl font-black mb-6 leading-tight tracking-tighter">
+                {t('heroTitle')} <br />
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-accent to-yellow-600 italic pr-2">
+                  {t('heroTitleAccent')}
+                </span>
+              </h1>
+              <p className="text-lg md:text-xl text-muted-foreground leading-relaxed font-light max-w-xl mb-12">
+                {t('heroSubtitle')}
+              </p>
+            </motion.div>
+
+          </div>
         </div>
 
         <motion.div 
