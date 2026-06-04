@@ -29,7 +29,16 @@
     "register": "Registrace",
     "myAccount": "Můj účet",
     "adminPanel": "Administrace",
-    "logout": "Odhlásit se"
+    "logout": "Odhlásit se",
+    "forgotPassword": "Zapomněli jste heslo?",
+    "resetPassword": "Obnovit heslo",
+    "resetPasswordDesc": "Zadejte svůj e-mail a my vám pošleme odkaz pro obnovení hesla.",
+    "sendLink": "Poslat odkaz",
+    "backToLogin": "Zpět na přihlášení",
+    "newPassword": "Nové heslo",
+    "confirmPassword": "Potvrdit heslo",
+    "setNewPassword": "Nastavit nové heslo",
+    "resetSent": "Pokud je e-mail v naší databázi, odeslali jsme na něj odkaz."
   },
   "Hero": {
     "badge": "MISTROVSKÉ DÍLO NA ZÁPĚSTÍ",
@@ -283,5 +292,19 @@
     "keywords": "Seiko mod, Seiko modding CZ, hodinky na míru, vlastní hodinky Seiko, prémiové díly na hodinky",
     "openGraphTitle": "Vexx Watch Atelier | Prémiové hodinky na míru",
     "openGraphDescription": "Váš osobní hodinář. Stavíme unikátní Seiko mody s důrazem na detail a kvalitu materiálů z chirurgické oceli a safíru."
+  },
+  "Account": {
+    "title": "Můj účet",
+    "orders": "Moje objednávky",
+    "noOrders": "Zatím nemáte žádné objednávky.",
+    "orderNumber": "Objednávka",
+    "status": "Stav",
+    "total": "Celkem",
+    "date": "Datum",
+    "viewDetails": "Detail",
+    "track": "Sledovat zásilku",
+    "orderDetails": "Detail objednávky",
+    "items": "Položky",
+    "tracking": "Sledování"
   }
 }

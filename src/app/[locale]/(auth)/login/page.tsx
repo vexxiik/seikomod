@@ -69,7 +69,12 @@ export default function LoginPage() {
               <Input id="email" name="email" type="email" required className="h-12 bg-background" placeholder="vas@email.cz" />
             </div>
             <div className="space-y-2">
-              <Label htmlFor="password" className="text-xs uppercase tracking-wider text-muted-foreground">{t('password')}</Label>
+              <div className="flex items-center justify-between">
+                <Label htmlFor="password" className="text-xs uppercase tracking-wider text-muted-foreground">{t('password')}</Label>
+                <Link href="/forgot-password" className="text-xs text-primary hover:underline font-medium">
+                  {t('forgotPassword')}
+                </Link>
+              </div>
               <Input id="password" name="password" type="password" required className="h-12 bg-background" placeholder="••••••••" />
             </div>
           </CardContent>

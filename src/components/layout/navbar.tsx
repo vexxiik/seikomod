@@ -110,6 +110,12 @@ export function Navbar() {
                   {session.user?.email}
                 </DropdownMenuItem>
                 <DropdownMenuSeparator />
+                <NextLink href="/account">
+                  <DropdownMenuItem className="cursor-pointer rounded-lg py-2 focus:bg-accent/10 focus:text-accent transition-colors">
+                    {tAuth('myAccount')}
+                  </DropdownMenuItem>
+                </NextLink>
+                <DropdownMenuSeparator />
                 {session.user?.role === "ADMIN" && (
                   <NextLink href="/admin">
                     <DropdownMenuItem className="text-primary font-medium cursor-pointer rounded-lg py-2 focus:bg-primary/10 focus:text-primary transition-colors">

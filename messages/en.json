@@ -29,7 +29,16 @@
     "register": "Register",
     "myAccount": "My Account",
     "adminPanel": "Admin Panel",
-    "logout": "Logout"
+    "logout": "Logout",
+    "forgotPassword": "Forgot password?",
+    "resetPassword": "Reset password",
+    "resetPasswordDesc": "Enter your email and we will send you a link to reset your password.",
+    "sendLink": "Send link",
+    "backToLogin": "Back to login",
+    "newPassword": "New password",
+    "confirmPassword": "Confirm password",
+    "setNewPassword": "Set new password",
+    "resetSent": "If the email is in our database, we have sent a link to it."
   },
   "Hero": {
     "badge": "A MASTERPIECE ON YOUR WRIST",
@@ -283,5 +292,19 @@
     "keywords": "Seiko mod, custom watches, Seiko modding, bespoke watches, premium watch parts",
     "openGraphTitle": "Vexx Watch Atelier | Premium Custom Watches",
     "openGraphDescription": "Your personal watchmaker. We build unique Seiko mods with a focus on detail and high-quality materials like surgical steel and sapphire."
+  },
+  "Account": {
+    "title": "My Account",
+    "orders": "My Orders",
+    "noOrders": "You have no orders yet.",
+    "orderNumber": "Order",
+    "status": "Status",
+    "total": "Total",
+    "date": "Date",
+    "viewDetails": "View Details",
+    "track": "Track Shipment",
+    "orderDetails": "Order Details",
+    "items": "Items",
+    "tracking": "Tracking"
   }
 }
