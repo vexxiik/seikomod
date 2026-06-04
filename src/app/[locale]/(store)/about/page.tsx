@@ -94,7 +94,7 @@ export default function AboutPage() {
               <div className="aspect-[4/5] rounded-3xl overflow-hidden shadow-2xl relative">
                 <div 
                   className="absolute inset-0 bg-cover bg-center"
-                  style={{ backgroundImage: "url('/img/o_nas.webp')" }}
+                  style={{ backgroundImage: "url('/img/seiko_nh35_movement.png')" }}
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent opacity-60" />
               </div>
