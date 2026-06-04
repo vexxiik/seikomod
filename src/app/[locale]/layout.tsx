@@ -5,6 +5,8 @@ import { routing } from '@/i18n/routing';
 import type { Metadata } from "next";
 import { Inter, Playfair_Display } from "next/font/google";
 import { Providers } from "@/components/Providers";
+import { SpeedInsights } from "@vercel/speed-insights/next";
+import { Analytics } from "@vercel/analytics/next";
 import "../globals.css"; // Fixed path since we moved down one folder
 
 const inter = Inter({
@@ -95,6 +97,8 @@ export default async function RootLayout({
           <Providers>
             {children}
           </Providers>
+          <SpeedInsights />
+          <Analytics />
         </NextIntlClientProvider>
       </body>
     </html>
