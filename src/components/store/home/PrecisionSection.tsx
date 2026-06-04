@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Shield, Clock, Wrench } from "lucide-react";
+import { Diamond, Settings, Wrench } from "lucide-react";
 
 import { useTranslations } from "next-intl";
 
@@ -12,12 +12,12 @@ const features = [
     descKey: "f1Desc"
   },
   {
-    icon: Clock,
+    icon: Settings,
     titleKey: "f2Title",
     descKey: "f2Desc"
   },
   {
-    icon: Shield,
+    icon: Diamond,
     titleKey: "f3Title",
     descKey: "f3Desc"
   }
@@ -59,8 +59,14 @@ export function PrecisionSection() {
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: 0.3 + index * 0.1 }}
             >
-              <div className="h-20 w-20 rounded-2xl bg-primary-foreground/5 border border-primary-foreground/10 flex items-center justify-center mb-6 group-hover:bg-accent group-hover:text-accent-foreground transition-all duration-500 group-hover:scale-110 group-hover:-rotate-3 shadow-lg">
-                <feature.icon className="h-10 w-10" />
+              <div className="relative h-24 w-24 mb-8 group-hover:-translate-y-2 transition-transform duration-500">
+                {/* Glow effect */}
+                <div className="absolute inset-0 bg-accent/20 rounded-full blur-2xl group-hover:bg-accent/40 transition-colors duration-500" />
+                
+                {/* Icon Container */}
+                <div className="relative h-full w-full rounded-full border border-accent/20 bg-primary/50 backdrop-blur-sm flex items-center justify-center group-hover:border-accent transition-all duration-500 shadow-[0_0_30px_-10px_rgba(0,0,0,0.5)]">
+                  <feature.icon className="h-10 w-10 text-accent" strokeWidth={1} />
+                </div>
               </div>
               <h3 className="text-xl font-semibold mb-3 font-heading">{t(feature.titleKey as any)}</h3>
               <p className="text-primary-foreground/70 leading-relaxed text-sm">
