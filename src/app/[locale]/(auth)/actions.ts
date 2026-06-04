@@ -74,7 +74,7 @@ export async function requestPasswordReset(formData: FormData) {
   try {
     const resend = new Resend(process.env.RESEND_API_KEY || 're_dummy');
     await resend.emails.send({
-      from: 'Jakub z Vexx Watch <podpora@vexxwatch.cz>',
+      from: 'Vexx Watch Atelier <info@vexxwatch.cz>',
       to: email,
       subject: 'Obnova hesla k vašemu účtu',
       react: PasswordResetEmail({ resetUrl }),
