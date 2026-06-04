@@ -122,10 +122,10 @@ export default function AboutPage() {
                 <p>{t('philDesc2')}</p>
               </div>
               
-              <div className="pt-8 border-t border-border/50 flex items-center justify-between gap-4">
-                <div className="text-lg md:text-xl lg:text-2xl font-heading font-bold text-foreground tracking-tight whitespace-nowrap">{t('stat1')}</div>
-                <div className="text-lg md:text-xl lg:text-2xl font-heading font-bold text-foreground tracking-tight whitespace-nowrap">{t('stat2')}</div>
-                <div className="text-lg md:text-xl lg:text-2xl font-heading font-bold text-foreground tracking-tight whitespace-nowrap">{t('stat3')}</div>
+              <div className="pt-8 border-t border-border/50 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 sm:gap-6">
+                <div className="text-lg md:text-xl lg:text-2xl font-heading font-bold text-foreground tracking-tight">{t('stat1')}</div>
+                <div className="text-lg md:text-xl lg:text-2xl font-heading font-bold text-foreground tracking-tight">{t('stat2')}</div>
+                <div className="text-lg md:text-xl lg:text-2xl font-heading font-bold text-foreground tracking-tight">{t('stat3')}</div>
               </div>
             </motion.div>
           </div>

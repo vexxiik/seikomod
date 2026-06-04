@@ -91,7 +91,7 @@ export default async function RootLayout({
       className={`${inter.variable} ${playfair.variable} h-full antialiased`}
       suppressHydrationWarning
     >
-      <body suppressHydrationWarning className="min-h-full flex flex-col font-sans bg-background text-foreground">
+      <body suppressHydrationWarning className="min-h-full flex flex-col font-sans bg-background text-foreground overflow-x-hidden">
         <NextIntlClientProvider messages={messages}>
           <StructuredData />
           <Providers>
