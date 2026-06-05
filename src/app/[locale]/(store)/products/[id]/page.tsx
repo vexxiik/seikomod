@@ -37,12 +37,50 @@ export default async function ProductDetailPage({ params }: { params: Promise<{ 
     // Keep fallback
   }
 
-  const translateSpec = (text: string | null) => {
-    if (!text || locale !== 'en') return text;
-    return text
-      .replace('Ocel', 'Steel')
-      .replace('Safírové s kyklopem', 'Sapphire with Cyclops')
-      .replace('Safírové', 'Sapphire');
+  const getSpecs = (name: string, locale: string) => {
+    const isEn = locale === 'en';
+    const n = name.toLowerCase();
+    
+    if (n.includes('nautilus')) {
+      return [
+        { label: isEn ? 'Case Diameter' : 'Průměr pouzdra', value: isEn ? '41 mm (without crown)' : '41 mm (bez korunky)' },
+        { label: isEn ? 'Movement' : 'Strojek', value: 'Automatic Seiko NH38' },
+        { label: isEn ? 'Thickness' : 'Tloušťka', value: '12 mm' },
+        { label: isEn ? 'Glass' : 'Sklo', value: isEn ? 'Sapphire, scratch-resistant' : 'Safírové, odolné proti poškrábání' },
+        { label: isEn ? 'Case' : 'Pouzdro', value: isEn ? '904L Stainless Steel' : 'Nerezová ocel 904L' },
+        { label: isEn ? 'Crown' : 'Korunka', value: isEn ? 'Screw-down' : 'Šroubovací' },
+        { label: isEn ? 'Wrist Circumference' : 'Obvod zápěstí', value: isEn ? '14.5 cm to 22 cm (adjustable)' : '14,5 cm až 22 cm (nastavitelný)' },
+        { label: isEn ? 'Bracelet' : 'Náramek', value: isEn ? '904L Stainless Steel with butterfly clasp' : 'Nerezová ocel 904L s bezpečnostním motýlkovým zapínáním' },
+        { label: isEn ? 'Case Back' : 'Zadní víčko', value: isEn ? 'Transparent, visible movement' : 'Průhledné, viditelný strojek' },
+        { label: isEn ? 'Water Resistance' : 'Voděodolnost', value: '3 ATM' }
+      ];
+    } else if (n.includes('gmt')) {
+      return [
+        { label: isEn ? 'Case Diameter' : 'Průměr pouzdra', value: isEn ? '40 mm (without crown)' : '40 mm (bez korunky)' },
+        { label: isEn ? 'Movement' : 'Strojek', value: 'Automatic Seiko NH34 (GMT)' },
+        { label: isEn ? 'Thickness' : 'Tloušťka', value: '12 mm' },
+        { label: isEn ? 'Glass' : 'Sklo', value: isEn ? 'Sapphire, scratch-resistant, with AR coating' : 'Safírové, odolné proti poškrábání, s antireflexní úpravou' },
+        { label: isEn ? 'Case' : 'Pouzdro', value: isEn ? '904L Stainless Steel' : 'Nerezová ocel 904L' },
+        { label: isEn ? 'Crown' : 'Korunka', value: isEn ? 'Screw-down' : 'Šroubovací' },
+        { label: isEn ? 'Wrist Circumference' : 'Obvod zápěstí', value: isEn ? '14.5 cm to 22 cm (adjustable)' : '14,5 cm až 22 cm (nastavitelný)' },
+        { label: isEn ? 'Bracelet' : 'Náramek', value: isEn ? '904L Stainless Steel (with safety clasp)' : 'Nerezová ocel 904L (s bezpečnostní sponou)' },
+        { label: isEn ? 'Case Back' : 'Zadní víčko', value: isEn ? 'Transparent, visible movement' : 'Průhledné, viditelný strojek' },
+        { label: isEn ? 'Water Resistance' : 'Voděodolnost', value: '3 ATM' }
+      ];
+    } else { // DayDate a další default
+      return [
+        { label: isEn ? 'Case Diameter' : 'Průměr pouzdra', value: isEn ? '39 mm (without crown)' : '39 mm (bez korunky)' },
+        { label: isEn ? 'Movement' : 'Strojek', value: 'Automatic Seiko NH35' },
+        { label: isEn ? 'Thickness' : 'Tloušťka', value: '12 mm' },
+        { label: isEn ? 'Glass' : 'Sklo', value: isEn ? 'Sapphire, scratch-resistant, with AR coating' : 'Safírové, odolné proti poškrábání, s antireflexní úpravou' },
+        { label: isEn ? 'Case' : 'Pouzdro', value: isEn ? '904L Stainless Steel' : 'Nerezová ocel 904L' },
+        { label: isEn ? 'Crown' : 'Korunka', value: isEn ? 'Screw-down' : 'Šroubovací' },
+        { label: isEn ? 'Wrist Circumference' : 'Obvod zápěstí', value: isEn ? '14.5 cm to 22 cm (adjustable)' : '14,5 cm až 22 cm (nastavitelný)' },
+        { label: isEn ? 'Bracelet' : 'Náramek', value: isEn ? '904L Stainless Steel (with safety clasp)' : 'Nerezová ocel 904L (s bezpečnostní sponou)' },
+        { label: isEn ? 'Case Back' : 'Zadní víčko', value: isEn ? 'Transparent, visible movement' : 'Průhledné, viditelný strojek' },
+        { label: isEn ? 'Water Resistance' : 'Voděodolnost', value: '3 ATM' }
+      ];
+    }
   };
 
   const product = {
@@ -51,13 +89,7 @@ export default async function ProductDetailPage({ params }: { params: Promise<{ 
     price: dbProduct.price,
     type: dbProduct.type || t('noCategory'),
     description: locale === 'en' && dbProduct.descriptionEn ? dbProduct.descriptionEn : dbProduct.description,
-    specs: {
-      movement: translateSpec(dbProduct.movement) || t('notSpecified'),
-      glass: translateSpec(dbProduct.glass) || t('notSpecified'),
-      bracelet: translateSpec(dbProduct.bracelet) || t('notSpecified'),
-      waterResistance: t('notSpecified'), // Not in DB schema currently
-      caseSize: t('notSpecified') // Not in DB schema currently
-    },
+    specs: getSpecs(dbProduct.name, locale),
     image: imageUrl,
     inStock: dbProduct.stock > 0
   };
@@ -127,26 +159,12 @@ export default async function ProductDetailPage({ params }: { params: Promise<{ 
           <div className="space-y-6 mb-10">
             <h3 className="font-heading text-2xl font-bold">{t('specs')}</h3>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-y-4 gap-x-8 text-sm">
-              <div className="flex flex-col border-b pb-2">
-                <span className="text-muted-foreground mb-1">{t('movement')}</span>
-                <span className="font-medium">{product.specs.movement}</span>
-              </div>
-              <div className="flex flex-col border-b pb-2">
-                <span className="text-muted-foreground mb-1">{t('glass')}</span>
-                <span className="font-medium">{product.specs.glass}</span>
-              </div>
-              <div className="flex flex-col border-b pb-2">
-                <span className="text-muted-foreground mb-1">{t('bracelet')}</span>
-                <span className="font-medium">{product.specs.bracelet}</span>
-              </div>
-              <div className="flex flex-col border-b pb-2">
-                <span className="text-muted-foreground mb-1">{t('case')}</span>
-                <span className="font-medium">{product.specs.caseSize}</span>
-              </div>
-              <div className="flex flex-col border-b pb-2">
-                <span className="text-muted-foreground mb-1">{t('waterResistance')}</span>
-                <span className="font-medium">{product.specs.waterResistance}</span>
-              </div>
+              {product.specs.map((spec, i) => (
+                <div key={i} className="flex flex-col border-b border-border/50 pb-2">
+                  <span className="text-muted-foreground mb-1">{spec.label}</span>
+                  <span className="font-medium text-foreground">{spec.value}</span>
+                </div>
+              ))}
             </div>
           </div>
 
