@@ -306,5 +306,14 @@
     "orderDetails": "Order Details",
     "items": "Items",
     "tracking": "Tracking"
+  },
+  "ProductFaq": {
+    "title": "Frequently Asked Questions",
+    "faq1Title": "Shipping & Returns",
+    "faq1Content": "Free Express Shipping on all orders. We offer a 14-day return policy on all orders. To initiate a return, please contact our customer service team at info@vexxwatch.cz.",
+    "faq2Title": "Can I service any of your watches locally?",
+    "faq2Content": "Absolutely. We use world-respected Seiko movements from Japan. Since these are a gold standard in the watch world, they are easy to service. Any local watch shop can help you out, so you never have to worry about finding a pro to keep it running like clockwork.",
+    "faq3Title": "Are your watches fakes and will they feel cheap in hand?",
+    "faq3Content": "Those famous designs belong to everyone. Big brands just keep them \"off-limits\" so they can charge you 10x more for a name. We use the exact same \"legendary\" materials - 904L steel, sapphire glass, and rock-solid automatic motors. When you hold it, you'll feel the weight of a real watch, not a \"cheap\" toy. These aren't fakes. They are custom builds for people who want an iconic watch at an affordable price."
   }
 }

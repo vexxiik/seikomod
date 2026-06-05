@@ -3,6 +3,7 @@ import { Shield, Truck, RotateCcw, ShoppingCart, Check } from "lucide-react";
 import Image from "next/image";
 import { Link } from "@/i18n/routing";
 import { AddToCartButton } from "@/components/store/product/AddToCartButton";
+import { ProductFaq } from "@/components/store/product/ProductFaq";
 
 import { prisma } from "@/lib/prisma";
 import { notFound } from "next/navigation";
@@ -164,6 +165,9 @@ export default async function ProductDetailPage({ params }: { params: Promise<{ 
               <span className="text-xs font-medium">{t('returns')}</span>
             </div>
           </div>
+
+          {/* FAQ Section */}
+          <ProductFaq />
 
         </div>
       </div>
