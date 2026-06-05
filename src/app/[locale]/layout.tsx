@@ -45,7 +45,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       siteName: 'Vexx Watch Atelier',
       images: [
         {
-          url: '/img/watchmaker.png',
+          url: '/img/seiko_nh35_movement.png',
           width: 1200,
           height: 630,
           alt: 'Vexx Watch Atelier',
