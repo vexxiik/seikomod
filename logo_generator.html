@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+<meta charset="UTF-8">
+<title>Vexx Watch Logo Generator</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@900&family=Inter:wght@300&display=swap" rel="stylesheet">
+  <style>
+  body { text-align: center; padding: 50px; font-family: 'Inter', sans-serif; background: #f8f9fa; color: #333; }
+  .preview { width: 450px; height: 450px; border: 1px solid #ddd; border-radius: 50%; margin: 30px auto; background: white; display: flex; flex-direction: column; justify-content: center; align-items: center; box-shadow: 0 10px 30px rgba(0,0,0,0.1); overflow: hidden; }
+  .preview-text-1 { font-family: 'Playfair Display', serif; font-weight: 900; font-size: 48px; color: #0a101f; letter-spacing: 0px; margin-bottom: 2px; margin-top: -10px; }
+  .preview-text-2 { font-family: 'Inter', sans-serif; font-weight: 300; font-size: 22px; color: #64748b; letter-spacing: 4px; margin-left: 2px; }
+  button { padding: 15px 30px; font-size: 18px; font-weight: bold; background: #0a101f; color: white; border: none; cursor: pointer; border-radius: 8px; transition: 0.2s; box-shadow: 0 4px 12px rgba(10, 16, 31, 0.3); }
+  button:hover { background: #1a202c; transform: translateY(-2px); }
+</style>
+</head>
+<body>
+  <h2>VEXX WATCH Logo Generátor (HQ)</h2>
+  <p>Umělá inteligence fotky vždy komprimuje a dělá mírně rozmazané. Napsal jsem ti proto tento generátor,<br>který ti logo vyrenderuje přímo z vektorových fontů v obrovském <strong>rozlišení 4000x4000 pixelů</strong> v křišťálové kvalitě!</p>
+  
+  <div class="preview">
+    <div style="display: flex; flex-direction: column; align-items: flex-start; transform: translateX(5px);">
+      <div class="preview-text-1">VEXX WATCH</div>
+      <div class="preview-text-2">ATELIER</div>
+    </div>
+  </div>
+
+  <canvas id="logoCanvas" width="4000" height="4000" style="display:none;"></canvas>
+  <button onclick="downloadLogo()">Stáhnout 4K Logo (PNG)</button>
+
+  <script>
+    function downloadLogo() {
+      // Wait for fonts to be strictly ready before drawing
+      document.fonts.ready.then(function() {
+        const canvas = document.getElementById('logoCanvas');
+        const ctx = canvas.getContext('2d');
+
+        // Bílý podklad
+        ctx.fillStyle = '#ffffff';
+        ctx.fillRect(0, 0, 4000, 4000);
+
+        // VEXX WATCH text
+        ctx.fillStyle = '#111827'; // Téměř černá/velmi tmavě modrá
+        ctx.textAlign = 'left';
+        ctx.textBaseline = 'middle';
+        
+        ctx.font = '900 520px "Playfair Display"';
+        ctx.letterSpacing = "0px";
+        
+        // Změříme šířku textu, abychom celou skupinu vycentrovali
+        const vexxMetrics = ctx.measureText('VEXX WATCH');
+        const startX = (4000 - vexxMetrics.width) / 2;
+        
+        ctx.fillText('VEXX WATCH', startX, 1820);
+
+        // ATELIER text
+        ctx.font = '300 240px "Inter"';
+        ctx.letterSpacing = "35px";
+        ctx.fillStyle = '#6b7280'; // Šedá
+        // Odsadíme mírně doprava, aby vizuálně lícovalo "A" s vnitřní hranou "V"
+        ctx.fillText('ATELIER', startX + 15, 2350); 
+
+        // Vygenerovat a stáhnout
+        const dataUrl = canvas.toDataURL('image/png', 1.0);
+        const a = document.createElement('a');
+        a.href = dataUrl;
+        a.download = 'vexx_watch_logo_hq_4k.png';
+        a.click();
+      });
+    }
+  </script>
+</body>
+</html>
