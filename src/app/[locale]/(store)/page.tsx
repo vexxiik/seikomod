@@ -5,10 +5,23 @@ import { WatchCraftingSection } from "@/components/store/home/WatchCraftingSecti
 import { prisma } from "@/lib/prisma";
 
 export default async function HomePage() {
-  const products = await prisma.product.findMany({
-    take: 3,
-    orderBy: { createdAt: 'desc' }
+  const targetNames = [
+    "Seiko Mod GMT Pepsi",
+    "Seiko Mod Datejust Black",
+    "Seiko Mod Nautilus Blue"
+  ];
+  
+  const rawProducts = await prisma.product.findMany({
+    where: {
+      name: {
+        in: targetNames
+      }
+    }
   });
+
+  const products = targetNames
+    .map(name => rawProducts.find(p => p.name === name))
+    .filter((p): p is NonNullable<typeof p> => p !== undefined);
   return (
     <div className="flex flex-col min-h-screen">
       <Hero />
