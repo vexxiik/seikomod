@@ -67,6 +67,19 @@ export default async function ProductDetailPage({ params }: { params: Promise<{ 
         { label: isEn ? 'Case Back' : 'Zadní víčko', value: isEn ? 'Transparent, visible movement' : 'Průhledné, viditelný strojek' },
         { label: isEn ? 'Water Resistance' : 'Voděodolnost', value: '3 ATM' }
       ];
+    } else if (n.includes('datejust')) {
+      return [
+        { label: isEn ? 'Case Diameter' : 'Průměr pouzdra', value: isEn ? '36 mm (without crown)' : '36 mm (bez korunky)' },
+        { label: isEn ? 'Movement' : 'Strojek', value: 'Automatic Seiko NH35' },
+        { label: isEn ? 'Thickness' : 'Tloušťka', value: '12 mm' },
+        { label: isEn ? 'Glass' : 'Sklo', value: isEn ? 'Sapphire, scratch-resistant, with AR coating' : 'Safírové, odolné proti poškrábání, s antireflexní úpravou' },
+        { label: isEn ? 'Case' : 'Pouzdro', value: isEn ? '904L Stainless Steel' : 'Nerezová ocel 904L' },
+        { label: isEn ? 'Crown' : 'Korunka', value: isEn ? 'Screw-down' : 'Šroubovací' },
+        { label: isEn ? 'Wrist Circumference' : 'Obvod zápěstí', value: isEn ? '14.5 cm to 22 cm (adjustable)' : '14,5 cm až 22 cm (nastavitelný)' },
+        { label: isEn ? 'Bracelet' : 'Náramek', value: isEn ? '904L Stainless Steel (with safety clasp)' : 'Nerezová ocel 904L (s bezpečnostní sponou)' },
+        { label: isEn ? 'Case Back' : 'Zadní víčko', value: isEn ? 'Transparent, visible movement' : 'Průhledné, viditelný strojek' },
+        { label: isEn ? 'Water Resistance' : 'Voděodolnost', value: '3 ATM' }
+      ];
     } else { // DayDate a další default
       return [
         { label: isEn ? 'Case Diameter' : 'Průměr pouzdra', value: isEn ? '39 mm (without crown)' : '39 mm (bez korunky)' },
