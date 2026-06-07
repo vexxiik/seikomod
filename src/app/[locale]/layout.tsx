@@ -60,7 +60,6 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       description: seo.openGraphDescription,
     },
     alternates: {
-      canonical: 'https://www.vexxwatch.cz',
       languages: {
         'cs': '/cs',
         'en': '/en',
