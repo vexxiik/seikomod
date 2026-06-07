@@ -17,7 +17,7 @@ export function Footer() {
           <div>
             <h4 className="font-semibold mb-4">{t('products')}</h4>
             <ul className="space-y-2 text-sm text-primary-foreground/80">
-              <li><Link href="/products?type=Dress" className="hover:text-accent transition-colors">Daydate</Link></li>
+              <li><Link href="/products?type=Datejust" className="hover:text-accent transition-colors">Datejust</Link></li>
               <li><Link href="/products?type=GMT" className="hover:text-accent transition-colors">GMT</Link></li>
               <li><Link href="/products?type=Nautilus" className="hover:text-accent transition-colors">Nautilus</Link></li>
             </ul>

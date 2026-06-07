@@ -21,7 +21,7 @@ export default function ProductsClient({ initialProducts = [] }: { initialProduc
       .replace('Safírové', 'Sapphire');
   };
 
-const CATEGORIES = [t('all'), "Daydate", "GMT", "Nautilus"];
+const CATEGORIES = [t('all'), "Datejust", "GMT", "Nautilus"];
 
   const [activeCategory, setActiveCategory] = useState(t('all'));
 
@@ -43,7 +43,7 @@ const CATEGORIES = [t('all'), "Daydate", "GMT", "Nautilus"];
   const filteredProducts = activeCategory === t('all')
     ? formattedProducts 
     : formattedProducts.filter(p => {
-        if (activeCategory === "Daydate") return p.type === "Dress" || p.type === "Daydate";
+        if (activeCategory === "Datejust") return p.type === "Dress" || p.type === "Daydate" || p.type === "Datejust";
         return p.type === activeCategory;
       });
 
@@ -99,7 +99,7 @@ const CATEGORIES = [t('all'), "Daydate", "GMT", "Nautilus"];
                   />
                   <div className="absolute top-4 left-4">
                     <span className="bg-background/80 backdrop-blur-md px-3 py-1 text-xs font-semibold rounded-full border border-border">
-                      {product.type === "Dress" ? "Daydate" : product.type}
+                      {product.type === "Dress" || product.type === "Daydate" ? "Datejust" : product.type}
                     </span>
                   </div>
                   
