@@ -116,11 +116,11 @@ export function Bestsellers({ initialProducts = [] }: BestsellersProps) {
                     {product.movement}
                   </p>
                 </CardContent>
-                <CardFooter className={`p-8 pt-0 flex items-center relative z-20 ${product.id === "custom" ? "justify-center w-full" : "justify-between"}`}>
+                <CardFooter className="p-8 pt-0 flex items-center justify-between relative z-20">
                   <span className="font-bold text-xl">
                     {typeof product.price === "number" ? `${product.price.toLocaleString("cs-CZ")} Kč` : product.price}
                   </span>
-                  {product.id !== "custom" && (
+                  {product.id !== "custom" ? (
                     <Button 
                       size="icon" 
                       variant="ghost" 
@@ -139,6 +139,8 @@ export function Bestsellers({ initialProducts = [] }: BestsellersProps) {
                     >
                       <ShoppingCart className="h-5 w-5" />
                     </Button>
+                  ) : (
+                    <div className="h-10 w-10" />
                   )}
                 </CardFooter>
               </Card>
