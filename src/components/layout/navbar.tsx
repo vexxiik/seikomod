@@ -74,7 +74,7 @@ export function Navbar() {
           <Link href="/products" className="text-foreground hover:text-accent transition-colors">
             {t('products')}
           </Link>
-          <Link href="/configurator" className="text-accent font-bold hover:text-accent/80 transition-colors flex items-center gap-1">
+          <Link href="/configurator" className="text-foreground hover:text-accent transition-colors">
             {t('configurator')}
           </Link>
           <Link href="/about" className="text-foreground hover:text-accent transition-colors">
