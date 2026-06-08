@@ -9,7 +9,7 @@ import { Diamond, Wrench, Clock, Shield, ArrowDown, Settings, ChevronRight } fro
 
 export default function AboutPage() {
   const t = useTranslations('About');
-  const tNav = useTranslations('Navbar');
+  const tNav = useTranslations('Navigation');
   const heroRef = useRef(null);
   
   const { scrollYProgress } = useScroll({
@@ -152,8 +152,8 @@ export default function AboutPage() {
               viewport={{ once: true, margin: "-100px" }}
               transition={{ duration: 1 }}
             >
-              <div className="absolute inset-0 bg-[url('/img/about-materials.png')] bg-cover bg-center" />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/10 to-transparent" />
+              <div className="absolute inset-0 bg-[url('/img/onas2.webp')] bg-cover bg-center" />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent" />
             </motion.div>
 
             {/* Right Col - List of materials */}
