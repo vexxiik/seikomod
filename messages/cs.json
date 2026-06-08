@@ -16,7 +16,7 @@
     "noAccount": "Nemáte ještě účet?",
     "registerLink": "Zaregistrujte se",
     "registerTitle": "Registrace",
-    "registerDesc": "Vytvořte si účet a získejte prémiovou krabičku zdarma",
+    "registerDesc": "Vytvořte si účet a získejte prémiovou krabičku se slevou",
     "fullName": "Celé jméno",
     "passwordMin": "Minimálně 6 znaků.",
     "registerBtn": "Vytvořit účet",
@@ -38,6 +38,7 @@
     "newPassword": "Nové heslo",
     "confirmPassword": "Potvrdit heslo",
     "setNewPassword": "Nastavit nové heslo",
+    "backToWeb": "Zpět na hlavní stranu",
     "resetSent": "Pokud je e-mail v naší databázi, odeslali jsme na něj odkaz."
   },
   "Hero": {
@@ -50,7 +51,7 @@
   },
   "Bestsellers": {
     "title": "Nejžádanější modely",
-    "description": "Výběr toho nejlepšího z naší dílny. Hodinky, které si naši zákazníci oblíbili nejvíce.",
+    "description": "Výběr toho nejlepšího z Vexx Watch Atelier. Hodinky, které si naši zákazníci oblíbili nejvíce.",
     "viewAll": "Zobrazit vše",
     "getPrice": "Zjistit cenu",
     "viewDetail": "Zobrazit detail",
@@ -74,11 +75,11 @@
     "title1": "Proč zvolit",
     "title2": "Vexx Watch Atelier?",
     "t1": "Srdce, které nikdy nevynechá úder",
-    "d1": "Základem každého našeho <strong class=\"text-foreground\">Seiko modu</strong> je nekompromisní spolehlivost. Využíváme výhradně <strong class=\"text-foreground\">originální strojek Seiko NH35</strong> a jeho varianty. Tento legendární japonský kalibr zaručuje, že vaše <strong class=\"text-foreground\">vlastní hodinky Seiko</strong> nejen perfektně vypadají, ale stanou se přesným společníkem na dlouhá desetiletí.",
+    "d1": "Základem každých našich hodinek je nekompromisní spolehlivost. Využíváme výhradně <strong class=\"text-foreground\">originální strojky Seiko (NH35, NH34 GMT)</strong>. Tyto legendární japonské kalibry zaručují, že vaše <strong class=\"text-foreground\">zakázkové hodinky</strong> nejen perfektně vypadají, ale stanou se přesným společníkem na dlouhá desetiletí.",
     "t2": "Materiály nejvyšší třídy",
-    "d2": "Pro naše <strong class=\"text-foreground\">Seiko diver mody</strong> i elegantní modely využíváme výhradně <strong class=\"text-foreground\">prémiové díly na hodinky</strong>. Extrémně tvrdá safírová sklíčka, nevyblednutelné keramické lunety a masivní tahy z chirurgické oceli 904L povyšují každý <strong class=\"text-foreground\">Seiko Datejust mod</strong> nebo sportovní <strong class=\"text-foreground\">Seiko Nautilus mod</strong> na úroveň skutečného luxusu.",
-    "t3": "Ruční montáž a absolutní unikátnost",
-    "d3": "Jsme přední specialisté na <strong class=\"text-foreground\">Seiko modding CZ</strong>. Pomocí našeho intuitivního <strong class=\"text-foreground\">konfigurátoru hodinek</strong> si sami zvolíte každý detail. Následně probíhá pečlivá ruční montáž. Výsledkem jsou dokonalé <strong class=\"text-foreground\">hodinky na míru</strong>, u kterých máte jistotu, že stejný kus nikdo jiný nemá.",
+    "d2": "Pro naše elegantní i sportovní modely využíváme výhradně <strong class=\"text-foreground\">prémiové díly</strong>. Extrémně tvrdá safírová sklíčka, nevyblednutelné keramické lunety a tahy z prémiové chirurgické oceli povyšují každý model typu <strong class=\"text-foreground\">Datejust, GMT či Nautilus</strong> na úroveň skutečného luxusu.",
+    "t3": "Ruční montáž a absolutní preciznost",
+    "d3": "Jsme přední specialisté na <strong class=\"text-foreground\">zakázkovou stavbu hodinek</strong>. Každý model z naší nabídky prochází pečlivou ruční montáží. Výsledkem jsou dokonalé <strong class=\"text-foreground\">prémiové hodinky</strong> s respektem k tradičnímu hodinářství a s důrazem na ten nejmenší detail.",
     "explore": "Objevte náš proces"
   },
   "Footer": {
@@ -154,7 +155,7 @@
     "shippingPacketa": "Doprava (Zásilkovna)",
     "premiumBox": "Prémiová krabička",
     "free": "Zdarma",
-    "boxInfo": "Pro přihlášené zákazníky je krabička zdarma.",
+    "boxInfo": "Pro přihlášené zákazníky je krabička o 400 Kč levnější.",
     "login": "Přihlaste se",
     "discountCode": "Slevový kód",
     "enterCode": "ZADEJTE KÓD...",
@@ -174,7 +175,7 @@
     "discountApplied": "Aplikována sleva",
     "shippingCalcNextStep": "Vypočteno v dalším kroku",
     "paymentMethod": "Způsob platby",
-    "paymentOnline": "Platba online (Karta, Apple Pay)",
+    "paymentOnline": "Platba online (Karta, Apple Pay, Google Pay)",
     "paymentOnlineDesc": "Rychlá a bezpečná platba přes Stripe.",
     "paymentCOD": "Dobírka",
     "paymentCODDesc": "Platba při převzetí u kurýra nebo na výdejním místě.",
@@ -184,7 +185,7 @@
     "paid": "Objednávka zaplacena!",
     "processing": "Zpracováváme platbu...",
     "failed": "Platba se nezdařila",
-    "paidDesc": "Děkujeme za váš nákup. Na váš e-mail jsme zaslali potvrzení objednávky. Naši hodináři se brzy pustí do přípravy vašeho unikátního kousku.",
+    "paidDesc": "Děkujeme za váš nákup. Na váš e-mail jsme zaslali potvrzení objednávky. Vaši objednávku začneme co nejdříve připravovat k odeslání.",
     "processingDesc": "Čekáme na potvrzení platby od banky. Odeslání e-mailu proběhne jakmile platbu úspěšně zaevidujeme.",
     "failedDesc": "Vaše platba byla bohužel zrušena nebo vypršel časový limit. Můžete to zkusit znovu nebo nás kontaktovat.",
     "continue": "Pokračovat v nákupu",
@@ -205,8 +206,8 @@
     "description": "Máte dotaz ohledně našich hodinek nebo si přejete stavbu na míru? Neváhejte nás kontaktovat. Odpovídáme zpravidla do 24 hodin.",
     "email": "E-mail",
     "phone": "Telefon",
-    "workshop": "Dílna",
-    "workshopDesc": "Pardubice, Česká republika<br/>(Pouze po předchozí domluvě)"
+    "workshop": "Instagram",
+    "workshopDesc": "@vexxwatch.cz"
   },
   "Custom": {
     "title": "Návrh na míru",
@@ -243,13 +244,12 @@
     "title": "Doprava a platba",
     "h1": "Způsoby doručení",
     "p1": "Vzhledem k povaze našeho zboží dbáme na maximální bezpečnost při přepravě. Všechny zásilky jsou plně pojištěny na plnou hodnotu hodinek.",
-    "l1": "<strong>PPL / DPD kurýr na adresu:</strong> Zdarma pro všechny objednávky. Doručení obvykle do 24 hodin od expedice.",
-    "l2": "<strong>Osobní předání:</strong> Možné po předchozí domluvě v Praze.",
+    "l1": "<strong>Zásilkovna (výdejní místa a Z-BOXy):</strong> 89 Kč pro všechny objednávky. Spolehlivé doručení na vámi vybrané výdejní místo.",
     "h2": "Doba dodání",
     "p2": "Pokud jsou hodinky označené jako \"Skladem\", expedujeme je obvykle do 2 pracovních dnů (probíhá finální kontrola a tlaková zkouška). U zakázkových staveb na míru je doba dodání obvykle 2-4 týdny v závislosti na dostupnosti specifických prémiových dílů.",
     "h3": "Možnosti platby",
-    "l3": "<strong>Bankovní převod:</strong> Po potvrzení objednávky vám zašleme údaje k platbě. Zboží expedujeme po připsání částky na náš účet.",
-    "l4": "<strong>Záloha na zakázkovou stavbu:</strong> U staveb na míru požadujeme nevratnou zálohu ve výši 50 % z celkové ceny před zahájením prací. Zbytek se doplácí před odesláním hotových hodinek."
+    "l3": "<strong>Platba kartou online:</strong> Zdarma. Okamžitá a bezpečná platba přes platební bránu Stripe (podporujeme karty, Apple Pay a Google Pay).",
+    "l4": "<strong>Dobírka:</strong> 89 Kč. Zboží zaplatíte až při převzetí zásilky."
   },
   "Returns": {
     "title": "Reklamace a vrácení",
@@ -310,11 +310,11 @@
   "ProductFaq": {
     "title": "Často kladené dotazy",
     "faq1Title": "Doprava a vrácení",
-    "faq1Content": "Rychlá a spolehlivá doprava. Nabízíme 14denní lhůtu na vrácení. Pro zahájení vrácení prosím kontaktujte naši zákaznickou podporu na info@vexxwatch.cz.",
+    "faq1Content": "Rychlá a spolehlivá doprava přes Zásilkovnu. Nabízíme 14denní lhůtu na vrácení. Pro zahájení vrácení prosím kontaktujte naši zákaznickou podporu na info@vexxwatch.cz.",
     "faq2Title": "Může mi hodinky servisovat jakýkoliv hodinář?",
     "faq2Content": "Rozhodně. Používáme celosvětově uznávané strojky Seiko z Japonska. Jelikož jsou zlatým standardem ve světě hodinek, velmi snadno se servisují. Kterékoliv místní hodinářství vám dokáže pomoci, takže se nikdy nemusíte bát, že nenajdete profesionála, který je udrží v chodu.",
     "faq3Title": "Jsou to jen levné napodobeniny?",
-    "faq3Content": "Tyto slavné designy patří všem. Velké značky je drží \"mimo dosah\", jen aby si mohly za jméno účtovat desetkrát víc. My používáme naprosto stejné \"legendární\" materiály – chirurgickou ocel (316L/904L), safírová sklíčka a spolehlivé automatické strojky. Když je držíte v ruce, cítíte váhu skutečných hodinek, ne \"levné\" hračky. Toto nejsou padělky. Jsou to zakázkové stavby (custom builds) pro lidi, kteří chtějí ikonické hodinky za dostupnou cenu."
+    "faq3Content": "Rozhodně ne. Naše hodinky stavíme z prémiových materiálů, které běžně najdete u mnohem dražších značek – používáme kvalitní chirurgickou ocel (316L i 904L), safírová sklíčka odolná proti poškrábání a osvědčené automatické strojky. Nejde o žádné padělky, ale o ručně skládané hodinky (tzv. custom builds), které se jen inspirují ikonickými designy. Na ruce působí poctivě a kvalitně, přesně jak byste od pořádných hodinek očekávali."
   },
   "Announcement": {
     "text": "Slavnostně otevíráme! Přijímáme první předobjednávky s exkluzivní slevou 550 Kč. Kód:",

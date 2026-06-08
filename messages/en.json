@@ -16,7 +16,7 @@
     "noAccount": "Don't have an account yet?",
     "registerLink": "Register",
     "registerTitle": "Registration",
-    "registerDesc": "Create an account and get a premium box for free",
+    "registerDesc": "Create an account and get a premium box with a discount",
     "fullName": "Full Name",
     "passwordMin": "Minimum 6 characters.",
     "registerBtn": "Create Account",
@@ -38,6 +38,7 @@
     "newPassword": "New password",
     "confirmPassword": "Confirm password",
     "setNewPassword": "Set new password",
+    "backToWeb": "Back to website",
     "resetSent": "If the email is in our database, we have sent a link to it."
   },
   "Hero": {
@@ -50,7 +51,7 @@
   },
   "Bestsellers": {
     "title": "Bestselling Models",
-    "description": "A selection of the best from our workshop. The watches our customers love the most.",
+    "description": "A selection of the best from Vexx Watch Atelier. The watches our customers love the most.",
     "viewAll": "View All",
     "getPrice": "Get Price",
     "viewDetail": "View Detail",
@@ -74,11 +75,11 @@
     "title1": "Why choose",
     "title2": "Vexx Watch Atelier?",
     "t1": "A heart that never skips a beat",
-    "d1": "The core of every <strong class=\"text-foreground\">Seiko mod</strong> we build is uncompromising reliability. We exclusively use the <strong class=\"text-foreground\">original Seiko NH35 movement</strong> and its variants. This legendary Japanese caliber ensures that your <strong class=\"text-foreground\">custom Seiko watch</strong> not only looks perfect but becomes a precise companion for decades.",
+    "d1": "The core of every watch we build is uncompromising reliability. We exclusively use <strong class=\"text-foreground\">original Seiko movements (NH35, NH34 GMT)</strong>. These legendary Japanese calibers ensure that your <strong class=\"text-foreground\">custom watch</strong> not only looks perfect but becomes a precise companion for decades.",
     "t2": "Top-tier Materials",
-    "d2": "For our <strong class=\"text-foreground\">Seiko diver mods</strong> and elegant models, we use exclusively <strong class=\"text-foreground\">premium watch parts</strong>. Extremely hard sapphire crystals, fade-resistant ceramic bezels, and solid 904L surgical steel bracelets elevate every <strong class=\"text-foreground\">Seiko Datejust mod</strong> or sporty <strong class=\"text-foreground\">Seiko Nautilus mod</strong> to true luxury.",
-    "t3": "Hand Assembly and Absolute Uniqueness",
-    "d3": "We are leading specialists in <strong class=\"text-foreground\">Seiko modding CZ</strong>. Using our intuitive <strong class=\"text-foreground\">watch configurator</strong>, you choose every detail yourself. This is followed by careful hand assembly. The result is a perfect <strong class=\"text-foreground\">custom watch</strong>, where you can be sure no one else has the same piece.",
+    "d2": "For our elegant and sporty models, we use exclusively <strong class=\"text-foreground\">premium watch parts</strong>. Extremely hard sapphire crystals, fade-resistant ceramic bezels, and premium surgical steel bracelets elevate every <strong class=\"text-foreground\">Datejust, GMT, or Nautilus</strong> style model to true luxury.",
+    "t3": "Hand Assembly and Absolute Precision",
+    "d3": "We are leading specialists in <strong class=\"text-foreground\">custom watchmaking</strong>. Every model from our collection goes through careful hand assembly. The result is a perfect <strong class=\"text-foreground\">premium timepiece</strong> with respect to traditional watchmaking and an emphasis on the smallest details.",
     "explore": "Discover our process"
   },
   "Footer": {
@@ -154,7 +155,7 @@
     "shippingPacketa": "Shipping (Packeta)",
     "premiumBox": "Premium Box",
     "free": "Free",
-    "boxInfo": "The box is free for logged-in customers.",
+    "boxInfo": "The box is 400 CZK cheaper for logged-in customers.",
     "login": "Log in",
     "discountCode": "Discount Code",
     "enterCode": "ENTER CODE...",
@@ -174,7 +175,7 @@
     "discountApplied": "Discount applied",
     "shippingCalcNextStep": "Calculated in next step",
     "paymentMethod": "Payment Method",
-    "paymentOnline": "Online Payment (Card, Apple Pay)",
+    "paymentOnline": "Online Payment (Card, Apple Pay, Google Pay)",
     "paymentOnlineDesc": "Fast and secure payment via Stripe.",
     "paymentCOD": "Cash on Delivery",
     "paymentCODDesc": "Payment upon receipt at the courier or pick-up point.",
@@ -184,7 +185,7 @@
     "paid": "Order paid successfully!",
     "processing": "Processing payment...",
     "failed": "Payment failed",
-    "paidDesc": "Thank you for your purchase. We have sent an order confirmation to your e-mail. Our watchmakers will soon start preparing your unique piece.",
+    "paidDesc": "Thank you for your purchase. We have sent an order confirmation to your e-mail. We will start preparing your order for shipping as soon as possible.",
     "processingDesc": "We are waiting for payment confirmation from the bank. The e-mail will be sent as soon as we successfully record the payment.",
     "failedDesc": "Unfortunately, your payment was cancelled or timed out. You can try again or contact us.",
     "continue": "Continue shopping",
@@ -205,8 +206,8 @@
     "description": "Do you have a question about our watches or would you like a custom build? Do not hesitate to contact us. We usually reply within 24 hours.",
     "email": "E-mail",
     "phone": "Phone",
-    "workshop": "Workshop",
-    "workshopDesc": "Pardubice, Czech Republic<br/>(By appointment only)"
+    "workshop": "Instagram",
+    "workshopDesc": "@vexxwatch.cz"
   },
   "Custom": {
     "title": "Custom Design",
@@ -243,13 +244,12 @@
     "title": "Shipping and Payment",
     "h1": "Delivery Methods",
     "p1": "Given the nature of our goods, we ensure maximum security during transport. All shipments are fully insured for the full value of the watch.",
-    "l1": "<strong>PPL / DPD Courier to Address:</strong> Free for all orders. Delivery usually within 24 hours of dispatch.",
-    "l2": "<strong>Personal Pickup:</strong> Possible by prior arrangement in Prague.",
+    "l1": "<strong>Packeta (Pickup points):</strong> 89 CZK for all orders. Reliable delivery to your selected pickup point.",
     "h2": "Delivery Time",
     "p2": "If watches are marked as \"In Stock\", we usually dispatch them within 2 working days (after final inspection and pressure testing). For custom builds, delivery time is usually 2-4 weeks depending on the availability of specific premium parts.",
     "h3": "Payment Options",
-    "l3": "<strong>Bank Transfer:</strong> After confirming your order, we will send you payment details. Goods are dispatched after the amount is credited to our account.",
-    "l4": "<strong>Deposit for Custom Build:</strong> For custom builds, we require a non-refundable deposit of 50% of the total price before starting work. The remainder is paid before shipping the finished watch."
+    "l3": "<strong>Online Card Payment:</strong> Free. Instant and secure payment via Stripe (card, Apple Pay, Google Pay).",
+    "l4": "<strong>Cash on Delivery (COD):</strong> 89 CZK. Pay for the goods upon delivery."
   },
   "Returns": {
     "title": "Claims and Returns",
@@ -310,11 +310,11 @@
   "ProductFaq": {
     "title": "Frequently Asked Questions",
     "faq1Title": "Shipping & Returns",
-    "faq1Content": "Fast and secure delivery. We offer a 14-day return policy on all orders. To initiate a return, please contact our customer service team at info@vexxwatch.cz.",
+    "faq1Content": "Fast and secure delivery via Packeta (Zásilkovna). We offer a 14-day return policy on all orders. To initiate a return, please contact our customer service team at info@vexxwatch.cz.",
     "faq2Title": "Can I service any of your watches locally?",
     "faq2Content": "Absolutely. We use world-respected Seiko movements from Japan. Since these are a gold standard in the watch world, they are easy to service. Any local watch shop can help you out, so you never have to worry about finding a pro to keep it running like clockwork.",
     "faq3Title": "Are your watches fakes and will they feel cheap in hand?",
-    "faq3Content": "Those famous designs belong to everyone. Big brands just keep them \"off-limits\" so they can charge you 10x more for a name. We use the exact same \"legendary\" materials - 904L steel, sapphire glass, and rock-solid automatic motors. When you hold it, you'll feel the weight of a real watch, not a \"cheap\" toy. These aren't fakes. They are custom builds for people who want an iconic watch at an affordable price."
+    "faq3Content": "Absolutely not. We build our watches using premium materials typically found in much more expensive timepieces – such as high-grade surgical steel (316L and 904L), scratch-resistant sapphire crystals, and reliable automatic movements. These are not fakes or cheap replicas. They are hand-assembled custom builds inspired by iconic designs. When you hold them, you immediately feel the solid weight and quality you'd expect from a proper watch."
   },
   "Announcement": {
     "text": "Grand Opening! We are now taking pre-orders with an exclusive 550 CZK discount. Code:",

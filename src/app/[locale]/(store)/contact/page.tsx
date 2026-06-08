@@ -1,4 +1,4 @@
-import { Mail, MapPin, Phone } from "lucide-react";
+import { Mail, Phone } from "lucide-react";
 import { useTranslations } from "next-intl";
 
 export default function ContactPage() {
@@ -30,10 +30,25 @@ export default function ContactPage() {
         
         <div className="flex flex-col items-center text-center p-8 bg-card/30 rounded-2xl border">
           <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center text-primary mb-6">
-            <MapPin className="w-6 h-6" />
+            <svg
+              className="w-6 h-6"
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            >
+              <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+              <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+              <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+            </svg>
           </div>
           <h3 className="font-bold text-lg mb-2">{t('workshop')}</h3>
-          <p className="text-muted-foreground" dangerouslySetInnerHTML={{ __html: t.raw('workshopDesc') }} />
+          <a href="https://instagram.com/vexxwatch.cz" target="_blank" rel="noopener noreferrer" className="text-accent hover:underline font-medium" dangerouslySetInnerHTML={{ __html: t.raw('workshopDesc') }} />
         </div>
       </div>
     </div>

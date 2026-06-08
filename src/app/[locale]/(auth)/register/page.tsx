@@ -7,7 +7,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Link } from "@/i18n/routing";
-import { Watch } from "lucide-react";
+import { ArrowLeft } from "lucide-react";
 import { registerUser } from "../actions";
 import { signIn } from "next-auth/react";
 import { useTranslations } from "next-intl";
@@ -56,12 +56,22 @@ export default function RegisterPage() {
   };
 
   return (
-    <div className="container mx-auto px-4 py-20 flex items-center justify-center min-h-[80vh]">
+    <div className="container mx-auto px-4 py-20 flex flex-col items-center justify-center min-h-[80vh]">
+      <div className="w-full max-w-md mb-4">
+        <Link href="/" className="inline-flex items-center text-sm font-medium text-muted-foreground hover:text-primary transition-colors">
+          <ArrowLeft className="w-4 h-4 mr-2" />
+          {t('backToWeb')}
+        </Link>
+      </div>
       <Card className="w-full max-w-md bg-card/50 border-none shadow-xl">
         <CardHeader className="space-y-4 text-center">
-          <div className="flex justify-center">
-            <div className="h-12 w-12 rounded-full bg-accent/10 flex items-center justify-center">
-              <Watch className="h-6 w-6 text-accent" />
+          <div className="flex justify-center items-center gap-3">
+            <img src="/icon.svg" alt="Vexx Watch Atelier" className="w-12 h-12 shrink-0 drop-shadow-sm" />
+            <div className="font-heading font-bold text-2xl tracking-tight text-primary flex flex-col justify-center text-left">
+              <span className="leading-none">VEXX WATCH</span>
+              <span className="font-sans text-xs font-normal tracking-widest text-muted-foreground uppercase mt-1 leading-none">
+                Atelier
+              </span>
             </div>
           </div>
           <div>

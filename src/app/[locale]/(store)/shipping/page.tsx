@@ -14,7 +14,6 @@ export default function ShippingPage() {
           </p>
           <ul className="space-y-4 list-disc pl-6 text-muted-foreground">
             <li dangerouslySetInnerHTML={{ __html: t.raw('l1') }} />
-            <li dangerouslySetInnerHTML={{ __html: t.raw('l2') }} />
           </ul>
         </section>
 

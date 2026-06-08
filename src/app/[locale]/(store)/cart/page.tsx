@@ -47,7 +47,7 @@ export default function CartPage() {
   const subtotal = items.reduce((acc, item) => acc + item.price * item.quantity, 0);
   const shipping = 89; // Zásilkovna
   const paymentFee = paymentMethod === "cod" ? 89 : 0;
-  const watchBoxPrice = includeWatchBox ? (session ? 0 : 499) : 0;
+  const watchBoxPrice = includeWatchBox ? (session ? 200 : 600) : 0;
   
   // Calculate discount
   let discountAmount = 0;
@@ -355,7 +355,7 @@ export default function CartPage() {
                     <Label htmlFor="watchBox" className="font-medium flex justify-between cursor-pointer text-sm">
                       <span>{t('premiumBox')}</span>
                       <span className={session ? "text-green-600 font-bold" : "font-semibold"}>
-                        {session ? t('free') : "499 Kč"}
+                        {session ? "200 Kč" : "600 Kč"}
                       </span>
                     </Label>
                     {!session && (

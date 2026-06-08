@@ -1,15 +1,27 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
-import { Trash2, CheckCircle, XCircle } from "lucide-react";
+import { Trash2, CheckCircle, XCircle, Eye } from "lucide-react";
 import { deleteOrder, updateOrderStatus } from "@/app/admin/actions";
 import { useTransition } from "react";
+import Link from "next/link";
 
 export function OrderActions({ id, currentStatus }: { id: string, currentStatus: string }) {
   const [isPending, startTransition] = useTransition();
 
   return (
     <div className="flex justify-end gap-1">
+      <Link href={`/admin/orders/${id}`}>
+        <Button 
+          variant="ghost" 
+          size="icon" 
+          title="Zobrazit detail"
+          className="text-muted-foreground hover:text-blue-500"
+        >
+          <Eye className="h-4 w-4" />
+        </Button>
+      </Link>
+      
       {currentStatus !== 'COMPLETED' && (
         <Button 
           variant="ghost" 

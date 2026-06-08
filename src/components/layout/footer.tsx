@@ -1,5 +1,6 @@
 import { Link } from "@/i18n/routing";
 import { useTranslations } from "next-intl";
+import { PaymentBadges } from "./PaymentBadges";
 
 export function Footer() {
   const t = useTranslations('Footer');
@@ -41,8 +42,9 @@ export function Footer() {
           </div>
         </div>
         
-        <div className="mt-12 pt-8 border-t border-primary-foreground/20 flex flex-col sm:flex-row justify-center items-center text-sm text-primary-foreground/60 gap-4">
-          <p>&copy; {new Date().getFullYear()} Vexx Watch Atelier. {t('rights')}</p>
+        <div className="mt-12 pt-8 border-t border-primary-foreground/20 flex flex-col md:flex-row justify-between items-center text-sm text-primary-foreground/60 gap-6">
+          <p className="text-center md:text-left">&copy; {new Date().getFullYear()} Vexx Watch Atelier. {t('rights')}</p>
+          <PaymentBadges />
         </div>
       </div>
     </footer>

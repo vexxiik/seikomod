@@ -8,8 +8,7 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { OrderActions } from "@/components/admin/OrderActions";
-
-export default async function AdminOrders() {
+import Link from "next/link";export default async function AdminOrders() {
   const orders = await prisma.order.findMany({
     include: {
       customer: true,
@@ -40,7 +39,11 @@ export default async function AdminOrders() {
           <TableBody>
             {orders.map((order) => (
               <TableRow key={order.id}>
-                <TableCell className="font-mono text-sm font-semibold text-accent">#{order.orderNumber || order.id.slice(-6).toUpperCase()}</TableCell>
+                <TableCell className="font-mono text-sm font-semibold text-accent">
+                  <Link href={`/admin/orders/${order.id}`} className="hover:underline text-blue-600 dark:text-blue-400">
+                    #{order.orderNumber || order.id.slice(-6).toUpperCase()}
+                  </Link>
+                </TableCell>
                 <TableCell>
                   <div className="font-medium">{order.customer.name}</div>
                   <div className="text-xs text-muted-foreground">{order.customer.email}</div>
