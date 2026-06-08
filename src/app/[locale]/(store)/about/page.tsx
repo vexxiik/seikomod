@@ -107,7 +107,7 @@ export default function AboutPage() {
                 viewport={{ once: true, margin: "-100px" }}
                 transition={{ duration: 1, delay: 0.2 }}
               >
-                <div className="absolute inset-0 bg-[url('/img/about-macro.png')] bg-cover bg-center" />
+                <div className="absolute inset-0 bg-[url('/img/about-tools.png')] bg-cover bg-center" />
                 <div className="absolute inset-0 bg-gradient-to-t from-background/40 to-transparent" />
               </motion.div>
               
@@ -118,7 +118,7 @@ export default function AboutPage() {
                 viewport={{ once: true, margin: "-100px" }}
                 transition={{ duration: 1, delay: 0.4 }}
               >
-                <div className="absolute inset-0 bg-[url('/img/about-tools.png')] bg-cover bg-center" />
+                <div className="absolute inset-0 bg-[url('/img/about-macro.png')] bg-cover bg-center" />
               </motion.div>
             </div>
 
