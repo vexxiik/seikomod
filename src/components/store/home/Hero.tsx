@@ -27,16 +27,7 @@ export function Hero() {
 
       <div className="container mx-auto px-4 relative z-10">
         <div className="max-w-2xl">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, ease: "easeOut" }}
-          >
-            <span className="inline-block py-1 px-3 rounded-full bg-primary/10 text-primary text-sm font-semibold tracking-wider mb-6 backdrop-blur-sm border border-primary/20">
-              {t('badge')}
-            </span>
-          </motion.div>
-          
+
           <motion.h1 
             className="font-heading text-4xl sm:text-5xl md:text-7xl font-bold text-foreground leading-tight mb-4 md:mb-6"
             initial={{ opacity: 0, y: 20 }}

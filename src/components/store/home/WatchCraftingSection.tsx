@@ -20,9 +20,7 @@ export function WatchCraftingSection() {
             transition={{ duration: 0.8, ease: "easeOut" }}
             className="space-y-8"
           >
-            <div className="inline-block px-4 py-1.5 bg-primary/5 text-primary text-sm font-semibold tracking-wider uppercase rounded-full border border-primary/10">
-              {t('badge')}
-            </div>
+
             <h2 className="font-heading text-4xl md:text-5xl lg:text-6xl font-bold leading-tight">
               {t('title1')} <br />
               <span className="text-accent italic">{t('title2')}</span>
@@ -62,13 +60,12 @@ export function WatchCraftingSection() {
           >
             <div className="aspect-[4/5] rounded-3xl overflow-hidden relative shadow-2xl bg-muted">
               <div className="absolute inset-0 bg-gradient-to-tr from-primary/20 to-transparent z-10" />
-              <video 
-                src="/video/seikomod.mp4" 
-                autoPlay 
-                loop 
-                muted 
-                playsInline
-                className="w-full h-full object-cover scale-[1.15] origin-center"
+              <Image 
+                src="/img/o_nas.webp" 
+                alt="Watch Crafting"
+                fill
+                sizes="(max-width: 768px) 100vw, 50vw"
+                className="object-cover origin-center"
               />
             </div>
             
