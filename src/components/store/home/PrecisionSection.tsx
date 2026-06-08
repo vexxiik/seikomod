@@ -1,79 +1,73 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Diamond, Settings, Wrench } from "lucide-react";
-
+import Image from "next/image";
 import { useTranslations } from "next-intl";
 
-const features = [
-  {
-    icon: Wrench,
-    titleKey: "f1Title",
-    descKey: "f1Desc"
-  },
-  {
-    icon: Settings,
-    titleKey: "f2Title",
-    descKey: "f2Desc"
-  },
-  {
-    icon: Diamond,
-    titleKey: "f3Title",
-    descKey: "f3Desc"
-  }
-];
-
 export function PrecisionSection() {
-  const t = useTranslations('Precision');
+  const t = useTranslations('About');
+
   return (
-    <section className="py-24 bg-primary text-primary-foreground">
+    <section className="py-24 bg-background">
       <div className="container mx-auto px-4">
-        <div className="text-center max-w-3xl mx-auto mb-16">
-          <motion.h2 
-            className="font-heading text-4xl md:text-5xl font-bold mb-6"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+          
+          {/* Text Content */}
+          <motion.div
+            initial={{ opacity: 0, x: -20 }}
+            whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
+            className="max-w-xl"
           >
-            {t('title')}
-          </motion.h2>
-          <motion.p 
-            className="text-primary-foreground/80 text-lg leading-relaxed"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
+            <div className="flex items-center gap-4 mb-6">
+              <div className="w-12 h-[2px] bg-accent" />
+              <span className="font-sans text-xs font-bold tracking-widest uppercase text-accent">
+                {t('philBadge')}
+              </span>
+            </div>
+            
+            <h2 className="font-heading text-4xl md:text-5xl font-bold mb-8 text-foreground leading-tight">
+              {t('philTitle')}
+            </h2>
+            
+            <div className="space-y-6 text-muted-foreground text-lg leading-relaxed mb-12">
+              <p>{t('philDesc1')}</p>
+              <p>{t('philDesc2')}</p>
+            </div>
+            
+            <div className="flex flex-col sm:flex-row gap-8 sm:gap-12 pt-8 border-t border-border">
+              <div className="font-heading font-bold text-xl text-foreground whitespace-nowrap">
+                {t('stat1')}
+              </div>
+              <div className="font-heading font-bold text-xl text-foreground whitespace-nowrap">
+                {t('stat2')}
+              </div>
+              <div className="font-heading font-bold text-xl text-foreground whitespace-nowrap">
+                {t('stat3')}
+              </div>
+            </div>
+          </motion.div>
+          
+          {/* Image Content */}
+          <motion.div
+            initial={{ opacity: 0, x: 20 }}
+            whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.2 }}
+            className="relative"
           >
-            {t('subtitle')}
-          </motion.p>
-        </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-12 max-w-5xl mx-auto">
-          {features.map((feature, index) => (
-            <motion.div 
-              key={index}
-              className="flex flex-col items-center text-center group"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: 0.3 + index * 0.1 }}
-            >
-              <div className="relative h-24 w-24 mb-8 group-hover:-translate-y-2 transition-transform duration-500">
-                {/* Glow effect */}
-                <div className="absolute inset-0 bg-accent/20 rounded-full blur-2xl group-hover:bg-accent/40 transition-colors duration-500" />
-                
-                {/* Icon Container */}
-                <div className="relative h-full w-full rounded-full border border-accent/20 bg-primary/50 backdrop-blur-sm flex items-center justify-center group-hover:border-accent transition-all duration-500 shadow-[0_0_30px_-10px_rgba(0,0,0,0.5)]">
-                  <feature.icon className="h-10 w-10 text-accent" strokeWidth={1} />
-                </div>
-              </div>
-              <h3 className="text-xl font-semibold mb-3 font-heading">{t(feature.titleKey as any)}</h3>
-              <p className="text-primary-foreground/70 leading-relaxed text-sm">
-                {t(feature.descKey as any)}
-              </p>
-            </motion.div>
-          ))}
+            <div className="relative aspect-[4/5] rounded-3xl overflow-hidden shadow-2xl bg-muted">
+              <Image 
+                src="/img/seiko_nh35_movement.png" 
+                alt="Seiko Movement" 
+                fill 
+                className="object-cover"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent" />
+            </div>
+          </motion.div>
+          
         </div>
       </div>
     </section>
