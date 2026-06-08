@@ -57,7 +57,7 @@ export function Navbar() {
             {isMobileMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
           </Button>
           <Link href="/" className="flex items-center gap-3 z-50" onClick={() => setIsMobileMenuOpen(false)}>
-            <img src="/icon.svg" alt="Vexx Watch Atelier" className="w-10 h-10 shrink-0 drop-shadow-sm" />
+            <img src="/icon.svg" alt="Vexx Watch Atelier" className="hidden md:block w-10 h-10 shrink-0 drop-shadow-sm" />
             <div className="font-heading font-bold text-xl md:text-2xl tracking-tight text-primary flex flex-col justify-center">
               <span className="leading-none">VEXX WATCH</span>
               <span className="font-sans text-[10px] md:text-xs font-normal tracking-widest text-muted-foreground uppercase mt-1 leading-none">
