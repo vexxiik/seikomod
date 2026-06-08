@@ -5,195 +5,213 @@ import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
 import { Link } from "@/i18n/routing";
 import { Button } from "@/components/ui/button";
-import { Diamond, Wrench, Clock, Shield, ArrowDown, Settings, Target } from "lucide-react";
+import { Diamond, Wrench, Clock, Shield, ArrowDown, Settings, ChevronRight } from "lucide-react";
 
 export default function AboutPage() {
   const t = useTranslations('About');
   const heroRef = useRef(null);
   
-  // Parallax pro hero obrázek
   const { scrollYProgress } = useScroll({
     target: heroRef,
     offset: ["start start", "end start"]
   });
   
-  const y = useTransform(scrollYProgress, [0, 1], ["0%", "50%"]);
-  const opacity = useTransform(scrollYProgress, [0, 1], [1, 0]);
+  const y = useTransform(scrollYProgress, [0, 1], ["0%", "40%"]);
+  const opacity = useTransform(scrollYProgress, [0, 1], [1, 0.3]);
 
   return (
-    <div className="min-h-screen bg-background overflow-hidden">
+    <div className="min-h-screen bg-[#050505] text-white selection:bg-accent/30 overflow-hidden">
       
-      {/* 1. Hero Sekce s Parallaxem */}
-      <section ref={heroRef} className="relative min-h-[90vh] flex items-center overflow-hidden pt-20 pb-12">
-        <div className="container mx-auto px-4 relative z-10">
-          <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-20">
-            
-            {/* Image (Left) */}
-            <motion.div 
-              style={{ y, opacity }}
-              className="w-full lg:w-1/2 aspect-square max-h-[600px] rounded-[3rem] overflow-hidden relative order-2 lg:order-1"
-            >
-              <div 
-                className="absolute inset-0 bg-cover bg-center" 
-                style={{ backgroundImage: "url('/img/seiko_nh35_movement.png')" }}
-              />
-              <div className="absolute inset-0 bg-gradient-to-tr from-background/20 to-transparent" />
-            </motion.div>
-            
-            {/* Text (Right) */}
-            <motion.div
-              className="w-full lg:w-1/2 text-left order-1 lg:order-2"
-              initial={{ opacity: 0, x: 50 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.8, ease: "easeOut" }}
-            >
-              <h1 className="font-heading text-5xl lg:text-7xl xl:text-8xl font-black mb-6 leading-tight tracking-tighter">
-                {t('heroTitle')} <br />
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-accent to-yellow-600 italic pr-2">
-                  {t('heroTitleAccent')}
-                </span>
-              </h1>
-              <p className="text-lg md:text-xl text-muted-foreground leading-relaxed font-light max-w-xl mb-12">
-                {t('heroSubtitle')}
-              </p>
-            </motion.div>
+      {/* 1. Cinematic Hero */}
+      <section ref={heroRef} className="relative h-screen min-h-[800px] flex items-center justify-center overflow-hidden">
+        <motion.div style={{ y, opacity }} className="absolute inset-0 z-0">
+          <div className="absolute inset-0 bg-[url('/img/about-hero.png')] bg-cover bg-center bg-no-repeat" />
+          <div className="absolute inset-0 bg-gradient-to-b from-black/80 via-black/40 to-[#050505]" />
+        </motion.div>
 
-          </div>
+        <div className="container mx-auto px-4 relative z-10 text-center mt-20">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1.2, ease: "easeOut" }}
+          >
+            <span className="text-accent font-sans text-sm md:text-base font-bold tracking-[0.3em] uppercase mb-6 block drop-shadow-md">
+              {t('heroBadge')}
+            </span>
+            <h1 className="font-heading text-5xl md:text-7xl lg:text-9xl font-black mb-8 leading-none tracking-tighter drop-shadow-2xl">
+              {t('heroTitle')}<br/>
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-accent to-yellow-600 italic">
+                {t('heroTitleAccent')}
+              </span>
+            </h1>
+            <p className="text-lg md:text-2xl text-white/80 font-light max-w-2xl mx-auto leading-relaxed drop-shadow-md">
+              {t('heroSubtitle')}
+            </p>
+          </motion.div>
         </div>
 
         <motion.div 
-          className="absolute bottom-10 left-1/2 -translate-x-1/2 z-20 flex flex-col items-center text-muted-foreground"
+          className="absolute bottom-12 left-1/2 -translate-x-1/2 z-20 flex flex-col items-center text-white/50"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ delay: 1, duration: 1 }}
+          transition={{ delay: 1.5, duration: 1 }}
         >
-          <span className="text-xs uppercase tracking-widest mb-2 font-semibold">{t('heroScroll')}</span>
-          <motion.div
-            animate={{ y: [0, 10, 0] }}
-            transition={{ repeat: Infinity, duration: 2, ease: "easeInOut" }}
-          >
-            <ArrowDown className="w-5 h-5 text-accent" />
+          <span className="text-[10px] uppercase tracking-[0.2em] mb-4 font-semibold">{t('heroScroll')}</span>
+          <motion.div animate={{ y: [0, 10, 0] }} transition={{ repeat: Infinity, duration: 2, ease: "easeInOut" }}>
+            <div className="w-[1px] h-12 bg-gradient-to-b from-accent to-transparent" />
           </motion.div>
         </motion.div>
       </section>
 
-      {/* 2. Naše filozofie (Storytelling Split Section) */}
-      <section className="py-24 md:py-32 relative z-20">
-        <div className="container mx-auto px-4">
-          <div className="flex flex-col lg:flex-row-reverse gap-16 items-center max-w-7xl mx-auto">
+      {/* 2. Storytelling / Philosophy */}
+      <section className="py-32 md:py-48 relative z-20 bg-[#050505]">
+        <div className="container mx-auto px-4 max-w-7xl">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
+            
+            {/* Left side text */}
             <motion.div 
-              className="lg:w-1/2 relative"
-              initial={{ opacity: 0, x: 50 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true, margin: "-100px" }}
-              transition={{ duration: 0.8 }}
-            >
-              <div className="aspect-[4/5] rounded-3xl overflow-hidden shadow-2xl relative">
-                <div 
-                  className="absolute inset-0 bg-cover bg-center"
-                  style={{ backgroundImage: "url('/img/o_nas.webp')" }}
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent opacity-60" />
-              </div>
-              
-
-
-            </motion.div>
-
-            <motion.div 
-              className="lg:w-1/2 space-y-8"
+              className="lg:col-span-5 space-y-10"
               initial={{ opacity: 0, x: -50 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true, margin: "-100px" }}
-              transition={{ duration: 0.8 }}
+              transition={{ duration: 1 }}
             >
-              <div className="flex items-center gap-3 text-accent font-bold uppercase tracking-widest text-sm">
-                <span className="w-12 h-[2px] bg-accent"></span>
+              <div className="flex items-center gap-4 text-accent tracking-[0.2em] text-xs uppercase font-bold">
+                <span className="w-8 h-[1px] bg-accent"></span>
                 {t('philBadge')}
               </div>
-              <h2 className="font-heading text-4xl md:text-5xl font-bold leading-tight">
+              <h2 className="font-heading text-4xl md:text-5xl lg:text-6xl font-bold leading-[1.1]">
                 {t('philTitle')}
               </h2>
-              <div className="space-y-6 text-muted-foreground text-lg leading-relaxed">
+              <div className="space-y-6 text-white/60 text-lg lg:text-xl font-light leading-relaxed">
                 <p>{t('philDesc1')}</p>
                 <p>{t('philDesc2')}</p>
               </div>
               
-              <div className="pt-8 border-t border-border/50 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 sm:gap-6">
-                <div className="text-lg md:text-xl lg:text-2xl font-heading font-bold text-foreground tracking-tight">{t('stat1')}</div>
-                <div className="text-lg md:text-xl lg:text-2xl font-heading font-bold text-foreground tracking-tight">{t('stat2')}</div>
-                <div className="text-lg md:text-xl lg:text-2xl font-heading font-bold text-foreground tracking-tight">{t('stat3')}</div>
+              <div className="pt-8 grid grid-cols-2 gap-8 border-t border-white/10">
+                <div>
+                  <div className="text-3xl font-heading font-bold text-white mb-2">{t('philStat1Val')}</div>
+                  <div className="text-sm text-accent uppercase tracking-widest">{t('philStat1Label')}</div>
+                </div>
+                <div>
+                  <div className="text-3xl font-heading font-bold text-white mb-2">{t('philStat2Val')}</div>
+                  <div className="text-sm text-accent uppercase tracking-widest">{t('philStat2Label')}</div>
+                </div>
               </div>
             </motion.div>
+
+            {/* Right side Images */}
+            <div className="lg:col-span-7 relative h-[500px] md:h-[700px] w-full mt-10 lg:mt-0">
+              <motion.div 
+                className="absolute top-0 right-0 w-3/4 h-3/4 rounded-3xl overflow-hidden shadow-2xl"
+                initial={{ opacity: 0, y: 50 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-100px" }}
+                transition={{ duration: 1, delay: 0.2 }}
+              >
+                <div className="absolute inset-0 bg-[url('/img/about-macro.png')] bg-cover bg-center" />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
+              </motion.div>
+              
+              <motion.div 
+                className="absolute bottom-0 left-0 w-[55%] h-[55%] rounded-3xl overflow-hidden shadow-2xl border-[6px] border-[#050505]"
+                initial={{ opacity: 0, y: 50, x: -20 }}
+                whileInView={{ opacity: 1, y: 0, x: 0 }}
+                viewport={{ once: true, margin: "-100px" }}
+                transition={{ duration: 1, delay: 0.4 }}
+              >
+                <div className="absolute inset-0 bg-[url('/img/about-tools.png')] bg-cover bg-center" />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
+              </motion.div>
+            </div>
+
           </div>
         </div>
       </section>
 
-      {/* 3. Materiály a zpracování (Bento Grid) */}
-      <section className="py-24 md:py-32 bg-muted/30 relative">
+      {/* 3. Materials & Craftsmanship */}
+      <section className="py-32 md:py-48 bg-[#0a0a0a] relative overflow-hidden">
+        <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-white/10 to-transparent" />
+        
         <div className="container mx-auto px-4 max-w-7xl">
-          <div className="text-center mb-16 md:mb-24">
-            <span className="text-accent font-bold uppercase tracking-widest text-sm mb-4 block">
+          <div className="text-center mb-20 md:mb-32">
+            <span className="text-accent font-bold uppercase tracking-[0.2em] text-xs mb-6 block">
               {t('materialsBadge')}
             </span>
-            <h2 className="font-heading text-4xl md:text-5xl font-bold">
+            <h2 className="font-heading text-4xl md:text-5xl lg:text-6xl font-bold">
               {t('materialsTitle')}
             </h2>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {[
-              { icon: Diamond, title: t('m1'), desc: t('d1'), delay: 0 },
-              { icon: Settings, title: t('m2'), desc: t('d2'), delay: 0.1 },
-              { icon: Clock, title: t('m3'), desc: t('d3'), delay: 0.2 },
-              { icon: Shield, title: t('m4'), desc: t('d4'), delay: 0.3 }
-            ].map((item, i) => (
-              <motion.div
-                key={i}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "-50px" }}
-                transition={{ duration: 0.6, delay: item.delay }}
-                className="bg-background border border-border/50 p-8 rounded-3xl shadow-lg hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 group"
-              >
-                <div className="w-14 h-14 rounded-2xl bg-accent/10 flex items-center justify-center mb-6 group-hover:bg-accent group-hover:text-accent-foreground transition-colors duration-300">
-                  <item.icon className="w-7 h-7 text-accent group-hover:text-background transition-colors" />
-                </div>
-                <h3 className="font-heading text-2xl font-bold mb-4">{item.title}</h3>
-                <p className="text-muted-foreground leading-relaxed text-sm">
-                  {item.desc}
-                </p>
-              </motion.div>
-            ))}
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24">
+            {/* Left Col - Materials Image */}
+            <motion.div 
+              className="relative aspect-[3/4] md:aspect-square lg:aspect-[3/4] rounded-3xl overflow-hidden shadow-2xl"
+              initial={{ opacity: 0, scale: 0.95 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true, margin: "-100px" }}
+              transition={{ duration: 1 }}
+            >
+              <div className="absolute inset-0 bg-[url('/img/about-materials.png')] bg-cover bg-center" />
+              <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0a] via-black/20 to-transparent" />
+            </motion.div>
+
+            {/* Right Col - List of materials */}
+            <div className="flex flex-col justify-center space-y-12 md:space-y-16">
+              {[
+                { icon: Diamond, title: t('m1'), desc: t('d1') },
+                { icon: Shield, title: t('m4'), desc: t('d4') },
+                { icon: Settings, title: t('m2'), desc: t('d2') },
+                { icon: Clock, title: t('m3'), desc: t('d3') },
+              ].map((item, i) => (
+                <motion.div
+                  key={i}
+                  initial={{ opacity: 0, x: 30 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true, margin: "-100px" }}
+                  transition={{ duration: 0.6, delay: i * 0.1 }}
+                  className="group"
+                >
+                  <div className="flex items-start gap-6">
+                    <div className="w-14 h-14 rounded-full border border-white/10 flex items-center justify-center shrink-0 group-hover:border-accent group-hover:bg-accent/10 transition-colors duration-500">
+                      <item.icon className="w-6 h-6 text-accent" strokeWidth={1.5} />
+                    </div>
+                    <div>
+                      <h3 className="font-heading text-2xl font-bold mb-3 group-hover:text-accent transition-colors duration-500">{item.title}</h3>
+                      <p className="text-white/60 font-light leading-relaxed text-lg">
+                        {item.desc}
+                      </p>
+                    </div>
+                  </div>
+                </motion.div>
+              ))}
+            </div>
           </div>
         </div>
       </section>
 
-      {/* 4. CTA Sekce */}
-      <section className="py-32 relative overflow-hidden">
-        <div className="absolute inset-0 bg-accent/5" />
-        <div 
-          className="absolute inset-0 opacity-10 bg-[url('https://images.unsplash.com/photo-1594534475808-b18fc33b045e?auto=format&fit=crop&w=2000&q=80')] bg-cover bg-fixed bg-center mix-blend-overlay"
-        />
+      {/* 4. CTA Section */}
+      <section className="py-32 md:py-48 relative overflow-hidden bg-[#050505]">
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-accent/5 via-transparent to-transparent" />
         
         <div className="container mx-auto px-4 relative z-10 text-center">
           <motion.div
-            initial={{ opacity: 0, scale: 0.9 }}
-            whileInView={{ opacity: 1, scale: 1 }}
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.7 }}
-            className="max-w-3xl mx-auto bg-background/40 backdrop-blur-xl border border-accent/20 p-12 md:p-16 rounded-[3rem] shadow-2xl"
+            transition={{ duration: 1 }}
+            className="max-w-4xl mx-auto"
           >
-            <h2 className="font-heading text-4xl md:text-5xl font-bold mb-6">
+            <h2 className="font-heading text-5xl md:text-7xl font-bold mb-8">
               {t('ctaTitle')}
             </h2>
-            <p className="text-xl text-muted-foreground mb-10 font-light">
+            <p className="text-xl md:text-2xl text-white/50 font-light mb-12">
               {t('ctaDesc')}
             </p>
             <Link href="/configurator">
-              <Button size="lg" className="h-14 px-10 text-lg bg-accent text-accent-foreground hover:bg-accent/90 rounded-full shadow-lg hover:shadow-accent/25 hover:-translate-y-1 transition-all">
-                <Wrench className="w-5 h-5 mr-3" />
+              <Button size="lg" className="h-16 px-12 text-lg bg-accent text-accent-foreground hover:bg-accent/90 rounded-full font-bold uppercase tracking-widest shadow-[0_0_40px_-10px_rgba(251,191,36,0.3)] hover:shadow-[0_0_60px_-10px_rgba(251,191,36,0.5)] transition-all group">
                 {t('ctaBtn')}
+                <ChevronRight className="w-5 h-5 ml-3 group-hover:translate-x-1 transition-transform" />
               </Button>
             </Link>
           </motion.div>

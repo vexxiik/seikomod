@@ -1,6 +1,6 @@
 "use client";
 
-import { Link } from "@/i18n/routing";
+import { Link, usePathname } from "@/i18n/routing";
 import NextLink from "next/link";
 import { ShoppingCart, Menu, User, LogOut, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -22,6 +22,7 @@ import { LanguageSwitcher } from "./LanguageSwitcher";
 import { useTranslations } from "next-intl";
 
 export function Navbar() {
+  const pathname = usePathname();
   const t = useTranslations('Navigation');
   const tAuth = useTranslations('Auth');
   const { items } = useCart();
@@ -68,16 +69,16 @@ export function Navbar() {
         </div>
 
         <nav className="hidden md:flex items-center gap-8 font-medium">
-          <Link href="/" className="text-foreground hover:text-accent transition-colors">
+          <Link href="/" className={`transition-colors ${pathname === '/' ? 'text-accent' : 'text-foreground hover:text-accent'}`}>
             {t('home')}
           </Link>
-          <Link href="/products" className="text-foreground hover:text-accent transition-colors">
+          <Link href="/products" className={`transition-colors ${pathname === '/products' ? 'text-accent' : 'text-foreground hover:text-accent'}`}>
             {t('products')}
           </Link>
-          <Link href="/configurator" className="text-foreground hover:text-accent transition-colors">
+          <Link href="/configurator" className={`transition-colors ${pathname === '/configurator' ? 'text-accent' : 'text-foreground hover:text-accent'}`}>
             {t('configurator')}
           </Link>
-          <Link href="/about" className="text-foreground hover:text-accent transition-colors">
+          <Link href="/about" className={`transition-colors ${pathname === '/about' ? 'text-accent' : 'text-foreground hover:text-accent'}`}>
             {t('about')}
           </Link>
         </nav>
@@ -160,16 +161,16 @@ export function Navbar() {
             className="md:hidden absolute top-full left-0 w-full bg-background border-b shadow-xl flex flex-col p-4 z-40"
           >
             <nav className="flex flex-col gap-4 font-medium text-lg">
-              <Link href="/" className="px-4 py-3 hover:bg-muted rounded-lg transition-colors" onClick={() => setIsMobileMenuOpen(false)}>
+              <Link href="/" className={`px-4 py-3 rounded-lg transition-colors ${pathname === '/' ? 'text-accent bg-accent/10' : 'hover:bg-muted'}`} onClick={() => setIsMobileMenuOpen(false)}>
                 {t('home')}
               </Link>
-              <Link href="/products" className="px-4 py-3 hover:bg-muted rounded-lg transition-colors" onClick={() => setIsMobileMenuOpen(false)}>
+              <Link href="/products" className={`px-4 py-3 rounded-lg transition-colors ${pathname === '/products' ? 'text-accent bg-accent/10' : 'hover:bg-muted'}`} onClick={() => setIsMobileMenuOpen(false)}>
                 {t('products')}
               </Link>
-              <Link href="/configurator" className="px-4 py-3 text-accent hover:bg-accent/10 rounded-lg transition-colors" onClick={() => setIsMobileMenuOpen(false)}>
+              <Link href="/configurator" className={`px-4 py-3 rounded-lg transition-colors ${pathname === '/configurator' ? 'text-accent bg-accent/10' : 'hover:bg-muted'}`} onClick={() => setIsMobileMenuOpen(false)}>
                 {t('configurator')}
               </Link>
-              <Link href="/about" className="px-4 py-3 hover:bg-muted rounded-lg transition-colors" onClick={() => setIsMobileMenuOpen(false)}>
+              <Link href="/about" className={`px-4 py-3 rounded-lg transition-colors ${pathname === '/about' ? 'text-accent bg-accent/10' : 'hover:bg-muted'}`} onClick={() => setIsMobileMenuOpen(false)}>
                 {t('about')}
               </Link>
               
