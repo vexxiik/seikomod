@@ -17,16 +17,16 @@ export default function AboutPage() {
   });
   
   const y = useTransform(scrollYProgress, [0, 1], ["0%", "40%"]);
-  const opacity = useTransform(scrollYProgress, [0, 1], [1, 0.3]);
+  const opacity = useTransform(scrollYProgress, [0, 1], [1, 0]);
 
   return (
-    <div className="min-h-screen bg-[#050505] text-white selection:bg-accent/30 overflow-hidden">
+    <div className="min-h-screen bg-background text-foreground overflow-hidden">
       
-      {/* 1. Cinematic Hero */}
+      {/* 1. Cinematic Hero - Light Theme */}
       <section ref={heroRef} className="relative h-screen min-h-[800px] flex items-center justify-center overflow-hidden">
         <motion.div style={{ y, opacity }} className="absolute inset-0 z-0">
           <div className="absolute inset-0 bg-[url('/img/about-hero.png')] bg-cover bg-center bg-no-repeat" />
-          <div className="absolute inset-0 bg-gradient-to-b from-black/80 via-black/40 to-[#050505]" />
+          <div className="absolute inset-0 bg-gradient-to-b from-background/90 via-background/60 to-background" />
         </motion.div>
 
         <div className="container mx-auto px-4 relative z-10 text-center mt-20">
@@ -35,23 +35,23 @@ export default function AboutPage() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1.2, ease: "easeOut" }}
           >
-            <span className="text-accent font-sans text-sm md:text-base font-bold tracking-[0.3em] uppercase mb-6 block drop-shadow-md">
+            <span className="text-accent font-sans text-sm md:text-base font-bold tracking-[0.3em] uppercase mb-6 block">
               {t('heroBadge')}
             </span>
-            <h1 className="font-heading text-5xl md:text-7xl lg:text-9xl font-black mb-8 leading-none tracking-tighter drop-shadow-2xl">
+            <h1 className="font-heading text-5xl md:text-7xl lg:text-9xl font-black mb-8 leading-none tracking-tighter text-primary">
               {t('heroTitle')}<br/>
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-accent to-yellow-600 italic">
                 {t('heroTitleAccent')}
               </span>
             </h1>
-            <p className="text-lg md:text-2xl text-white/80 font-light max-w-2xl mx-auto leading-relaxed drop-shadow-md">
+            <p className="text-lg md:text-2xl text-muted-foreground font-light max-w-2xl mx-auto leading-relaxed">
               {t('heroSubtitle')}
             </p>
           </motion.div>
         </div>
 
         <motion.div 
-          className="absolute bottom-12 left-1/2 -translate-x-1/2 z-20 flex flex-col items-center text-white/50"
+          className="absolute bottom-12 left-1/2 -translate-x-1/2 z-20 flex flex-col items-center text-muted-foreground"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 1.5, duration: 1 }}
@@ -64,7 +64,7 @@ export default function AboutPage() {
       </section>
 
       {/* 2. Storytelling / Philosophy */}
-      <section className="py-32 md:py-48 relative z-20 bg-[#050505]">
+      <section className="py-32 md:py-48 relative z-20 bg-background">
         <div className="container mx-auto px-4 max-w-7xl">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
             
@@ -80,21 +80,21 @@ export default function AboutPage() {
                 <span className="w-8 h-[1px] bg-accent"></span>
                 {t('philBadge')}
               </div>
-              <h2 className="font-heading text-4xl md:text-5xl lg:text-6xl font-bold leading-[1.1]">
+              <h2 className="font-heading text-4xl md:text-5xl lg:text-6xl font-bold leading-[1.1] text-primary">
                 {t('philTitle')}
               </h2>
-              <div className="space-y-6 text-white/60 text-lg lg:text-xl font-light leading-relaxed">
+              <div className="space-y-6 text-muted-foreground text-lg lg:text-xl font-light leading-relaxed">
                 <p>{t('philDesc1')}</p>
                 <p>{t('philDesc2')}</p>
               </div>
               
-              <div className="pt-8 grid grid-cols-2 gap-8 border-t border-white/10">
+              <div className="pt-8 grid grid-cols-2 gap-8 border-t border-border/50">
                 <div>
-                  <div className="text-3xl font-heading font-bold text-white mb-2">{t('philStat1Val')}</div>
+                  <div className="text-3xl font-heading font-bold text-primary mb-2">{t('philStat1Val')}</div>
                   <div className="text-sm text-accent uppercase tracking-widest">{t('philStat1Label')}</div>
                 </div>
                 <div>
-                  <div className="text-3xl font-heading font-bold text-white mb-2">{t('philStat2Val')}</div>
+                  <div className="text-3xl font-heading font-bold text-primary mb-2">{t('philStat2Val')}</div>
                   <div className="text-sm text-accent uppercase tracking-widest">{t('philStat2Label')}</div>
                 </div>
               </div>
@@ -103,25 +103,24 @@ export default function AboutPage() {
             {/* Right side Images */}
             <div className="lg:col-span-7 relative h-[500px] md:h-[700px] w-full mt-10 lg:mt-0">
               <motion.div 
-                className="absolute top-0 right-0 w-3/4 h-3/4 rounded-3xl overflow-hidden shadow-2xl"
+                className="absolute top-0 right-0 w-3/4 h-3/4 rounded-3xl overflow-hidden shadow-xl"
                 initial={{ opacity: 0, y: 50 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-100px" }}
                 transition={{ duration: 1, delay: 0.2 }}
               >
                 <div className="absolute inset-0 bg-[url('/img/about-macro.png')] bg-cover bg-center" />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
+                <div className="absolute inset-0 bg-gradient-to-t from-background/40 to-transparent" />
               </motion.div>
               
               <motion.div 
-                className="absolute bottom-0 left-0 w-[55%] h-[55%] rounded-3xl overflow-hidden shadow-2xl border-[6px] border-[#050505]"
+                className="absolute bottom-0 left-0 w-[55%] h-[55%] rounded-3xl overflow-hidden shadow-2xl border-[6px] border-background"
                 initial={{ opacity: 0, y: 50, x: -20 }}
                 whileInView={{ opacity: 1, y: 0, x: 0 }}
                 viewport={{ once: true, margin: "-100px" }}
                 transition={{ duration: 1, delay: 0.4 }}
               >
                 <div className="absolute inset-0 bg-[url('/img/about-tools.png')] bg-cover bg-center" />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
               </motion.div>
             </div>
 
@@ -130,15 +129,15 @@ export default function AboutPage() {
       </section>
 
       {/* 3. Materials & Craftsmanship */}
-      <section className="py-32 md:py-48 bg-[#0a0a0a] relative overflow-hidden">
-        <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-white/10 to-transparent" />
+      <section className="py-32 md:py-48 bg-muted/30 relative overflow-hidden">
+        <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-border to-transparent" />
         
         <div className="container mx-auto px-4 max-w-7xl">
           <div className="text-center mb-20 md:mb-32">
             <span className="text-accent font-bold uppercase tracking-[0.2em] text-xs mb-6 block">
               {t('materialsBadge')}
             </span>
-            <h2 className="font-heading text-4xl md:text-5xl lg:text-6xl font-bold">
+            <h2 className="font-heading text-4xl md:text-5xl lg:text-6xl font-bold text-primary">
               {t('materialsTitle')}
             </h2>
           </div>
@@ -146,14 +145,14 @@ export default function AboutPage() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24">
             {/* Left Col - Materials Image */}
             <motion.div 
-              className="relative aspect-[3/4] md:aspect-square lg:aspect-[3/4] rounded-3xl overflow-hidden shadow-2xl"
+              className="relative aspect-[3/4] md:aspect-square lg:aspect-[3/4] rounded-3xl overflow-hidden shadow-2xl bg-white"
               initial={{ opacity: 0, scale: 0.95 }}
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true, margin: "-100px" }}
               transition={{ duration: 1 }}
             >
               <div className="absolute inset-0 bg-[url('/img/about-materials.png')] bg-cover bg-center" />
-              <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0a] via-black/20 to-transparent" />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/10 to-transparent" />
             </motion.div>
 
             {/* Right Col - List of materials */}
@@ -173,12 +172,12 @@ export default function AboutPage() {
                   className="group"
                 >
                   <div className="flex items-start gap-6">
-                    <div className="w-14 h-14 rounded-full border border-white/10 flex items-center justify-center shrink-0 group-hover:border-accent group-hover:bg-accent/10 transition-colors duration-500">
+                    <div className="w-14 h-14 rounded-full border border-primary/10 bg-white flex items-center justify-center shrink-0 group-hover:border-accent group-hover:bg-accent/10 transition-all duration-500 shadow-sm">
                       <item.icon className="w-6 h-6 text-accent" strokeWidth={1.5} />
                     </div>
                     <div>
-                      <h3 className="font-heading text-2xl font-bold mb-3 group-hover:text-accent transition-colors duration-500">{item.title}</h3>
-                      <p className="text-white/60 font-light leading-relaxed text-lg">
+                      <h3 className="font-heading text-2xl font-bold mb-3 text-primary group-hover:text-accent transition-colors duration-500">{item.title}</h3>
+                      <p className="text-muted-foreground font-light leading-relaxed text-lg">
                         {item.desc}
                       </p>
                     </div>
@@ -191,8 +190,9 @@ export default function AboutPage() {
       </section>
 
       {/* 4. CTA Section */}
-      <section className="py-32 md:py-48 relative overflow-hidden bg-[#050505]">
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-accent/5 via-transparent to-transparent" />
+      <section className="py-32 md:py-48 relative overflow-hidden bg-background">
+        <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-border to-transparent" />
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-accent/5 via-transparent to-transparent opacity-50" />
         
         <div className="container mx-auto px-4 relative z-10 text-center">
           <motion.div
@@ -202,10 +202,10 @@ export default function AboutPage() {
             transition={{ duration: 1 }}
             className="max-w-4xl mx-auto"
           >
-            <h2 className="font-heading text-5xl md:text-7xl font-bold mb-8">
+            <h2 className="font-heading text-5xl md:text-7xl font-bold mb-8 text-primary">
               {t('ctaTitle')}
             </h2>
-            <p className="text-xl md:text-2xl text-white/50 font-light mb-12">
+            <p className="text-xl md:text-2xl text-muted-foreground font-light mb-12">
               {t('ctaDesc')}
             </p>
             <Link href="/configurator">
