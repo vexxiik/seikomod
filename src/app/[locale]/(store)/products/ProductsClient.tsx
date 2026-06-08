@@ -7,11 +7,15 @@ import { Button } from "@/components/ui/button";
 import { Link } from "@/i18n/routing";
 import { ShoppingCart, Filter } from "lucide-react";
 import { useTranslations, useLocale } from "next-intl";
+import { useCart } from "@/store/useCart";
+import { useRouter } from "@/i18n/routing";
 
 // Získáme produkty jako props ze serverové komponenty
 export default function ProductsClient({ initialProducts = [] }: { initialProducts: any[] }) {
   const t = useTranslations('Products');
   const locale = useLocale();
+  const { addItem } = useCart();
+  const router = useRouter();
 
   const translateSpec = (text: string | null) => {
     if (!text || locale !== 'en') return text;
@@ -89,36 +93,54 @@ const CATEGORIES = [t('all'), "Datejust", "GMT", "Nautilus"];
               exit={{ opacity: 0, scale: 0.9 }}
               transition={{ duration: 0.3 }}
             >
-              <Card className="overflow-hidden group border-none shadow-sm hover:shadow-xl transition-all duration-500 rounded-2xl bg-card">
-                <div className="relative aspect-[4/5] overflow-hidden bg-muted">
+              <Card className="relative overflow-hidden group border border-border/50 shadow-sm hover:shadow-2xl hover:border-accent/30 transition-all duration-500 rounded-2xl bg-card h-full flex flex-col">
+                <Link href={`/products/${product.id}`} className="absolute inset-0 z-10">
+                  <span className="sr-only">Zobrazit detail {product.name}</span>
+                </Link>
+
+                <div className="relative aspect-[4/5] overflow-hidden bg-gradient-to-b from-muted/50 to-muted/20">
                   {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img 
                     src={product.image} 
                     alt={product.name}
-                    className="object-cover w-full h-full group-hover:scale-105 transition-transform duration-700 ease-out"
+                    className="object-cover w-full h-full group-hover:scale-105 transition-transform duration-700 ease-out p-4"
                   />
-                  <div className="absolute top-4 left-4">
-                    <span className="bg-background/80 backdrop-blur-md px-3 py-1 text-xs font-semibold rounded-full border border-border">
+                  <div className="absolute top-4 left-4 z-20">
+                    <span className="bg-background px-3 py-1.5 text-[11px] font-bold tracking-widest uppercase rounded-full border border-border text-foreground shadow-sm">
                       {product.type === "Dress" || product.type === "Daydate" ? "Datejust" : product.type}
                     </span>
                   </div>
                   
-                  <div className="absolute inset-0 bg-primary/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center backdrop-blur-[2px]">
-                    <Link href={`/products/${product.id}`}>
-                      <Button className="bg-background text-foreground hover:bg-accent hover:text-accent-foreground translate-y-4 group-hover:translate-y-0 transition-all duration-300">
-                        {t('viewDetail')}
-                      </Button>
-                    </Link>
+                  {/* Hover Overlay */}
+                  <div className="absolute inset-0 bg-primary/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                    <span className="bg-background text-foreground px-6 py-3 rounded-full text-sm font-semibold shadow-2xl translate-y-4 group-hover:translate-y-0 transition-all duration-300 pointer-events-none border border-white/10">
+                      {t('viewDetail')}
+                    </span>
                   </div>
                 </div>
                 
-                <CardContent className="p-6">
-                  <h3 className="font-heading font-bold text-xl mb-2">{product.name}</h3>
+                <CardContent className="p-8 pb-4 flex-grow">
+                  <h3 className="font-heading font-bold text-2xl mb-2 group-hover:text-accent transition-colors">{product.name}</h3>
                   <p className="text-muted-foreground text-sm mb-4">{product.movement}</p>
                 </CardContent>
-                <CardFooter className="p-6 pt-0 flex justify-between items-center">
-                  <span className="font-bold text-lg">{product.price.toLocaleString("cs-CZ")} Kč</span>
-                  <Button size="icon" variant="ghost" className="rounded-full hover:bg-accent hover:text-accent-foreground">
+                <CardFooter className="p-8 pt-0 flex justify-between items-center relative z-20">
+                  <span className="font-bold text-xl">{product.price.toLocaleString("cs-CZ")} Kč</span>
+                  <Button 
+                    size="icon" 
+                    variant="ghost" 
+                    className="rounded-full hover:bg-accent hover:text-accent-foreground h-10 w-10 relative z-30"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      addItem({
+                        id: product.id,
+                        name: product.name,
+                        price: product.price as number,
+                        image: product.image,
+                        quantity: 1
+                      });
+                      router.push("/cart");
+                    }}
+                  >
                     <ShoppingCart className="h-5 w-5" />
                   </Button>
                 </CardFooter>
