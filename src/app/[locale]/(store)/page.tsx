@@ -8,7 +8,7 @@ export default async function HomePage() {
   const targetNames = [
     "Seiko Mod GMT Pepsi",
     "Seiko Mod Datejust Black",
-    "Seiko Mod Nautilus Blue"
+    "Seiko Mod GMT Batman"
   ];
   
   const rawProducts = await prisma.product.findMany({
