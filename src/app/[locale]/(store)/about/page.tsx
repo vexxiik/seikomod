@@ -36,9 +36,6 @@ export default function AboutPage() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1.2, ease: "easeOut" }}
           >
-            <span className="text-accent font-sans text-sm md:text-base font-bold tracking-[0.3em] uppercase mb-6 block drop-shadow-md">
-              {t('heroBadge')}
-            </span>
             <h1 className="font-heading text-5xl md:text-7xl lg:text-9xl font-black mb-8 leading-none tracking-tighter text-white drop-shadow-2xl">
               {t('heroTitle')}<br/>
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-accent to-yellow-600 italic">
@@ -52,7 +49,7 @@ export default function AboutPage() {
         </div>
 
         <motion.div 
-          className="absolute bottom-12 left-1/2 -translate-x-1/2 z-20 flex flex-col items-center text-foreground/40"
+          className="absolute bottom-12 left-1/2 -translate-x-1/2 z-20 flex flex-col items-center text-white/80"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 1.5, duration: 1 }}
