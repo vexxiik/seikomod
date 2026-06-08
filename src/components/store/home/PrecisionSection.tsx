@@ -11,14 +11,32 @@ export function PrecisionSection() {
     <section className="py-24 bg-background">
       <div className="container mx-auto px-4">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-          
-          {/* Text Content */}
+          {/* Image Content */}
           <motion.div
             initial={{ opacity: 0, x: -20 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className="max-w-xl"
+            className="relative w-full max-w-md mx-auto lg:mr-auto lg:ml-0"
+          >
+            <div className="relative aspect-[4/5] rounded-3xl overflow-hidden shadow-2xl bg-muted">
+              <Image 
+                src="/img/seiko_nh35_movement.png" 
+                alt="Seiko Movement" 
+                fill 
+                className="object-cover"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent" />
+            </div>
+          </motion.div>
+
+          {/* Text Content */}
+          <motion.div
+            initial={{ opacity: 0, x: 20 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            className="max-w-xl lg:ml-auto"
           >
             <div className="flex items-center gap-4 mb-6">
               <div className="w-12 h-[2px] bg-accent" />
@@ -48,26 +66,6 @@ export function PrecisionSection() {
               </div>
             </div>
           </motion.div>
-          
-          {/* Image Content */}
-          <motion.div
-            initial={{ opacity: 0, x: 20 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            className="relative"
-          >
-            <div className="relative aspect-[4/5] rounded-3xl overflow-hidden shadow-2xl bg-muted">
-              <Image 
-                src="/img/seiko_nh35_movement.png" 
-                alt="Seiko Movement" 
-                fill 
-                className="object-cover"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent" />
-            </div>
-          </motion.div>
-          
         </div>
       </div>
     </section>
