@@ -23,22 +23,22 @@ export default function CartPage() {
   const [step, setStep] = useState<"cart" | "checkout">("cart");
   const [mounted, setMounted] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [includeWatchBox, setIncludeWatchBox] = useState(false);
-  const [paymentMethod, setPaymentMethod] = useState<"card" | "cod">("card");
 
-  // Packeta state
-  const [packetaBranch, setPacketaBranch] = useState<{ id: string; name: string } | null>(null);
-  
-  // Discount state
-  const [discountCode, setDiscountCode] = useState("");
-  const [appliedDiscount, setAppliedDiscount] = useState<{code: string, discount: number, type: string} | null>(null);
+  // Discount UI state
   const [discountError, setDiscountError] = useState<string | null>(null);
   const [isCheckingDiscount, setIsCheckingDiscount] = useState(false);
 
   const router = useRouter();
   const { data: session } = useSession();
 
-  const { items, removeItem, clearCart } = useCart();
+  const { 
+    items, removeItem, clearCart,
+    includeWatchBox, setIncludeWatchBox,
+    paymentMethod, setPaymentMethod,
+    packetaBranch, setPacketaBranch,
+    discountCode, setDiscountCode,
+    appliedDiscount, setAppliedDiscount
+  } = useCart();
 
   useEffect(() => {
     setMounted(true);
