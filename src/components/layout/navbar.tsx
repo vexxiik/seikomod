@@ -153,13 +153,27 @@ export function Navbar() {
       {/* Mobile Menu Overlay */}
       <AnimatePresence>
         {isMobileMenuOpen && (
-          <motion.div 
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -20 }}
-            transition={{ duration: 0.2 }}
-            className="md:hidden absolute top-full left-0 w-full bg-background border-b shadow-xl flex flex-col p-4 z-40"
-          >
+          <>
+            {/* Backdrop pro kliknutí mimo */}
+            <motion.div
+              key="backdrop"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.2 }}
+              className="md:hidden fixed inset-0 top-[80px] z-30 bg-black/20 backdrop-blur-sm"
+              onClick={() => setIsMobileMenuOpen(false)}
+            />
+            
+            {/* Samotné menu */}
+            <motion.div 
+              key="menu"
+              initial={{ opacity: 0, y: -20 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -20 }}
+              transition={{ duration: 0.2 }}
+              className="md:hidden absolute top-full left-0 w-full bg-background border-b shadow-xl flex flex-col p-4 z-40"
+            >
             <nav className="flex flex-col gap-4 font-medium text-lg">
               <Link href="/" className={`px-4 py-3 rounded-lg transition-colors ${pathname === '/' ? 'text-accent bg-accent/10' : 'hover:bg-muted'}`} onClick={() => setIsMobileMenuOpen(false)}>
                 {t('home')}
