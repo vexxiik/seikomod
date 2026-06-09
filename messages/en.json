@@ -91,7 +91,8 @@
     "returns": "Returns and Complaints",
     "legal": "Legal Notice",
     "followUs": "Follow Us",
-    "rights": "All rights reserved."
+    "rights": "All rights reserved.",
+    "watchCare": "Watch Care"
   },
   "Common": {
     "cart": "Cart",
@@ -331,5 +332,9 @@
   "Privacy": {
     "title": "Privacy Policy (GDPR)",
     "content": "Privacy Policy (GDPR)\n\n1. Data Controller\nThe data controller is Jakub Sokol, Sportovní 158, Staré Hradiště 533 52.\n\n2. Collected Data\nWe collect names, addresses, and emails necessary for order fulfillment.\n\n3. Purpose of Processing\nData is processed to fulfill the purchase agreement and legal tax obligations.\n\n4. Data Retention\nData is kept for the time required by tax laws (up to 10 years).\n\n5. Third Parties\nData is shared with Packeta (shipping), Stripe (payments), and Resend (emails).\n\n6. Your Rights\nYou have the right to access, rectify, or erase your data.\n\n7. Security\nWe use industry-standard security (SSL, encryption) to protect your data."
+  },
+  "Care": {
+    "title": "Watch Care",
+    "content": "At Vexx Watch Atelier, we ensure the highest quality of our custom builds so they last as long as possible. To keep your watch in perfect condition and ensure optimal performance, we recommend following these care instructions:\n\n1. Proper Crown Handling\nEnsure that the screw-down crown is always tightly secured. This guarantees maximum water resistance and protects the internal mechanism from dust and moisture.\n\n2. Water Exposure and Thermal Shocks\nOur watches are built for durability, but they are hand-assembled custom pieces. Do not expose them to extremely hot environments (e.g., saunas) or sudden temperature fluctuations. Sudden temperature changes can cause moisture condensation inside the case, affecting the crystal's clarity and the Seiko movement's accuracy.\n\n3. Protection from Chemicals\nAvoid contact with harsh chemicals, perfumes, or cleaning agents, which could damage the gaskets or the steel finish. If soiled, gently wipe the watch with a dry microfiber cloth.\n\n4. Shocks and Mechanical Damage\nAlthough we use durable sapphire crystals and high-quality steel cases, the automatic movement inside is a delicate mechanical instrument. Avoid dropping the watch on hard surfaces or subjecting it to strong impacts, which could damage the movement or disrupt its accuracy.\n\n5. Regular Maintenance\nTo maintain reliability, we recommend having your watch checked, cleaned, and adjusted by a reliable watchmaker every few years. This significantly extends its lifespan.\n\n6. Proper Storage\nIf you are not wearing the watch for an extended period, store it in a dry place with a stable temperature, ideally in its original box. For automatic models, you can use a watch winder.\n\nBy following these simple rules, you will ensure that your Vexx Watch Atelier timepiece brings you joy for many years. Damage caused by improper use or failure to follow these instructions may not be covered by the warranty.\n\nWe wish you many great moments with your new watch! Your Vexx Watch Atelier team."
   }
 }

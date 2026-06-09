@@ -30,6 +30,7 @@ export function Footer() {
               <li><Link href="/contact" className="hover:text-accent transition-colors">{t('contact')}</Link></li>
               <li><Link href="/shipping" className="hover:text-accent transition-colors">{t('shipping')}</Link></li>
               <li><Link href="/returns" className="hover:text-accent transition-colors">{t('returns')}</Link></li>
+              <li><Link href="/care" className="hover:text-accent transition-colors">{t('watchCare')}</Link></li>
               <li><Link href="/legal" className="hover:text-accent transition-colors">{t('legal')}</Link></li>
               <li><Link href="/terms" className="hover:text-accent transition-colors">Obchodní podmínky</Link></li>
               <li><Link href="/privacy" className="hover:text-accent transition-colors">Ochrana osobních údajů</Link></li>
