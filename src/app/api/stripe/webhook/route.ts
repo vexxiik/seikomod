@@ -67,6 +67,7 @@ export async function POST(req: NextRequest) {
       const fromEmail = process.env.RESEND_FROM_EMAIL || "Vexx Watch Atelier <info@vexxwatch.cz>";
 
       const finalItems = order.items.map((i) => ({
+        id: i.id,
         name: i.productName,
         quantity: i.quantity,
         price: i.price,
