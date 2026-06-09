@@ -438,8 +438,8 @@ export default function CartPage() {
                     <div className="flex flex-col flex-1">
                       <Label htmlFor="agreeTerms" className="text-sm leading-snug font-medium cursor-pointer">
                         {t.rich('agreeTerms', {
-                          terms: (chunks) => <Link href="/terms" target="_blank" className="text-accent hover:underline">{t('termsLink')}</Link>,
-                          privacy: (chunks) => <Link href="/privacy" target="_blank" className="text-accent hover:underline">{t('privacyLink')}</Link>
+                          terms: (chunks) => <Link href="/terms" target="_blank" className="text-accent hover:underline">{chunks}</Link>,
+                          privacy: (chunks) => <Link href="/privacy" target="_blank" className="text-accent hover:underline">{chunks}</Link>
                         })}
                       </Label>
                     </div>

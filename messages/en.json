@@ -180,7 +180,7 @@
     "paymentCOD": "Cash on Delivery",
     "paymentCODDesc": "Payment upon receipt at the courier or pick-up point.",
     "paymentFee": "Payment Fee",
-    "agreeTerms": "I agree to the {terms} and acknowledge the {privacy}.",
+    "agreeTerms": "I agree to the <terms>Terms and Conditions</terms> and acknowledge the <privacy>Privacy Policy</privacy>.",
     "termsLink": "Terms and Conditions",
     "privacyLink": "Privacy Policy",
     "errTerms": "You must agree to the Terms and Conditions to complete the order."

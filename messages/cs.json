@@ -180,7 +180,7 @@
     "paymentCOD": "Dobírka",
     "paymentCODDesc": "Platba při převzetí u kurýra nebo na výdejním místě.",
     "paymentFee": "Poplatek za platbu",
-    "agreeTerms": "Souhlasím s {terms} a beru na vědomí {privacy}.",
+    "agreeTerms": "Souhlasím s <terms>obchodními podmínkami</terms> a beru na vědomí <privacy>zásady zpracování osobních údajů</privacy>.",
     "termsLink": "obchodními podmínkami",
     "privacyLink": "zásady zpracování osobních údajů",
     "errTerms": "Pro dokončení objednávky musíte souhlasit s obchodními podmínkami."
