@@ -433,16 +433,14 @@ export default function CartPage() {
                       id="agreeTerms" 
                       checked={agreeTerms} 
                       onCheckedChange={(c) => setAgreeTerms(c as boolean)} 
-                      className="mt-1"
+                      className="mt-1 flex-shrink-0"
                     />
-                    <div className="flex flex-col flex-1">
-                      <Label htmlFor="agreeTerms" className="text-sm leading-snug font-medium cursor-pointer">
-                        {t.rich('agreeTerms', {
-                          terms: (chunks) => <Link href="/terms" target="_blank" className="text-accent hover:underline">{chunks}</Link>,
-                          privacy: (chunks) => <Link href="/privacy" target="_blank" className="text-accent hover:underline">{chunks}</Link>
-                        })}
-                      </Label>
-                    </div>
+                    <Label htmlFor="agreeTerms" className="text-sm leading-relaxed font-medium cursor-pointer block flex-1">
+                      {t.rich('agreeTerms', {
+                        terms: (chunks) => <Link href="/terms" target="_blank" className="text-accent hover:underline font-semibold">{chunks}</Link>,
+                        privacy: (chunks) => <Link href="/privacy" target="_blank" className="text-accent hover:underline font-semibold">{chunks}</Link>
+                      })}
+                    </Label>
                   </div>
 
                   <Button 
