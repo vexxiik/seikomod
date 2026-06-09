@@ -3,12 +3,19 @@ import { prisma } from "@/lib/prisma";
 import { renderToStream } from "@react-pdf/renderer";
 import { InvoiceTemplate, InvoiceData } from "@/components/admin/InvoiceTemplate";
 import React from "react";
+import { getServerSession } from "next-auth";
+import { authOptions } from "@/lib/auth";
 
 export async function GET(
   request: NextRequest,
   { params }: { params: Promise<{ orderId: string }> }
 ) {
   try {
+    const session = await getServerSession(authOptions);
+    if (!session || session.user?.role !== "ADMIN") {
+      return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+    }
+
     const { orderId } = await params;
 
     // Fetch order from DB

@@ -72,7 +72,10 @@ export async function requestPasswordReset(formData: FormData) {
   const resetUrl = `${process.env.NEXT_PUBLIC_APP_URL || 'https://www.vexxwatch.cz'}/cs/reset-password?token=${token}`;
 
   try {
-    const resend = new Resend(process.env.RESEND_API_KEY || 're_dummy');
+    if (!process.env.RESEND_API_KEY) {
+      throw new Error("Missing RESEND_API_KEY");
+    }
+    const resend = new Resend(process.env.RESEND_API_KEY);
     await resend.emails.send({
       from: 'Vexx Watch Atelier <info@vexxwatch.cz>',
       to: email,

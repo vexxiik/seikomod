@@ -179,7 +179,11 @@
     "paymentOnlineDesc": "Rychlá a bezpečná platba přes Stripe.",
     "paymentCOD": "Dobírka",
     "paymentCODDesc": "Platba při převzetí u kurýra nebo na výdejním místě.",
-    "paymentFee": "Poplatek za platbu"
+    "paymentFee": "Poplatek za platbu",
+    "agreeTerms": "Souhlasím s {terms} a beru na vědomí {privacy}.",
+    "termsLink": "obchodními podmínkami",
+    "privacyLink": "zásady zpracování osobních údajů",
+    "errTerms": "Pro dokončení objednávky musíte souhlasit s obchodními podmínkami."
   },
   "CheckoutSuccess": {
     "paid": "Objednávka zaplacena!",
@@ -319,5 +323,13 @@
   "Announcement": {
     "text": "Slavnostně otevíráme! Přijímáme první předobjednávky s exkluzivní slevou 550 Kč. Kód:",
     "code": "OPENING550"
+  },
+  "Terms": {
+    "title": "Obchodní podmínky (VOP)",
+    "content": "Zde budou vloženy kompletní obchodní podmínky pro prodej zboží na dálku. Provozovatel: Jakub Sokol, Sportovní 158, Staré Hradiště 533 52."
+  },
+  "Privacy": {
+    "title": "Ochrana osobních údajů (GDPR)",
+    "content": "Zde budou vloženy zásady zpracování osobních údajů v souladu s nařízením GDPR. Správcem údajů je Jakub Sokol, Sportovní 158, Staré Hradiště 533 52."
   }
 }

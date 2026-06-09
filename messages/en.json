@@ -179,7 +179,11 @@
     "paymentOnlineDesc": "Fast and secure payment via Stripe.",
     "paymentCOD": "Cash on Delivery",
     "paymentCODDesc": "Payment upon receipt at the courier or pick-up point.",
-    "paymentFee": "Payment Fee"
+    "paymentFee": "Payment Fee",
+    "agreeTerms": "I agree to the {terms} and acknowledge the {privacy}.",
+    "termsLink": "Terms and Conditions",
+    "privacyLink": "Privacy Policy",
+    "errTerms": "You must agree to the Terms and Conditions to complete the order."
   },
   "CheckoutSuccess": {
     "paid": "Order paid successfully!",
@@ -319,5 +323,13 @@
   "Announcement": {
     "text": "Grand Opening! We are now taking pre-orders with an exclusive 550 CZK discount. Code:",
     "code": "OPENING550"
+  },
+  "Terms": {
+    "title": "Terms and Conditions",
+    "content": "Terms and conditions for remote sales. Operator: Jakub Sokol, Sportovní 158, Staré Hradiště 533 52, Czech Republic."
+  },
+  "Privacy": {
+    "title": "Privacy Policy (GDPR)",
+    "content": "Privacy policy in accordance with GDPR. Data controller: Jakub Sokol, Sportovní 158, Staré Hradiště 533 52, Czech Republic."
   }
 }

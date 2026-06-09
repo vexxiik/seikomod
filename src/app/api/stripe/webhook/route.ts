@@ -9,7 +9,10 @@ import React from "react";
 import { InvoiceTemplate, InvoiceData } from "@/components/admin/InvoiceTemplate";
 
 export async function POST(req: NextRequest) {
-  const resend = new Resend(process.env.RESEND_API_KEY || "re_dummy_key");
+  if (!process.env.RESEND_API_KEY) {
+    throw new Error("Missing RESEND_API_KEY");
+  }
+  const resend = new Resend(process.env.RESEND_API_KEY);
   const body = await req.text();
   const sig = req.headers.get("stripe-signature");
 

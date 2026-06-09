@@ -3,14 +3,25 @@
 import { prisma } from "@/lib/prisma";
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
+import { getServerSession } from "next-auth";
+import { authOptions } from "@/lib/auth";
+
+async function checkAdmin() {
+  const session = await getServerSession(authOptions);
+  if (!session || session.user?.role !== "ADMIN") {
+    throw new Error("Unauthorized");
+  }
+}
 
 export async function deleteExpense(id: string) {
+  await checkAdmin();
   await prisma.expense.delete({ where: { id } });
   revalidatePath("/admin/expenses");
   revalidatePath("/admin");
 }
 
 export async function addExpense(formData: FormData) {
+  await checkAdmin();
   const name = formData.get("name") as string;
   const amount = Number(formData.get("amount"));
   const dateStr = formData.get("date") as string;
@@ -30,6 +41,7 @@ export async function addExpense(formData: FormData) {
 }
 
 export async function deleteCustomer(id: string) {
+  await checkAdmin();
   // Delete all orders for this customer first
   await prisma.orderItem.deleteMany({
     where: { order: { customerId: id } }
@@ -44,6 +56,7 @@ export async function deleteCustomer(id: string) {
 }
 
 export async function deleteOrder(id: string) {
+  await checkAdmin();
   await prisma.orderItem.deleteMany({ where: { orderId: id } });
   await prisma.order.delete({ where: { id } });
   revalidatePath("/admin/orders");
@@ -51,6 +64,7 @@ export async function deleteOrder(id: string) {
 }
 
 export async function updateOrderStatus(id: string, status: string) {
+  await checkAdmin();
   await prisma.order.update({
     where: { id },
     data: { status }
@@ -59,6 +73,7 @@ export async function updateOrderStatus(id: string, status: string) {
 }
 
 export async function deleteProduct(id: string) {
+  await checkAdmin();
   // Delete order items that reference this product
   await prisma.orderItem.deleteMany({ where: { productId: id } });
   await prisma.product.delete({ where: { id } });
@@ -67,6 +82,7 @@ export async function deleteProduct(id: string) {
 }
 
 export async function createProduct(formData: FormData) {
+  await checkAdmin();
   const name = formData.get("name") as string;
   const nameEn = formData.get("nameEn") as string;
   const description = formData.get("description") as string;
@@ -103,6 +119,7 @@ export async function createProduct(formData: FormData) {
 }
 
 export async function updateProduct(id: string, formData: FormData) {
+  await checkAdmin();
   const name = formData.get("name") as string;
   const nameEn = formData.get("nameEn") as string;
   const description = formData.get("description") as string;

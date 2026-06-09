@@ -69,5 +69,5 @@ export const authOptions: NextAuthOptions = {
   pages: {
     signIn: "/login",
   },
-  secret: process.env.NEXTAUTH_SECRET || "seiko_mod_secret_key_12345",
+  secret: process.env.NEXTAUTH_SECRET,
 };

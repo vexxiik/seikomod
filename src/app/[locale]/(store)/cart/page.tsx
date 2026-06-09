@@ -23,6 +23,7 @@ export default function CartPage() {
   const [step, setStep] = useState<"cart" | "checkout">("cart");
   const [mounted, setMounted] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [agreeTerms, setAgreeTerms] = useState(false);
 
   // Discount UI state
   const [discountError, setDiscountError] = useState<string | null>(null);
@@ -197,6 +198,10 @@ export default function CartPage() {
               <CardContent className="space-y-8 p-6 md:p-8 pt-0">
                 <form id="checkout-form" onSubmit={(e) => {
                   e.preventDefault();
+                  if (!agreeTerms) {
+                    alert(t('errTerms'));
+                    return;
+                  }
                   if (!packetaBranch) {
                     alert(t('errSelectBranch'));
                     return;
@@ -422,11 +427,28 @@ export default function CartPage() {
                   <ArrowRight className="ml-2 h-4 w-4" />
                 </Button>
               ) : (
-                <div className="w-full space-y-3">
+                <div className="w-full space-y-4">
+                  <div className="flex items-start space-x-3 bg-muted/20 p-4 rounded-lg border border-border/50">
+                    <Checkbox 
+                      id="agreeTerms" 
+                      checked={agreeTerms} 
+                      onCheckedChange={(c) => setAgreeTerms(c as boolean)} 
+                      className="mt-1"
+                    />
+                    <div className="flex flex-col flex-1">
+                      <Label htmlFor="agreeTerms" className="text-sm leading-snug font-medium cursor-pointer">
+                        {t.rich('agreeTerms', {
+                          terms: (chunks) => <Link href="/terms" target="_blank" className="text-accent hover:underline">{t('termsLink')}</Link>,
+                          privacy: (chunks) => <Link href="/privacy" target="_blank" className="text-accent hover:underline">{t('privacyLink')}</Link>
+                        })}
+                      </Label>
+                    </div>
+                  </div>
+
                   <Button 
                     form="checkout-form"
                     type="submit"
-                    disabled={isSubmitting}
+                    disabled={isSubmitting || !agreeTerms}
                     className="w-full h-12 text-base bg-accent text-accent-foreground hover:bg-accent/90 shadow-lg shadow-accent/20"
                   >
                     {isSubmitting ? t('processing') : t('finishAndPay')}
