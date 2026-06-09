@@ -4,6 +4,9 @@ import { prisma } from "@/lib/prisma";
 import { Resend } from "resend";
 import { CustomerOrderReceipt } from "@/emails/CustomerOrderReceipt";
 import { AdminOrderNotification } from "@/emails/AdminOrderNotification";
+import { renderToStream } from "@react-pdf/renderer";
+import React from "react";
+import { InvoiceTemplate, InvoiceData } from "@/components/admin/InvoiceTemplate";
 
 export async function POST(req: NextRequest) {
   const resend = new Resend(process.env.RESEND_API_KEY || "re_dummy_key");
@@ -69,6 +72,40 @@ export async function POST(req: NextRequest) {
         price: i.price,
       }));
 
+      // Generate PDF Invoice
+      let numericId = order.id.replace(/\D/g, '').slice(-8);
+      if (!numericId || numericId.length < 4) {
+        numericId = Math.floor(Math.random() * 1000000).toString();
+      }
+      const orderNumStr = order.orderNumber ? order.orderNumber.toString() : numericId;
+      const currentYear = new Date(order.createdAt).getFullYear();
+      const invoiceNumber = `${currentYear}${orderNumStr.padStart(4, '0')}`;
+      const dueDate = new Date(order.createdAt);
+      dueDate.setDate(dueDate.getDate() + 14);
+
+      const invoiceData: InvoiceData = {
+        invoiceNumber,
+        issueDate: new Date(order.createdAt),
+        dueDate,
+        orderNumber: orderNumStr,
+        variableSymbol: orderNumStr,
+        customer: {
+          name: fullName,
+          address: order.customer.address || "Nezadána adresa",
+          email: customerEmail,
+        },
+        items: finalItems,
+        total: order.total,
+        paymentMethod: order.stripeSessionId ? "Kartou online (Stripe)" : "Převodem na účet",
+      };
+
+      const pdfStream = await renderToStream(React.createElement(InvoiceTemplate, { data: invoiceData }) as any);
+      const chunks = [];
+      for await (const chunk of pdfStream) {
+        chunks.push(chunk);
+      }
+      const pdfBuffer = Buffer.concat(chunks);
+
       await resend.emails.send({
         from: fromEmail,
         to: customerEmail,
@@ -80,6 +117,12 @@ export async function POST(req: NextRequest) {
           total: order.total,
           packetaBranchName: order.packetaBranchName || undefined,
         }),
+        attachments: [
+          {
+            filename: `faktura-${invoiceNumber}.pdf`,
+            content: pdfBuffer,
+          }
+        ]
       });
 
       await resend.emails.send({

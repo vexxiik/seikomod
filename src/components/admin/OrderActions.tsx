@@ -1,7 +1,7 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
-import { Trash2, CheckCircle, XCircle, Eye } from "lucide-react";
+import { Trash2, CheckCircle, XCircle, Eye, FileText } from "lucide-react";
 import { deleteOrder, updateOrderStatus } from "@/app/admin/actions";
 import { useTransition } from "react";
 import Link from "next/link";
@@ -21,6 +21,18 @@ export function OrderActions({ id, currentStatus }: { id: string, currentStatus:
           <Eye className="h-4 w-4" />
         </Button>
       </Link>
+      
+      <a href={`/api/invoices/${id}`} target="_blank" rel="noopener noreferrer">
+        <Button 
+          variant="ghost" 
+          size="icon" 
+          title="Stáhnout fakturu"
+          className="text-muted-foreground hover:text-indigo-500"
+          type="button"
+        >
+          <FileText className="h-4 w-4" />
+        </Button>
+      </a>
       
       {currentStatus !== 'COMPLETED' && (
         <Button 

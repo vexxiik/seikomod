@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { ArrowLeft, Package, Clock, CheckCircle } from "lucide-react";
+import { ArrowLeft, Package, Clock, CheckCircle, FileText } from "lucide-react";
 import Link from "next/link";
 import { prisma } from "@/lib/prisma";
 
@@ -18,13 +18,21 @@ export default async function OrderDetail({ params }: { params: Promise<{ id: st
 
   return (
     <div className="space-y-6">
-      <div className="flex items-center gap-4">
-        <Link href="/admin">
-          <Button variant="outline" size="icon">
-            <ArrowLeft className="h-4 w-4" />
+      <div className="flex items-center justify-between">
+        <div className="flex items-center gap-4">
+          <Link href="/admin">
+            <Button variant="outline" size="icon">
+              <ArrowLeft className="h-4 w-4" />
+            </Button>
+          </Link>
+          <h1 className="text-3xl font-bold tracking-tight">Detail objednávky #{order.orderNumber || order.id.slice(-6).toUpperCase()}</h1>
+        </div>
+        <a href={`/api/invoices/${order.id}`} target="_blank" rel="noopener noreferrer">
+          <Button variant="outline" className="gap-2">
+            <FileText className="h-4 w-4" />
+            Stáhnout fakturu
           </Button>
-        </Link>
-        <h1 className="text-3xl font-bold tracking-tight">Detail objednávky #{order.orderNumber || order.id.slice(-6).toUpperCase()}</h1>
+        </a>
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
