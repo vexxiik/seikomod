@@ -101,9 +101,9 @@ export async function POST(req: NextRequest) {
       };
 
       const pdfStream = await renderToStream(React.createElement(InvoiceTemplate, { data: invoiceData }) as any);
-      const chunks = [];
+      const chunks: Uint8Array[] = [];
       for await (const chunk of pdfStream) {
-        chunks.push(chunk);
+        chunks.push(typeof chunk === 'string' ? Buffer.from(chunk) : chunk as Uint8Array);
       }
       const pdfBuffer = Buffer.concat(chunks);
 
