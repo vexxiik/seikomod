@@ -79,7 +79,7 @@ export async function submitOrder(data: CheckoutData, cartItems: { id: string; n
     // Add Watch Box to items if requested
     const finalItems = [...cartItems];
     if (includeWatchBox) {
-      const boxPrice = session ? 0 : 499;
+      const boxPrice = session ? 200 : 600;
       finalItems.push({
         id: "premium-box",
         name: "Prémiová krabička na hodinky",
@@ -98,7 +98,7 @@ export async function submitOrder(data: CheckoutData, cartItems: { id: string; n
       let securePrice = 0;
       
       if (item.id === "premium-box") {
-        securePrice = session ? 0 : 499;
+        securePrice = session ? 200 : 600;
       } else if (item.id.startsWith("custom-watch|")) {
         securePrice = BASE_WATCH_PRICE;
         const parts = item.id.split("|").slice(1);
