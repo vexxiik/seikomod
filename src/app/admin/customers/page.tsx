@@ -8,10 +8,16 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { CustomerDeleteButton } from "@/components/admin/CustomerDeleteButton";
+import { CustomerRoleToggle } from "@/components/admin/CustomerRoleToggle";
 import { Mail } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { getServerSession } from "next-auth";
+import { authOptions } from "@/lib/auth";
 
 export default async function AdminCustomers() {
+  const session = await getServerSession(authOptions);
+  const currentUserId = session?.user?.id;
+
   const customers = await prisma.customer.findMany({
     include: {
       orders: true
@@ -33,6 +39,7 @@ export default async function AdminCustomers() {
               <TableHead>Email</TableHead>
               <TableHead>Počet objednávek</TableHead>
               <TableHead>Celkem utraceno</TableHead>
+              <TableHead>Role</TableHead>
               <TableHead className="text-right">Akce</TableHead>
             </TableRow>
           </TableHeader>
@@ -46,12 +53,24 @@ export default async function AdminCustomers() {
                   <TableCell>{customer.email}</TableCell>
                   <TableCell>{customer.orders.length}</TableCell>
                   <TableCell>{spent.toLocaleString("cs-CZ")} Kč</TableCell>
-                  <TableCell className="text-right">
+                  <TableCell>
+                    {customer.role === "ADMIN" ? (
+                      <span className="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-blue-100 text-blue-800">
+                        Admin
+                      </span>
+                    ) : (
+                      <span className="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-gray-100 text-gray-800">
+                        User
+                      </span>
+                    )}
+                  </TableCell>
+                  <TableCell className="text-right whitespace-nowrap">
                     <a href={`mailto:${customer.email}`}>
                       <Button variant="ghost" size="icon" className="mr-2 text-muted-foreground hover:text-primary">
                         <Mail className="h-4 w-4" />
                       </Button>
                     </a>
+                    <CustomerRoleToggle id={customer.id} currentRole={customer.role} isSelf={customer.id === currentUserId} />
                     <CustomerDeleteButton id={customer.id} />
                   </TableCell>
                 </TableRow>
@@ -59,7 +78,7 @@ export default async function AdminCustomers() {
             })}
             {customers.length === 0 && (
               <TableRow>
-                <TableCell colSpan={5} className="text-center text-muted-foreground py-8">
+                <TableCell colSpan={6} className="text-center text-muted-foreground py-8">
                   Zatím nemáte žádné zákazníky.
                 </TableCell>
               </TableRow>

@@ -2,7 +2,7 @@
   "Navigation": {
     "home": "Domů",
     "products": "Katalog",
-    "configurator": "Konfigurátor",
+    "configurator": "Custom",
     "about": "O nás",
     "contact": "Kontakt"
   },
@@ -127,7 +127,7 @@
     "d4": "Používáme pouzdra a tahy z nerezové oceli (316L nebo 904L) pro dlouhověkost a nádherný lesk.",
     "ctaTitle": "Připraveni na vlastní příběh?",
     "ctaDesc": "Navrhněte si hodinky, které vás budou provázet celým životem.",
-    "ctaBtn": "Otevřít konfigurátor",
+    "ctaBtn": "Návrh na míru",
     "stat1": "Chirurgická ocel",
     "stat2": "Safírová sklíčka",
     "stat3": "Japonské strojky"

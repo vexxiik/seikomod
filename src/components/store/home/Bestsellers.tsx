@@ -46,16 +46,7 @@ export function Bestsellers({ initialProducts = [] }: BestsellersProps) {
         image: imageStr,
         link: `/products/${p.id}`
       };
-    }),
-    {
-      id: "custom",
-      name: t('customName'),
-      price: t('customPrice'),
-      type: t('customType'),
-      movement: t('customMovement'),
-      image: "/img/watchmaker.png",
-      link: "/configurator"
-    }
+    })
   ];
 
   return (

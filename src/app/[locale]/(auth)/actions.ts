@@ -4,8 +4,26 @@ import { prisma } from "@/lib/prisma";
 import bcrypt from "bcryptjs";
 import { Resend } from "resend";
 import { PasswordResetEmail } from "@/emails/PasswordResetEmail";
+import { RegistrationEmail } from "@/emails/RegistrationEmail";
 import crypto from "crypto";
 import { registerSchema } from "@/lib/validations";
+
+async function sendWelcomeEmail(email: string, name: string) {
+  try {
+    if (!process.env.RESEND_API_KEY) return;
+    const resend = new Resend(process.env.RESEND_API_KEY);
+    const storeUrl = `${process.env.NEXT_PUBLIC_APP_URL || 'https://www.vexxwatch.cz'}/cs/products`;
+    
+    await resend.emails.send({
+      from: 'Vexx Watch Atelier <info@vexxwatch.cz>',
+      to: email,
+      subject: 'Vítejte na Vexx Watch Atelier!',
+      react: RegistrationEmail({ name, storeUrl }),
+    });
+  } catch (error) {
+    console.error('Failed to send registration email', error);
+  }
+}
 
 export async function registerUser(formData: FormData) {
   const rawData = {
@@ -37,6 +55,7 @@ export async function registerUser(formData: FormData) {
         where: { email },
         data: { name, password: hashedPassword }
       });
+      await sendWelcomeEmail(email, name);
       return { success: true };
     }
   }
@@ -51,6 +70,7 @@ export async function registerUser(formData: FormData) {
     },
   });
 
+  await sendWelcomeEmail(email, name);
   return { success: true };
 }
 

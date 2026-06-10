@@ -37,7 +37,7 @@ export default function StructuredData() {
         },
         "offers": {
           "@type": "Offer",
-          "url": "https://www.vexxwatch.cz/configurator",
+          "url": "https://www.vexxwatch.cz/custom",
           "priceCurrency": "CZK",
           "price": "9500",
           "availability": "https://schema.org/InStock",

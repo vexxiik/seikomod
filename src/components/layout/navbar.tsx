@@ -75,7 +75,7 @@ export function Navbar() {
           <Link href="/products" className={`transition-colors ${pathname === '/products' ? 'text-accent' : 'text-foreground hover:text-accent'}`}>
             {t('products')}
           </Link>
-          <Link href="/configurator" className={`transition-colors ${pathname === '/configurator' ? 'text-accent' : 'text-foreground hover:text-accent'}`}>
+          <Link href="/custom" className={`transition-colors ${pathname === '/custom' ? 'text-accent' : 'text-foreground hover:text-accent'}`}>
             {t('configurator')}
           </Link>
           <Link href="/about" className={`transition-colors ${pathname === '/about' ? 'text-accent' : 'text-foreground hover:text-accent'}`}>
@@ -181,7 +181,7 @@ export function Navbar() {
               <Link href="/products" className={`px-4 py-3 rounded-lg transition-colors ${pathname === '/products' ? 'text-accent bg-accent/10' : 'hover:bg-muted'}`} onClick={() => setIsMobileMenuOpen(false)}>
                 {t('products')}
               </Link>
-              <Link href="/configurator" className={`px-4 py-3 rounded-lg transition-colors ${pathname === '/configurator' ? 'text-accent bg-accent/10' : 'hover:bg-muted'}`} onClick={() => setIsMobileMenuOpen(false)}>
+              <Link href="/custom" className={`px-4 py-3 rounded-lg transition-colors ${pathname === '/custom' ? 'text-accent bg-accent/10' : 'hover:bg-muted'}`} onClick={() => setIsMobileMenuOpen(false)}>
                 {t('configurator')}
               </Link>
               <Link href="/about" className={`px-4 py-3 rounded-lg transition-colors ${pathname === '/about' ? 'text-accent bg-accent/10' : 'hover:bg-muted'}`} onClick={() => setIsMobileMenuOpen(false)}>

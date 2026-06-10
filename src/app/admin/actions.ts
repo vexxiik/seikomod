@@ -156,3 +156,22 @@ export async function updateProduct(id: string, formData: FormData) {
   revalidatePath("/admin");
   redirect("/admin/products");
 }
+
+export async function toggleCustomerRole(id: string, newRole: "ADMIN" | "USER") {
+  const session = await getServerSession(authOptions);
+  if (!session || session.user?.role !== "ADMIN") {
+    throw new Error("Unauthorized");
+  }
+
+  if (session.user?.id === id) {
+    throw new Error("You cannot change your own role");
+  }
+
+  await prisma.customer.update({
+    where: { id },
+    data: { role: newRole }
+  });
+
+  revalidatePath("/admin/customers");
+  revalidatePath("/admin");
+}

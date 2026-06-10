@@ -2,7 +2,7 @@
   "Navigation": {
     "home": "Home",
     "products": "Catalog",
-    "configurator": "Configurator",
+    "configurator": "Custom",
     "about": "About Us",
     "contact": "Contact"
   },
@@ -127,7 +127,7 @@
     "d4": "We use stainless steel cases and bracelets (316L or 904L) for longevity and beautiful shine.",
     "ctaTitle": "Ready for your own story?",
     "ctaDesc": "Design a watch that will accompany you for a lifetime.",
-    "ctaBtn": "Open Configurator",
+    "ctaBtn": "Custom Design",
     "stat1": "Surgical Steel",
     "stat2": "Sapphire Crystals",
     "stat3": "Japanese Movements"
