@@ -23,6 +23,15 @@ export const PasswordResetEmail = ({
     <Preview>Obnovení vašeho hesla - Vexx Watch Atelier</Preview>
     <Body style={main}>
       <Container style={container}>
+        <Section style={{ textAlign: "center", marginBottom: "24px" }}>
+          <table align="center" width="48" cellPadding="0" cellSpacing="0" style={{ margin: "0 auto", borderCollapse: "collapse" }}>
+            <tr>
+              <td height="48" align="center" valign="middle" style={{ backgroundColor: "#1a2b3c", borderRadius: "12px", fontFamily: "Georgia, serif", fontSize: "32px", fontWeight: "bold", color: "#fbbf24", width: "48px", lineHeight: "48px" }}>
+                S
+              </td>
+            </tr>
+          </table>
+        </Section>
         <Heading style={h1}>Obnova hesla</Heading>
         <Text style={text}>
           Ahoj,

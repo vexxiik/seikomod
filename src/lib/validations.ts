@@ -5,6 +5,10 @@ export const registerSchema = z.object({
   name: z.string().min(2, "Jméno musí mít alespoň 2 znaky").max(100, "Jméno je příliš dlouhé").regex(/^[a-zA-Zá-žÁ-Ž\s]+$/, "Jméno může obsahovat pouze písmena a mezery"),
   email: z.string().email("Neplatný formát e-mailu").max(255),
   password: z.string().min(6, "Heslo musí mít alespoň 6 znaků").max(100),
+  confirmPassword: z.string()
+}).refine((data) => data.password === data.confirmPassword, {
+  message: "Hesla se neshodují",
+  path: ["confirmPassword"],
 });
 
 // Zod schema for Login
@@ -25,5 +29,4 @@ export const checkoutSchema = z.object({
   discountCode: z.string().optional(),
   packetaBranchId: z.string().min(1, "Prosím vyberte výdejní místo Zásilkovny"),
   packetaBranchName: z.string().min(1, "Prosím vyberte výdejní místo Zásilkovny"),
-  paymentMethod: z.enum(["card", "cod"]),
 });

@@ -23,7 +23,6 @@ const vopText = `Všeobecné obchodní podmínky (dále jen "VOP")
 4. Cena zboží a Platební podmínky
 4.1. Cenu zboží a případné náklady spojené s dodáním může kupující uhradit následujícími způsoby:
 - bezhotovostně platební kartou online (přes platební bránu Stripe)
-- v hotovosti nebo kartou na dobírku při převzetí zboží.
 4.2. V případě platby online je kupní cena splatná bezprostředně po odeslání objednávky.
 
 5. Přeprava a dodání zboží
@@ -87,7 +86,7 @@ fs.writeFileSync(csFile, JSON.stringify(csData, null, 2), 'utf8');
 // Also update English translations to match length-wise just in case
 const enData = JSON.parse(fs.readFileSync(enFile, 'utf8'));
 
-enData.Terms.content = `Terms and Conditions (T&C)\n\n1. General Provisions\nThese conditions govern the relationship between the seller (Jakub Sokol, Sportovní 158, Staré Hradiště 533 52) and the buyer.\n\n2. User Account\nBuyers can register to manage orders.\n\n3. Purchase Agreement\nThe agreement is concluded upon order confirmation.\n\n4. Payments\nPayments are processed securely via Stripe or Cash on Delivery.\n\n5. Shipping\nOrders are shipped via Packeta. Custom builds take 2-4 weeks.\n\n6. Returns\n14-day return policy applies ONLY to in-stock items. Custom modified watches (Seiko Mods built to order) CANNOT be returned under the 14-day policy as they are customized goods.\n\n7. Warranty\nA 24-month warranty covers manufacturing defects.\n\n8. Final Provisions\nGoverned by the laws of the Czech Republic.`;
+enData.Terms.content = `Terms and Conditions (T&C)\n\n1. General Provisions\nThese conditions govern the relationship between the seller (Jakub Sokol, Sportovní 158, Staré Hradiště 533 52) and the buyer.\n\n2. User Account\nBuyers can register to manage orders.\n\n3. Purchase Agreement\nThe agreement is concluded upon order confirmation.\n\n4. Payments\nPayments are processed securely via Stripe.\n\n5. Shipping\nOrders are shipped via Packeta. Custom builds take 2-4 weeks.\n\n6. Returns\n14-day return policy applies ONLY to in-stock items. Custom modified watches (Seiko Mods built to order) CANNOT be returned under the 14-day policy as they are customized goods.\n\n7. Warranty\nA 24-month warranty covers manufacturing defects.\n\n8. Final Provisions\nGoverned by the laws of the Czech Republic.`;
 
 enData.Privacy.content = `Privacy Policy (GDPR)\n\n1. Data Controller\nThe data controller is Jakub Sokol, Sportovní 158, Staré Hradiště 533 52.\n\n2. Collected Data\nWe collect names, addresses, and emails necessary for order fulfillment.\n\n3. Purpose of Processing\nData is processed to fulfill the purchase agreement and legal tax obligations.\n\n4. Data Retention\nData is kept for the time required by tax laws (up to 10 years).\n\n5. Third Parties\nData is shared with Packeta (shipping), Stripe (payments), and Resend (emails).\n\n6. Your Rights\nYou have the right to access, rectify, or erase your data.\n\n7. Security\nWe use industry-standard security (SSL, encryption) to protect your data.`;
 

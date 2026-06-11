@@ -35,7 +35,6 @@ export default function CartPage() {
   const { 
     items, removeItem, clearCart,
     includeWatchBox, setIncludeWatchBox,
-    paymentMethod, setPaymentMethod,
     packetaBranch, setPacketaBranch,
     discountCode, setDiscountCode,
     appliedDiscount, setAppliedDiscount
@@ -47,7 +46,7 @@ export default function CartPage() {
 
   const subtotal = items.reduce((acc, item) => acc + item.price * item.quantity, 0);
   const shipping = 89; // Zásilkovna
-  const paymentFee = paymentMethod === "cod" ? 89 : 0;
+
   const watchBoxPrice = includeWatchBox ? (session ? 200 : 600) : 0;
   
   // Calculate discount
@@ -61,9 +60,7 @@ export default function CartPage() {
     }
   }
   
-  const total = step === "cart" 
-    ? Math.max(0, subtotalWithBox - discountAmount) 
-    : Math.max(0, subtotalWithBox + shipping + paymentFee - discountAmount);
+    : Math.max(0, subtotalWithBox + shipping - discountAmount);
 
   const handleApplyDiscount = async () => {
     if (!discountCode) return;
@@ -103,7 +100,6 @@ export default function CartPage() {
       discountCode: appliedDiscount?.code,
       packetaBranchId: packetaBranch?.id || "",
       packetaBranchName: packetaBranch?.name || "",
-      paymentMethod,
     };
 
     try {
@@ -254,38 +250,7 @@ export default function CartPage() {
                   {!packetaBranch && <p className="text-sm text-destructive font-medium mt-2">{t('packetaRequired')}</p>}
                 </div>
                 
-                {/* Payment Method Selection */}
-                <div className="bg-muted/30 p-6 rounded-xl border border-border/50 space-y-4">
-                  <div className="flex items-center gap-3">
-                    <ShieldCheck className="h-6 w-6 text-accent" />
-                    <h3 className="font-heading text-xl font-bold">{t('paymentMethod')}</h3>
-                  </div>
-                  <RadioGroup value={paymentMethod} onValueChange={(v) => setPaymentMethod(v as "card" | "cod")}>
-                    <div className="flex flex-col gap-4">
-                      <div className={`flex items-center space-x-3 p-4 rounded-lg border ${paymentMethod === 'card' ? 'border-accent bg-accent/5' : 'border-border bg-background'}`}>
-                        <RadioGroupItem value="card" id="card" />
-                        <div className="flex-1">
-                          <Label htmlFor="card" className="font-bold flex justify-between cursor-pointer">
-                            <span>{t('paymentOnline')}</span>
-                            <span className="text-green-600">Zdarma</span>
-                          </Label>
-                          <p className="text-sm text-muted-foreground mt-1">{t('paymentOnlineDesc')}</p>
-                        </div>
-                      </div>
-                      
-                      <div className={`flex items-center space-x-3 p-4 rounded-lg border ${paymentMethod === 'cod' ? 'border-accent bg-accent/5' : 'border-border bg-background'}`}>
-                        <RadioGroupItem value="cod" id="cod" />
-                        <div className="flex-1">
-                          <Label htmlFor="cod" className="font-bold flex justify-between cursor-pointer">
-                            <span>{t('paymentCOD')}</span>
-                            <span>89 Kč</span>
-                          </Label>
-                          <p className="text-sm text-muted-foreground mt-1">{t('paymentCODDesc')}</p>
-                        </div>
-                      </div>
-                    </div>
-                  </RadioGroup>
-                </div>
+
                 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div className="space-y-3">
@@ -341,12 +306,7 @@ export default function CartPage() {
                 </span>
               </div>
               
-              {step === "checkout" && paymentMethod === "cod" && (
-                <div className="flex justify-between text-sm">
-                  <span className="text-muted-foreground">{t('paymentFee')}</span>
-                  <span className="font-medium">{paymentFee} Kč</span>
-                </div>
-              )}
+
 
               <div className="pt-6 border-t border-border/50">
                 <div className="flex items-start space-x-3 bg-background/40 p-4 rounded-xl border border-border/50 shadow-inner">

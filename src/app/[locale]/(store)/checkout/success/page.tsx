@@ -7,7 +7,7 @@ import { getTranslations } from "next-intl/server";
 
 export default async function CheckoutSuccessPage({ searchParams }: { searchParams: Promise<{ session_id?: string, type?: string }> }) {
   const t = await getTranslations('CheckoutSuccess');
-  const { session_id, type } = await searchParams;
+  const { session_id } = await searchParams;
   let orderStatus = "UNKNOWN";
 
   if (session_id) {
@@ -32,8 +32,6 @@ export default async function CheckoutSuccessPage({ searchParams }: { searchPara
         }
       }
     }
-  } else if (type === "cod") {
-    orderStatus = "COMPLETED";
   } else {
     orderStatus = "PAID";
   }
@@ -55,15 +53,13 @@ export default async function CheckoutSuccessPage({ searchParams }: { searchPara
       </div>
       
       <h1 className="font-heading text-4xl md:text-5xl font-bold mb-6">
-        {orderStatus === "COMPLETED" ? t('codTitle') :
-         isSuccess ? t('paid') :
+        {isSuccess ? t('paid') :
          isPending ? t('processing') :
          t('failed')}
       </h1>
       
       <p className="text-muted-foreground text-lg md:text-xl max-w-2xl mb-12 leading-relaxed">
-        {orderStatus === "COMPLETED" ? t('codDesc') :
-         isSuccess ? t('paidDesc') :
+        {isSuccess ? t('paidDesc') :
          isPending ? t('processingDesc') :
          t('failedDesc')}
       </p>

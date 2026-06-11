@@ -19,7 +19,6 @@ type CheckoutData = {
   discountCode?: string;
   packetaBranchId: string;
   packetaBranchName: string;
-  paymentMethod: "card" | "cod";
 };
 
 export async function submitOrder(data: CheckoutData, cartItems: { id: string; name: string; quantity: number; price: number }[], total: number) {
@@ -35,7 +34,6 @@ export async function submitOrder(data: CheckoutData, cartItems: { id: string; n
       discountCode: data.discountCode,
       packetaBranchId: data.packetaBranchId,
       packetaBranchName: data.packetaBranchName,
-      paymentMethod: data.paymentMethod,
     };
 
     const validationResult = checkoutSchema.safeParse(rawData);
@@ -44,7 +42,7 @@ export async function submitOrder(data: CheckoutData, cartItems: { id: string; n
       return { error: validationResult.error.issues[0].message };
     }
 
-    const { firstName, lastName, email, address, city, zip, includeWatchBox, discountCode, packetaBranchId, packetaBranchName, paymentMethod } = validationResult.data;
+    const { firstName, lastName, email, address, city, zip, includeWatchBox, discountCode, packetaBranchId, packetaBranchName } = validationResult.data;
 
     const session = await getServerSession(authOptions);
 
@@ -140,10 +138,9 @@ export async function submitOrder(data: CheckoutData, cartItems: { id: string; n
       }
     }
 
-    // Add shipping and payment fee
+    // Add shipping
     const shippingCost = 89;
-    const paymentFee = paymentMethod === "cod" ? 89 : 0;
-    calculatedTotal += shippingCost + paymentFee;
+    calculatedTotal += shippingCost;
 
     // Generate orderNumber safely
     const lastOrder = await prisma.order.findFirst({
@@ -157,7 +154,7 @@ export async function submitOrder(data: CheckoutData, cartItems: { id: string; n
         orderNumber: nextOrderNumber,
         customerId: customer.id,
         total: calculatedTotal,
-        status: paymentMethod === "cod" ? "PENDING" : "PENDING_PAYMENT",
+        status: "PENDING_PAYMENT",
         packetaBranchId,
         packetaBranchName,
         items: {
@@ -176,9 +173,7 @@ export async function submitOrder(data: CheckoutData, cartItems: { id: string; n
       }
     });
 
-    if (paymentMethod === "cod") {
-      return { success: true, url: `/checkout/success?type=cod` };
-    }
+
 
     // 3. Vytvořit Stripe Checkout Session
     const baseUrl = process.env.NEXTAUTH_URL || "http://localhost:3000";

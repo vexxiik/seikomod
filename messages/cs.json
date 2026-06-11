@@ -178,9 +178,6 @@
     "paymentMethod": "Způsob platby",
     "paymentOnline": "Platba online (Karta, Apple Pay, Google Pay)",
     "paymentOnlineDesc": "Rychlá a bezpečná platba přes Stripe.",
-    "paymentCOD": "Dobírka",
-    "paymentCODDesc": "Platba při převzetí u kurýra nebo na výdejním místě.",
-    "paymentFee": "Poplatek za platbu",
     "agreeTerms": "Souhlasím s <terms>obchodními podmínkami</terms> a beru na vědomí <privacy>zásady zpracování osobních údajů</privacy>.",
     "termsLink": "obchodními podmínkami",
     "privacyLink": "zásady zpracování osobních údajů",
@@ -194,9 +191,7 @@
     "processingDesc": "Čekáme na potvrzení platby od banky. Odeslání e-mailu proběhne jakmile platbu úspěšně zaevidujeme.",
     "failedDesc": "Vaše platba byla bohužel zrušena nebo vypršel časový limit. Můžete to zkusit znovu nebo nás kontaktovat.",
     "continue": "Pokračovat v nákupu",
-    "backHome": "Zpět na hlavní stranu",
-    "codTitle": "Objednávka přijata!",
-    "codDesc": "Děkujeme za váš nákup. Objednávka na dobírku byla úspěšně zaznamenána. Naši hodináři se brzy pustí do přípravy a balíček zaplatíte až při převzetí."
+    "backHome": "Zpět na hlavní stranu"
   },
   "Configurator": {
     "loading": "Načítám...",
@@ -253,8 +248,7 @@
     "h2": "Doba dodání",
     "p2": "Pokud jsou hodinky označené jako \"Skladem\", expedujeme je obvykle do 2 pracovních dnů (probíhá finální kontrola a tlaková zkouška). U zakázkových staveb na míru je doba dodání obvykle 2-4 týdny v závislosti na dostupnosti specifických prémiových dílů.",
     "h3": "Možnosti platby",
-    "l3": "<strong>Platba kartou online:</strong> Zdarma. Okamžitá a bezpečná platba přes platební bránu Stripe (podporujeme karty, Apple Pay a Google Pay).",
-    "l4": "<strong>Dobírka:</strong> 89 Kč. Zboží zaplatíte až při převzetí zásilky."
+    "l3": "<strong>Platba kartou online:</strong> Zdarma. Okamžitá a bezpečná platba přes platební bránu Stripe (podporujeme karty, Apple Pay a Google Pay)."
   },
   "Returns": {
     "title": "Reklamace a vrácení",
@@ -327,7 +321,7 @@
   },
   "Terms": {
     "title": "Obchodní podmínky (VOP)",
-    "content": "Všeobecné obchodní podmínky (dále jen \"VOP\")\n\n1. Úvodní ustanovení\n1.1. Tyto obchodní podmínky upravují vzájemná práva a povinnosti smluvních stran vzniklé v souvislosti nebo na základě kupní smlouvy (dále jen \"kupní smlouva\") uzavírané mezi provozovatelem e-shopu Jakub Sokol, se sídlem Sportovní 158, Staré Hradiště 533 52 (dále jen \"prodávající\") a jinou fyzickou osobou (dále jen \"kupující\") prostřednictvím internetového obchodu Vexx Watch Atelier.\n1.2. Ustanovení odchylná od obchodních podmínek je možné sjednat v kupní smlouvě. Odchylná ujednání v kupní smlouvě mají přednost před ustanoveními obchodních podmínek.\n\n2. Uživatelský účet\n2.1. Na základě registrace kupujícího na webové stránce může kupující přistupovat do svého uživatelského rozhraní, ze kterého může provádět objednávání zboží.\n2.2. Při registraci a objednávání zboží je kupující povinen uvádět správně a pravdivě všechny údaje.\n\n3. Uzavření kupní smlouvy\n3.1. Veškerá prezentace zboží umístěná na webu e-shopu je informativního charakteru a prodávající není povinen uzavřít kupní smlouvu ohledně tohoto zboží.\n3.2. Kupní smlouva vzniká odesláním objednávky kupujícím a přijetím objednávky prodávajícím (zasláním potvrzovacího e-mailu).\n\n4. Cena zboží a Platební podmínky\n4.1. Cenu zboží a případné náklady spojené s dodáním může kupující uhradit následujícími způsoby:\n- bezhotovostně platební kartou online (přes platební bránu Stripe)\n- v hotovosti nebo kartou na dobírku při převzetí zboží.\n4.2. V případě platby online je kupní cena splatná bezprostředně po odeslání objednávky.\n\n5. Přeprava a dodání zboží\n5.1. Zboží je doručováno prostřednictvím služby Zásilkovna na zvolené výdejní místo.\n5.2. Pokud je zboží skladem, je obvykle expedováno do 2 pracovních dnů. V případě zakázkové stavby (Seiko Mod na míru) je doba dodání sjednána individuálně, obvykle 2-4 týdny.\n\n6. Odstoupení od smlouvy\n6.1. Kupující spotřebitel má právo odstoupit od kupní smlouvy do 14 dnů od převzetí zboží, pokud jde o modely běžně skladem.\n6.2. DŮLEŽITÉ UPOZORNĚNÍ: Právo na odstoupení od smlouvy ve 14denní lhůtě NELZE uplatnit u zboží, které bylo upraveno podle přání kupujícího nebo pro jeho osobu (tzv. zakázkové stavby na míru sestavené přesně dle specifikací zákazníka v konfigurátoru nebo přes poptávku), v souladu s § 1837 písm. d) občanského zákoníku.\n\n7. Práva z vadného plnění (Reklamace)\n7.1. Prodávající odpovídá kupujícímu, že zboží při převzetí nemá vady. Na hodinky se vztahuje záruka 24 měsíců.\n7.2. Záruka se nevztahuje na opotřebení věci způsobené jejím obvyklým užíváním, případně mechanické poškození (pád, náraz, nedodržení voděodolnosti).\n\n8. Závěrečná ustanovení\n8.1. Veškerá ujednání mezi prodávajícím a kupujícím se řídí platným právním řádem České republiky.\n8.2. Tyto obchodní podmínky nabývají účinnosti dnem jejich zveřejnění na webu."
+    "content": "Všeobecné obchodní podmínky (dále jen \"VOP\")\n\n1. Úvodní ustanovení\n1.1. Tyto obchodní podmínky upravují vzájemná práva a povinnosti smluvních stran vzniklé v souvislosti nebo na základě kupní smlouvy (dále jen \"kupní smlouva\") uzavírané mezi provozovatelem e-shopu Jakub Sokol, se sídlem Sportovní 158, Staré Hradiště 533 52 (dále jen \"prodávající\") a jinou fyzickou osobou (dále jen \"kupující\") prostřednictvím internetového obchodu Vexx Watch Atelier.\n1.2. Ustanovení odchylná od obchodních podmínek je možné sjednat v kupní smlouvě. Odchylná ujednání v kupní smlouvě mají přednost před ustanoveními obchodních podmínek.\n\n2. Uživatelský účet\n2.1. Na základě registrace kupujícího na webové stránce může kupující přistupovat do svého uživatelského rozhraní, ze kterého může provádět objednávání zboží.\n2.2. Při registraci a objednávání zboží je kupující povinen uvádět správně a pravdivě všechny údaje.\n\n3. Uzavření kupní smlouvy\n3.1. Veškerá prezentace zboží umístěná na webu e-shopu je informativního charakteru a prodávající není povinen uzavřít kupní smlouvu ohledně tohoto zboží.\n3.2. Kupní smlouva vzniká odesláním objednávky kupujícím a přijetím objednávky prodávajícím (zasláním potvrzovacího e-mailu).\n\n4. Cena zboží a Platební podmínky\n4.1. Cenu zboží a případné náklady spojené s dodáním může kupující uhradit následujícími způsoby:\n- bezhotovostně platební kartou online (přes platební bránu Stripe)\n4.2. V případě platby online je kupní cena splatná bezprostředně po odeslání objednávky.\n\n5. Přeprava a dodání zboží\n5.1. Zboží je doručováno prostřednictvím služby Zásilkovna na zvolené výdejní místo.\n5.2. Pokud je zboží skladem, je obvykle expedováno do 2 pracovních dnů. V případě zakázkové stavby (Seiko Mod na míru) je doba dodání sjednána individuálně, obvykle 2-4 týdny.\n\n6. Odstoupení od smlouvy\n6.1. Kupující spotřebitel má právo odstoupit od kupní smlouvy do 14 dnů od převzetí zboží, pokud jde o modely běžně skladem.\n6.2. DŮLEŽITÉ UPOZORNĚNÍ: Právo na odstoupení od smlouvy ve 14denní lhůtě NELZE uplatnit u zboží, které bylo upraveno podle přání kupujícího nebo pro jeho osobu (tzv. zakázkové stavby na míru sestavené přesně dle specifikací zákazníka v konfigurátoru nebo přes poptávku), v souladu s § 1837 písm. d) občanského zákoníku.\n\n7. Práva z vadného plnění (Reklamace)\n7.1. Prodávající odpovídá kupujícímu, že zboží při převzetí nemá vady. Na hodinky se vztahuje záruka 24 měsíců.\n7.2. Záruka se nevztahuje na opotřebení věci způsobené jejím obvyklým užíváním, případně mechanické poškození (pád, náraz, nedodržení voděodolnosti).\n\n8. Závěrečná ustanovení\n8.1. Veškerá ujednání mezi prodávajícím a kupujícím se řídí platným právním řádem České republiky.\n8.2. Tyto obchodní podmínky nabývají účinnosti dnem jejich zveřejnění na webu."
   },
   "Privacy": {
     "title": "Ochrana osobních údajů (GDPR)",

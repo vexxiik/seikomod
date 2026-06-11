@@ -15,7 +15,7 @@ interface CartState {
   discountCode: string;
   appliedDiscount: { code: string; discount: number; type: string } | null;
   packetaBranch: { id: string; name: string } | null;
-  paymentMethod: "card" | "cod";
+
 
   addItem: (item: CartItem) => void;
   removeItem: (id: string) => void;
@@ -26,7 +26,7 @@ interface CartState {
   setDiscountCode: (code: string) => void;
   setAppliedDiscount: (discount: { code: string; discount: number; type: string } | null) => void;
   setPacketaBranch: (branch: { id: string; name: string } | null) => void;
-  setPaymentMethod: (method: "card" | "cod") => void;
+
 }
 
 export const useCart = create<CartState>()(
@@ -37,7 +37,7 @@ export const useCart = create<CartState>()(
       discountCode: "",
       appliedDiscount: null,
       packetaBranch: null,
-      paymentMethod: "card",
+
 
       addItem: (item) => set((state) => {
         const existingItem = state.items.find((i) => i.id === item.id);
@@ -67,7 +67,7 @@ export const useCart = create<CartState>()(
       setDiscountCode: (code) => set({ discountCode: code }),
       setAppliedDiscount: (discount) => set({ appliedDiscount: discount }),
       setPacketaBranch: (branch) => set({ packetaBranch: branch }),
-      setPaymentMethod: (method) => set({ paymentMethod: method }),
+
     }),
     {
       name: 'seiko-cart-storage',

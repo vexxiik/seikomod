@@ -7,7 +7,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Link } from "@/i18n/routing";
-import { ArrowLeft } from "lucide-react";
+import { ArrowLeft, Eye, EyeOff } from "lucide-react";
 import { registerUser } from "../actions";
 import { signIn } from "next-auth/react";
 import { useTranslations } from "next-intl";
@@ -17,6 +17,7 @@ export default function RegisterPage() {
   const router = useRouter();
   const [error, setError] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -98,8 +99,48 @@ export default function RegisterPage() {
             </div>
             <div className="space-y-2">
               <Label htmlFor="password" className="text-xs uppercase tracking-wider text-muted-foreground">{t('password')}</Label>
-              <Input id="password" name="password" type="password" required minLength={6} className="h-12 bg-background" placeholder="••••••••" />
+              <div className="relative">
+                <Input 
+                  id="password" 
+                  name="password" 
+                  type={showPassword ? "text" : "password"} 
+                  required 
+                  minLength={6} 
+                  className="h-12 bg-background pr-10" 
+                  placeholder="••••••••" 
+                />
+                <button 
+                  type="button" 
+                  onClick={() => setShowPassword(!showPassword)}
+                  className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-primary transition-colors"
+                  tabIndex={-1}
+                >
+                  {showPassword ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
+                </button>
+              </div>
               <p className="text-xs text-muted-foreground">{t('passwordMin')}</p>
+            </div>
+            <div className="space-y-2">
+              <Label htmlFor="confirmPassword" className="text-xs uppercase tracking-wider text-muted-foreground">{t('confirmPassword')}</Label>
+              <div className="relative">
+                <Input 
+                  id="confirmPassword" 
+                  name="confirmPassword" 
+                  type={showPassword ? "text" : "password"} 
+                  required 
+                  minLength={6} 
+                  className="h-12 bg-background pr-10" 
+                  placeholder="••••••••" 
+                />
+                <button 
+                  type="button" 
+                  onClick={() => setShowPassword(!showPassword)}
+                  className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-primary transition-colors"
+                  tabIndex={-1}
+                >
+                  {showPassword ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
+                </button>
+              </div>
             </div>
           </CardContent>
           <CardFooter className="flex flex-col space-y-4">
