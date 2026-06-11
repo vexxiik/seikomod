@@ -59,7 +59,8 @@ export default function CartPage() {
       discountAmount = appliedDiscount.discount;
     }
   }
-  
+  const total = step === "cart" 
+    ? Math.max(0, subtotalWithBox - discountAmount) 
     : Math.max(0, subtotalWithBox + shipping - discountAmount);
 
   const handleApplyDiscount = async () => {
